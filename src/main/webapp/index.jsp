@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:forward page="registration.jsp"> </jsp:forward>
+	<a href="admin.jsp">Admin</a>
+	<a href="signup.jsp">Signup</a>
+	<a href="login.jsp">Login</a>
 </body>
 </html>

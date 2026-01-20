@@ -1,14 +1,15 @@
 package com.vastpro.onlineexam.dao;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.vastpro.onlineexam.db.DBConnection;
+
 public class AuthenticateUser {
 	public static String checkAccount(String username) {
-		try (Connection conn = CreateConnection.getConnection();) {
+		try (Connection conn = DBConnection.getConnection();) {
 			PreparedStatement ps = conn
 					.prepareStatement("select password from users where username = ?");
 			ps.setString(1, username);
@@ -21,7 +22,7 @@ public class AuthenticateUser {
 			return passworddb;
 			
 		
-		} catch (IOException | SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}

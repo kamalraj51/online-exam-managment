@@ -1,14 +1,8 @@
-package com.vastpro.onlineexam.service;
+package com.vastpro.onlineexam.command;
 
 import java.io.InputStream;
-
 import java.util.Map;
 import java.util.Properties;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import com.vastpro.onlineexam.controller.ControllerServlet;
 
 public class CommandFactory {
 	
@@ -20,7 +14,7 @@ public class CommandFactory {
 		// Load properties only once when class is loaded
     	try (InputStream is = CommandFactory.class
                 .getClassLoader()
-                .getResourceAsStream("com/vastpro/resource/servlet.properties")) {
+                .getResourceAsStream("com/vastpro/onlineexam/resources/config.properties")) {
 
             if (is == null) {
                 throw new RuntimeException("config.properties file not found in classpath");

@@ -1,4 +1,4 @@
-package com.vastpro.onlineexam.service;
+package com.vastpro.onlineexam.command;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import com.vastpro.onlineexam.dto.User;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class LoginService implements Command{
-	static List<User> userDetail = RegisterUserService.userDetail; 
+public class LoginCommand implements Command{
+	static List<User> userDetail = RegisterCommand.userDetail; 
 	public static String username = "kamal";
 	@Override
 	public boolean execute(HttpServletRequest req, HttpServletResponse res) {

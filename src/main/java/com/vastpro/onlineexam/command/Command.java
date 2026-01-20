@@ -1,4 +1,4 @@
-package com.vastpro.onlineexam.service;
+package com.vastpro.onlineexam.command;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

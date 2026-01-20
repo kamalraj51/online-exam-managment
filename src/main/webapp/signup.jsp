@@ -8,7 +8,7 @@
 </head>
 <body>
 	<form action="/exam/controller" method="post">
-	<input type="hidden" value="/login" name="/action">
+	<input type="hidden" value="signup" name="action">
 	
 	<label for="username">UserName: </label>
 	<input type="text" name="username">

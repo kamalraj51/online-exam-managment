@@ -1,4 +1,4 @@
-package com.vastpro.onlineexam.service;
+package com.vastpro.onlineexam.command;
 
 import java.util.HashMap;
 import java.util.Map;
