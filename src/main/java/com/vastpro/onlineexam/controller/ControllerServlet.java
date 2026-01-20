@@ -33,7 +33,7 @@ public class ControllerServlet extends HttpServlet {
 		String action=request.getParameter("action");
 //		String username=request.getParameter("user");
 		//System.out.println("Logger: "+logger.toString());
-		System.out.println(action);
+		System.out.println("command action: "+action);
 		//logger.error("error");
 		//logger.warn("warning");
 	//	logger.debug("action:{}",action);

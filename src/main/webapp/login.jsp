@@ -18,7 +18,7 @@
      <input type = "submit" value = "Login">
   </form>
   
-   <form action = "/exam/Controller" method = "post">
+   <form action = "/exam/controller" method = "post">
        <input type = "hidden" value = "logout" name = "action"/>
        <input type = "submit" value = "Logout">
        

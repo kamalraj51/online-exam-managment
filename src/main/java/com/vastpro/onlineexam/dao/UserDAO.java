@@ -14,7 +14,7 @@ public class UserDAO {
 			
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        String sql = "SELECT name FROM users "
+        String sql = "SELECT name,role_id FROM users "
                    + "WHERE email = ? AND password_hash = ? AND active = true";
   
         try (Connection con = DBConnection.getConnection();
@@ -28,6 +28,7 @@ public class UserDAO {
             	System.out.println(rs.getString("name"));
             	if(rs.getString("name")!=null) {
             		System.out.println(rs.getString("name"));
+            		request.setAttribute("role", rs.getInt("role_id"));
             		return true;
             	}
             }

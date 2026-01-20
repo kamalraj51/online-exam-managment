@@ -19,8 +19,8 @@
 		<label>Description</label>
 		<input type="text" name="description" required="required"><br><br>
 		<label>Status</label>
-		<input type="checkbox" name="status" value="Active"><label>Active</label>
-		<input type="checkbox" name="status" value="Retired"><label>Retired</label><br><br>
+		<input type="radio" name="status" value="Active"><label>Active</label>
+		<input type="radio" name="status" value="Retired"><label>Retired</label><br><br>
 		<label>Minimum Correct Answer</label>
 		<input type="text" name="pass_min_correct" required="required"><br><br>
 		<label>Total Marks</label>
