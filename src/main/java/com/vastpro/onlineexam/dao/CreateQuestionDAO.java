@@ -18,7 +18,7 @@ public class CreateQuestionDAO {
 		boolean flag = false;
 		sql.append("insert into question(question_id,exam_id,question_text,marks)");
 		sql.append("values(?,?,?,?)");
-
+		
 		try (Connection conn = DBConnection.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
 
 			pstmt.setInt(1, questionId);
