@@ -10,7 +10,7 @@ import com.vastpro.onlineexam.db.DBConnection;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-public class CreateNewUser {
+public class CreateNewUserDAO {
 	public static boolean registerUser(HttpServletRequest request) {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");

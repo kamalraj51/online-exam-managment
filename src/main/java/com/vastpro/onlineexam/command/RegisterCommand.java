@@ -1,9 +1,10 @@
 package com.vastpro.onlineexam.command;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
-import com.vastpro.onlineexam.dao.CreateNewUser;
+import com.vastpro.onlineexam.dao.CreateNewUserDAO;
 import com.vastpro.onlineexam.dto.User;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,7 +16,7 @@ public class RegisterCommand implements Command {
 	@Override
 	public boolean execute(HttpServletRequest req, HttpServletResponse res) {
 		System.out.println("register called");
-		return CreateNewUser.registerUser(req);
+		return CreateNewUserDAO.registerUser(req);
 
 	}
 
