@@ -9,18 +9,19 @@
 <body>
 	<div style="height: 100vh; width: 100vw; display: flex; justify-content: center; align-items: center;">
 	<form action="controller" method="post" style="border: 2px solid black; padding: 10px;">
-		<input type="hidden" name="action" value="question">
+		
 		<label>Question Id</label>
 		<input type="text" name="question_id" required="required"><br><br>
 		<label>Exam Id</label>
 		<input type="text" name="exam_id" required="required"><br><br>
-		<label>Question</label>
-		<input type="text-area" name="question_text" required="required"><br><br>
+		<label>Question</label><br>
+		<textarea rows="5" cols="30" name="question_text" required="required"></textarea><br><br>
 		<label>Marks</label>
 		<input type="text" name="marks"><br><br>
 		
-		<button value="question">Add Question</button>
-		<button value="done">Done</button>
+		
+		<input type="submit" name="action" value="Answers">
+		
 		
 	</form>
 	</div>

@@ -46,7 +46,7 @@
     <td><%= exam.getDuration() %></td>
     <td><%= exam.getPassMarks() %></td>
     <td>
-        <form action="Controller" method="post">
+        <form action="controller" method="post">
             <input type="hidden" name="action" value="startExam">
             <input type="hidden" name="examId" value="<%= exam.getExamId() %>">
             <button class="btn">Start Exam</button>
