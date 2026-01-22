@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
-<%@ page import="java.util.*, com.vastpro.onlineexam.dao.ExamDAO, com.vastpro.onlineexam.dto.Exam" %>
+<%@ page import="java.util.*, com.vastpro.onlineexam.dao.ExamDAO,com.vastpro.onlineexam.dto.ExamDTO" %>
 
 <!DOCTYPE html>
 <html>
@@ -17,6 +17,7 @@
 
 <body>
 
+
 <h2>Available Exams</h2>
 
 <table>
@@ -25,13 +26,12 @@
     <th>Description</th>
     <th>Duration (mins)</th>
     <th>Pass Marks</th>
-     <th>Exam Id</th>
     <th>Action</th>
     
 </tr>
 
 <%
-    List<Exam> exams = ExamDAO.getActiveExams();
+List<ExamDTO> exams = ExamDAO.getActiveExams();
 
     if (exams.isEmpty()) {
 %>
@@ -39,20 +39,22 @@
     <td colspan="5">No exams available</td>
 </tr>
 <%
-    } else {
-        for (Exam exam : exams) {
+} else {
+        for (ExamDTO exam : exams) {
 %>
 <tr>
     <td><%= exam.getExamName() %></td>
     <td><%= exam.getDescription() %></td>
     <td><%= exam.getDuration() %></td>
     <td><%= exam.getPassMarks() %></td>
-    <td><%= exam.getExamId()%></td>
+    
     <td>
         <form action="controller" method="post">
+
             <input type="hidden" name="action" value="start_exam">
+
             <input type="hidden" name="examId" value="<%= exam.getExamId() %>">
-            examId: <%= exam.getExamId() %>
+           
             <button class="btn">Start Exam</button>
         </form>
     </td>
@@ -63,6 +65,12 @@
 %>
 
 </table>
-
+<div style="height: 200px; width: 100vw; display: flex; justify-content: center; align-items: center;flex-direction: column;">
+  <form action = "/exam/controller" method = "post">
+       <input type = "hidden" value = "logout" name = "action"/>
+       <input type = "submit" value = "Logout">
+       
+   </form>
+   </div>
 </body>
 </html>

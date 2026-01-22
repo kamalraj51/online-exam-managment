@@ -56,6 +56,9 @@ public class CommandConfig {
     		    String success = "";
     		    String failure = "";
     		    for(int i=0;i<tokens.length;i++) {
+    		    	if(tokens[i].equals("/controller?action=authorize")) {
+    		    		continue;
+    		    	}
     		    	String[] pair = tokens[i].split("=");
     		    	if ("success".equals(pair[0])) {
     		    		success = pair[1];

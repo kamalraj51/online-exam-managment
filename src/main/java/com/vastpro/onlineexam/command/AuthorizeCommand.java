@@ -7,9 +7,9 @@ public class AuthorizeCommand implements Command{
 
 	@Override
 	public boolean execute(HttpServletRequest req, HttpServletResponse res) {
-		 String role = req.getParameter("role");
-		 	System.out.println(role);
-		    if ("1".equals(role)) {
+		 int role =(Integer) req.getSession().getAttribute("role");
+		 	System.out.println(" AuthorizeCommand "+role);
+		    if (role==1) {
 		       return true;
 		    } else {
 		    	return false;

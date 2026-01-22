@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Create Exam</title>
+<title>Add Answer</title>
 
 <style>
     body {
@@ -19,18 +19,19 @@
         width: 100vw;
         display: flex;
         justify-content: center;
-        align-items: flex-start;   /* FIX */
-        padding-top: 40px;         /* FIX */
+        align-items: flex-start;
+        padding-top: 40px;
         box-sizing: border-box;
     }
 
     form {
         background-color: #ffffff;
         border: 1px solid #ccc;
-        padding: 30px 40px;
+        padding: 25px 30px;
         border-radius: 6px;
         box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         width: 420px;
+        box-sizing: border-box;
     }
 
     h2 {
@@ -46,12 +47,19 @@
         color: #555;
     }
 
-    input[type="text"] {
+    input[type="text"],
+    textarea {
         width: 100%;
         padding: 8px;
         margin-bottom: 15px;
         border: 1px solid #ccc;
         border-radius: 4px;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    textarea {
+        resize: vertical;
     }
 
     .radio-group {
@@ -59,24 +67,30 @@
     }
 
     .radio-group label {
-        display: inline;
         font-weight: normal;
         margin-right: 10px;
     }
 
-    button {
-        width: 100%;
+    input[type="submit"] {
+        width: 48%;
         padding: 10px;
-        background-color: #28a745;
+        background-color: #007bff;
         border: none;
         color: white;
         font-size: 16px;
         border-radius: 4px;
         cursor: pointer;
+        margin-right: 4%;
+        margin-bottom: 10px;
     }
 
-    button:hover {
-        background-color: #218838;
+    input[type="submit"]:last-child {
+        margin-right: 0;
+        background-color: #28a745;
+    }
+
+    input[type="submit"]:hover {
+        opacity: 0.9;
     }
 </style>
 </head>
@@ -84,40 +98,24 @@
 <body>
     <div class="container">
         <form action="controller" method="post">
-            <h2>Create Exam</h2>
+            <h2>Add Answer</h2>
 
-            <input type="hidden" name="action" value="create_exam">
+            <label>Answer Id</label>
+            <input type="text" name="answer_id">
 
-            <label>Exam Id</label>
-            <input type="text" name="exam_id" required>
+            <label>Options</label>
+            <textarea rows="5" name="option_text" required="required"></textarea>
 
-            <label>Topic</label>
-            <input type="text" name="exam_topic" required>
+            <label>Question Id</label>
+            <input type="text" name="question_id" required="required">
 
-            <label>Name</label>
-            <input type="text" name="exam_name" required>
-
-            <label>Description</label>
-            <input type="text" name="description" required>
-
-            <label>Status</label>
             <div class="radio-group">
-                <input type="radio" name="status" value="ACTIVE"> Active
-                <input type="radio" name="status" value="RETIRED"> Retired
+                <input type="radio" name="is_correct" value="true"> Correct
+                <input type="radio" name="is_correct" value="false">Wrong
             </div>
 
-            <label>Minimum Correct Answer</label>
-            <input type="text" name="pass_min_correct" required>
-
-            <label>Total Marks</label>
-            <input type="text" name="total_marks" required>
-
-            <label>Duration</label>
-            <input type="text" name="duration_minutes">
-
-            <input type="hidden" name="user_id" value="1">
-
-            <button>Create</button>
+            <input type="submit" name="action" value="Add">
+            <input type="submit" name="action" value="Done">
         </form>
     </div>
 </body>

@@ -1,6 +1,6 @@
 package com.vastpro.onlineexam.dto;
 
-public class User {
+public class UserDTO {
 	private String username;
 	private String password;
 	private String email;
@@ -36,7 +36,7 @@ public class User {
 	public String toString() {
 		return "User [username=" + username + ", password=" + password + ", email=" + email + ", rollId=" + rollId + "]";
 	}
-	public User(String username, String password, String email, String rollId) {
+	public UserDTO(String username, String password, String email, String rollId) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -44,7 +44,7 @@ public class User {
 		this.rollId = rollId;
 	}
 
-	public User() {}
+	public UserDTO() {}
 
 }
 

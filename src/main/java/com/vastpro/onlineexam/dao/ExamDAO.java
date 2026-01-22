@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.vastpro.onlineexam.db.DBConnection;
-import com.vastpro.onlineexam.dto.Exam;
+import com.vastpro.onlineexam.dto.ExamDTO;
 
 public class ExamDAO {
-	public static List<Exam> getActiveExams() {
+	public static List<ExamDTO> getActiveExams() {
 
-        List<Exam> exams = new ArrayList<>();
+        List<ExamDTO> exams = new ArrayList<>();
 
         String sql = "SELECT exam_id, exam_name, description, duration_minutes, pass_min_correct "
                    + "FROM exam WHERE status = 'ACTIVE'";
@@ -22,7 +22,7 @@ public class ExamDAO {
              ResultSet rs = ps.executeQuery()) {
         	
             while (rs.next()) {
-                Exam exam = new Exam();
+                ExamDTO exam = new ExamDTO();
                 exam.setExamId(rs.getInt("exam_id"));
                 exam.setExamName(rs.getString("exam_name"));
                 

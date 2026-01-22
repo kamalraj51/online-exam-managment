@@ -2,10 +2,10 @@ package com.vastpro.onlineexam.dto;
 
 import java.util.List;
 
-public class Question {
+public class QuestionDTO {
     private int questionId;
     private String questionText;
-    private List<Answer> answers;
+    private List<AnswerDTO> answers;
 	public int getQuestionId() {
 		return questionId;
 	}
@@ -18,21 +18,21 @@ public class Question {
 	public void setQuestionText(String questionText) {
 		this.questionText = questionText;
 	}
-	public List<Answer> getAnswers() {
+	public List<AnswerDTO> getAnswers() {
 		return answers;
 	}
-	public void setAnswers(List<Answer> answers) {
+	public void setAnswers(List<AnswerDTO> answers) {
 		this.answers = answers;
 	}
 	@Override
 	public String toString() {
 		return "Question [questionId=" + questionId + ", questionText=" + questionText + ", answers=" + answers + "]";
 	}
-	public Question(int questionId, String questionText, List<Answer> answers) {
+	public QuestionDTO(int questionId, String questionText, List<AnswerDTO> answers) {
 		super();
 		this.questionId = questionId;
 		this.questionText = questionText;
 		this.answers = answers;
 	}
-	public Question(){}
+	public QuestionDTO(){}
 }

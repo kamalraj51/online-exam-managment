@@ -5,13 +5,13 @@ import java.sql.*;
 import java.util.*;
 
 import com.vastpro.onlineexam.db.DBConnection;
-import com.vastpro.onlineexam.dto.Exam;
-import com.vastpro.onlineexam.dto.ExamResponse;
+import com.vastpro.onlineexam.dto.ExamDTO;
+import com.vastpro.onlineexam.dto.ExamResponseDTO;
 
 public class ExamResultDAO {
 
     // Get Exam details
-    public Exam getExamById(int examId) throws Exception {
+    public ExamDTO getExamById(int examId) throws Exception {
         String sql = "SELECT * FROM exam WHERE exam_id = ?";
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
@@ -19,7 +19,7 @@ public class ExamResultDAO {
             ps.setInt(1, examId);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                Exam exam = new Exam();
+                ExamDTO exam = new ExamDTO();
                 exam.setExamId(rs.getInt("exam_id"));
                 exam.setExamName(rs.getString("exam_name"));
                 exam.setPassMarks(rs.getInt("pass_min_correct"));
@@ -31,8 +31,8 @@ public class ExamResultDAO {
     }
 
     // Get all responses for a given attempt
-    public static List<ExamResponse> getResponsesByAttempt(int attemptId) throws Exception {
-        List<ExamResponse> responses = new ArrayList<>();
+    public static List<ExamResponseDTO> getResponsesByAttempt(int attemptId) throws Exception {
+        List<ExamResponseDTO> responses = new ArrayList<>();
         String sql = "SELECT r.response_id, r.question_id, r.selected_option_id, r.is_correct, " +
                      "q.question_text, a.option_text as selected_option_text, ac.option_text as correct_option_text " +
                      "FROM exam_response r " +
@@ -47,7 +47,7 @@ public class ExamResultDAO {
             ps.setInt(1, attemptId);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                ExamResponse resp = new ExamResponse();
+                ExamResponseDTO resp = new ExamResponseDTO();
                 resp.setResponseId(rs.getInt("response_id"));
                 resp.setQuestionId(rs.getInt("question_id"));
                 resp.setSelectedOptionId(rs.getObject("selected_option_id") != null ? rs.getInt("selected_option_id") : null);

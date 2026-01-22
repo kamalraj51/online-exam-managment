@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.HttpSessionEvent;
 
-public class UserDAO {
+public class LoginDAO {
 	
 	public static boolean validateLogin(HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -30,7 +30,7 @@ public class UserDAO {
             	System.out.println(rs.getString("name"));
             	if(rs.getString("name")!=null) {
             		System.out.println(rs.getString("name"));
-            		request.setAttribute("role", rs.getInt("role_id"));
+            		session.setAttribute("role", rs.getInt("role_id"));
             		session.setAttribute("user_id", rs.getInt("user_id"));
             		return true;
             	}

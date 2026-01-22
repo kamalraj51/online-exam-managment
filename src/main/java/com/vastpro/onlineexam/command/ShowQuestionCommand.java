@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.vastpro.onlineexam.dao.StartExamDAO;
-import com.vastpro.onlineexam.dto.Question;
+import com.vastpro.onlineexam.dto.QuestionDTO;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServletRequest;
@@ -26,7 +26,7 @@ public class ShowQuestionCommand implements Command {
             System.out.println("examId: "+examId);
             String action = req.getParameter("nav"); // next | back | submit
 
-            List<Question> questions = (List<Question>) session.getAttribute("questions");
+            List<QuestionDTO> questions = (List<QuestionDTO>) session.getAttribute("questions");
 
 
             if (questions == null) {
@@ -47,7 +47,7 @@ public class ShowQuestionCommand implements Command {
             
             String answerIdStr = req.getParameter("answerId");
             System.out.println("ShowQuestionCommand: answerIdStr: "+answerIdStr);
-            Question currentQuestion = questions.get(currentIndex);
+            QuestionDTO currentQuestion = questions.get(currentIndex);
 
             if (answerIdStr != null) {
                 int answerId = Integer.parseInt(answerIdStr);
@@ -61,6 +61,7 @@ public class ShowQuestionCommand implements Command {
 
                 userAnswers.put(currentQuestion.getQuestionId(), answerId);
                 session.setAttribute("userAnswers", userAnswers);
+                System.out.println("Show Question Command: answer"+userAnswers);
             }
 
             //end
@@ -77,9 +78,9 @@ public class ShowQuestionCommand implements Command {
 //                res.sendRedirect("controller?action=submitExam&examId=" + examId);
 //            	req.setAttribute("action", "submitExam");
 //                session.setAttribute("examId", examId);
-//            	RequestDispatcher rd=req.getRequestDispatcher("controller?action=show_result&examId=" + examId);
-//            
-//            	rd.include(req, res);
+            	RequestDispatcher rd=req.getRequestDispatcher("controller?action=show_result&examId=" + examId);
+            
+            	rd.include(req, res);
                 //return false;
             }
 
@@ -93,7 +94,7 @@ public class ShowQuestionCommand implements Command {
 
             session.setAttribute("currentIndex", currentIndex);
 
-            Question question = questions.get(currentIndex);
+            QuestionDTO question = questions.get(currentIndex);
             req.setAttribute("question", question);
 
             req.setAttribute("isFirst", currentIndex == 0);

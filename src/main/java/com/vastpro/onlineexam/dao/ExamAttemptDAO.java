@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.vastpro.onlineexam.db.DBConnection;
-import com.vastpro.onlineexam.dto.Question;
+import com.vastpro.onlineexam.dto.QuestionDTO;
 
 public class ExamAttemptDAO {
 
@@ -44,7 +44,7 @@ public class ExamAttemptDAO {
     }
 
     public void insertResponses(int attemptId,
-                                List<Question> questions,
+                                List<QuestionDTO> questions,
                                 Map<Integer, Integer> userAnswers) throws Exception {
 
         String sql = """
@@ -56,7 +56,7 @@ public class ExamAttemptDAO {
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            for (Question q : questions) {
+            for (QuestionDTO q : questions) {
 
                 Integer selectedAnswerId =
                     (userAnswers != null) ? userAnswers.get(q.getQuestionId()) : null;

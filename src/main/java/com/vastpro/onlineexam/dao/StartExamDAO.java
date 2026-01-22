@@ -3,14 +3,14 @@ package com.vastpro.onlineexam.dao;
 import java.sql.*;
 import java.util.*;
 import com.vastpro.onlineexam.db.DBConnection;
-import com.vastpro.onlineexam.dto.Answer;
-import com.vastpro.onlineexam.dto.Question;
+import com.vastpro.onlineexam.dto.AnswerDTO;
+import com.vastpro.onlineexam.dto.QuestionDTO;
 
 public class StartExamDAO {
 
-    public List<Question> getQuestionsByExamId(int examId) throws Exception {
+    public List<QuestionDTO> getQuestionsByExamId(int examId) throws Exception {
 
-        Map<Integer, Question> questionMap = new LinkedHashMap<>();
+        Map<Integer, QuestionDTO> questionMap = new LinkedHashMap<>();
 
         String sql =
             "SELECT q.question_id, q.question_text, a.answer_id, a.option_text, a.is_correct " +
@@ -28,16 +28,16 @@ public class StartExamDAO {
             while (rs.next()) {
                 int qId = rs.getInt("question_id");
 
-                Question question = questionMap.get(qId);
+                QuestionDTO question = questionMap.get(qId);
                 if (question == null) {
-                    question = new Question();
+                    question = new QuestionDTO();
                     question.setQuestionId(qId);
                     question.setQuestionText(rs.getString("question_text"));
                     question.setAnswers(new ArrayList<>());
                     questionMap.put(qId, question);
                 }
 
-                Answer answer = new Answer();
+                AnswerDTO answer = new AnswerDTO();
                 answer.setAnswerId(rs.getInt("answer_id"));
                 answer.setOptionText(rs.getString("option_text"));
                 answer.setCorrect(rs.getBoolean("is_correct"));     

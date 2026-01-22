@@ -1,6 +1,6 @@
 package com.vastpro.onlineexam.dto;
 
-public class Exam {
+public class ExamDTO {
 	
 	private int examId;
 	private String examTopic;

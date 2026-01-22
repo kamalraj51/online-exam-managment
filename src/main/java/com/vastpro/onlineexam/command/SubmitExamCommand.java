@@ -7,8 +7,8 @@ import java.util.Map;
 import com.vastpro.onlineexam.dao.ExamAttemptDAO;
 import com.vastpro.onlineexam.dao.ExamResultDAO;
 import com.vastpro.onlineexam.dao.StartExamDAO;
-import com.vastpro.onlineexam.dto.ExamResponse;
-import com.vastpro.onlineexam.dto.Question;
+import com.vastpro.onlineexam.dto.ExamResponseDTO;
+import com.vastpro.onlineexam.dto.QuestionDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -26,8 +26,8 @@ public class SubmitExamCommand implements Command {
             System.out.println("SubmitExamCommand: "+examId);
             int userId = (Integer) session.getAttribute("user_id");
             System.out.println("SubmitExamCommand: "+userId);
-            List<Question> questions =
-                (List<Question>) session.getAttribute("questions");
+            List<QuestionDTO> questions =
+                (List<QuestionDTO>) session.getAttribute("questions");
 
             Map<Integer, Integer> userAnswers =
                 (Map<Integer, Integer>) session.getAttribute("userAnswers");
@@ -37,7 +37,7 @@ public class SubmitExamCommand implements Command {
             int incorrect = 0;
             int unanswered = 0;
 
-            for (Question q : questions) {
+            for (QuestionDTO q : questions) {
                 Integer selectedAnswerId =
                         (userAnswers != null) ? userAnswers.get(q.getQuestionId()) : null;
 
@@ -60,7 +60,7 @@ public class SubmitExamCommand implements Command {
                     examId, userId, total, correct, incorrect, unanswered, passed
             );
             dao.insertResponses(attemptId, questions, userAnswers);
-            	List<ExamResponse> response= ExamResultDAO.getResponsesByAttempt(attemptId);
+            	List<ExamResponseDTO> response= ExamResultDAO.getResponsesByAttempt(attemptId);
             	System.out.println("Submit Exam Command: Exam Response"+response);
 
       

@@ -1,6 +1,6 @@
 package com.vastpro.onlineexam.dto;
 
-public class ExamResponse {
+public class ExamResponseDTO {
     private Integer responseId;
     private Integer questionId;
     private Integer selectedOptionId;

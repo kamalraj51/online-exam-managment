@@ -1,71 +1,140 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ page import="com.vastpro.onlineexam.dto.Question" %>
-<%@ page import="com.vastpro.onlineexam.dto.Answer" %>
+<%@ page import="com.vastpro.onlineexam.dto.QuestionDTO" %>
+<%@ page import="com.vastpro.onlineexam.dto.AnswerDTO" %>
 <%@ page import="java.util.List" %>
 
 <%
-    Question question = (Question) request.getAttribute("question");
-    boolean isFirst = Boolean.TRUE.equals(request.getAttribute("isFirst"));
-    boolean isLast = Boolean.TRUE.equals(request.getAttribute("isLast"));
-    int currentQNo = (Integer) request.getAttribute("currentQNo");
-    int totalQuestions = (Integer) request.getAttribute("totalQuestions");
+QuestionDTO question = (QuestionDTO) request.getAttribute("question");
+boolean isFirst = Boolean.TRUE.equals(request.getAttribute("isFirst"));
+boolean isLast = Boolean.TRUE.equals(request.getAttribute("isLast"));
+int currentQNo = (Integer) request.getAttribute("currentQNo");
+int totalQuestions = (Integer) request.getAttribute("totalQuestions");
 %>
 
+<!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Start Exam</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 25px 30px;
+            border-radius: 6px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h3 {
+            color: #333;
+        }
+
+        .question-number {
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .answers {
+            margin-top: 15px;
+        }
+
+        .answers label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button[name="nav"][value="next"] {
+            background-color: #007bff;
+            color: white;
+        }
+
+        button[name="nav"][value="back"] {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        button[name="nav"][value="submit"] {
+            background-color: #28a745;
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+    </style>
 </head>
 <body>
 
-<h3>Question <%= currentQNo %> of <%= totalQuestions %></h3>
-<h3><%= question.getQuestionText() %></h3>
+<div class="container">
+    <div class="question-number">
+        Question <%= currentQNo %> of <%= totalQuestions %>
+    </div>
+    <h3><%= question.getQuestionText() %></h3>
 
-<form action="controller" method="post">
+    <form action="controller" method="post" class="answers">
 
-<%
-    List<Answer> answers = question.getAnswers();
-    for (Answer ans : answers) {
-%>
-    <input type="radio" name="answerId" value="<%= ans.getAnswerId() %>" required>
-    <%= ans.getOptionText() %><br/>
-<%
-    }
-%>
+        <%
+        List<AnswerDTO> answers = question.getAnswers();
+        for (AnswerDTO ans : answers) {
+        %>
+            <label>
+                <input type="radio" name="answerId" value="<%= ans.getAnswerId() %>">
+                <%= ans.getOptionText() %>
+            </label>
+        <%
+        }
+        %>
 
-<br/>
+        <div style="margin-top: 20px;">
+        <%
+            if (totalQuestions == 1) { // Only one question
+        %>
+            <input type="hidden" name="examId" value="<%= request.getParameter("examId") %>"/>
+            <button type="submit" name="nav" value="submit">Submit</button>
+        <%
+            } else if (isFirst) { // First question, more than 1
+        %>
+            <button type="submit" name="nav" value="next">Next</button>
+        <%
+            } else if (isLast) { // Last question
+        %>
+            <input type="hidden" name="examId" value="<%= request.getParameter("examId") %>"/>
+            <button type="submit" name="nav" value="back">Back</button>
+            <button type="submit" name="nav" value="submit">Submit</button>
+        <%
+            } else { // Middle questions
+        %>
+            <button type="submit" name="nav" value="back">Back</button>
+            <button type="submit" name="nav" value="next">Next</button>
+        <%
+            }
+        %>
+        </div>
 
-<%-- Navigation buttons logic --%>
-<%
-    if (totalQuestions == 1) { // Only one question
-%>
-	<input type="hidden" name="examId" value="<%= request.getParameter("examId") %>"/>
- 	<input type="hidden" name="action" value="show_result"/>
-    <button type="submit" name="nav" value="submit">Submit</button>
-<%
-    } else if (isFirst) { // First question, more than 1
-%>
+        <input type="hidden" name="action" value="start_exam"/>
+        <input type="hidden" name="examId" value="<%= request.getParameter("examId") %>"/>
 
-    <button type="submit" name="nav" value="next">Next</button>
-<%
-    } else if (isLast) { // Last question
-%>
-<input type="hidden" name="action" value="show_result"/>
-	<input type="hidden" name="examId" value="<%= request.getParameter("examId") %>"/>
-    <button type="submit" name="nav" value="back">Back</button>
-    <button type="submit" name="nav" value="submit">Submit</button>
-<%
-    } else { // Middle questions
-%>
-    <button type="submit" name="nav" value="back">Back</button>
-    <button type="submit" name="nav" value="next">Next</button>
-<%
-    }
-%>
-
-<input type="hidden" name="action" value="start_exam"/>
-<input type="hidden" name="examId" value="<%= request.getParameter("examId") %>"/>
-
-</form>
+    </form>
+</div>
 
 </body>
 </html>

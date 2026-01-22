@@ -1,6 +1,6 @@
 package com.vastpro.onlineexam.dto;
 
-public class Answer {
+public class AnswerDTO {
     private int answerId;
     private String optionText;
    private boolean isCorrect;
@@ -23,7 +23,7 @@ public class Answer {
 	public void setOptionText(String optionText) {
 		this.optionText = optionText;
 	}
-	public Answer(int answerId, String optionText) {
+	public AnswerDTO(int answerId, String optionText) {
 		super();
 		this.answerId = answerId;
 		this.optionText = optionText;
@@ -32,7 +32,7 @@ public class Answer {
 
 		return isCorrect;
 	}
-	public Answer() {}
+	public AnswerDTO() {}
     
 }
 

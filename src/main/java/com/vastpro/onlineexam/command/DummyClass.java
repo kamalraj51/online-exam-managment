@@ -1,15 +1,16 @@
 package com.vastpro.onlineexam.command;
 
-import com.vastpro.onlineexam.dao.CreateQuestionDAO;
-
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class AddQuestionCommand implements Command{
+public class DummyClass implements Command{
 
 	@Override
 	public boolean execute(HttpServletRequest req, HttpServletResponse res) {
-		return CreateQuestionDAO.addQuestion(req);
+		// TODO Auto-generated method stub
+		return true;
+//		RequestDispatcher rd = req.getRequestDispatcher("con")
 	}
-
+	
 }

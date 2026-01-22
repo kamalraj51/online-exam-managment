@@ -28,8 +28,8 @@ public class ControllerServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String action=request.getParameter("action");
+
+		String action=request.getParameter("action").toLowerCase();
 //		String username=request.getParameter("user");
 		//System.out.println("Logger: "+logger.toString());
 		System.out.println("command action: "+action);
@@ -46,6 +46,7 @@ public class ControllerServlet extends HttpServlet {
 		if(flag) {
 			String forward=CommandFactory.configMap.get(action).getSuccess();
 			request.getRequestDispatcher(forward).forward(request, response);
+			
 		}else {
 			String forward=CommandFactory.configMap.get(action).getFailure();
 			request.getRequestDispatcher(forward).forward(request, response);

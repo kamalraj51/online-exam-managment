@@ -7,11 +7,6 @@
 <title>authorize</title>
 </head>
 <body>
-	<form action="controller" method="post">
-	
-	<input type="hidden" name="role" value=<%=request.getAttribute("role") %>> 
-	<input type="hidden" name="action" value="authorize">
-	<input type="submit" value="submit">
-	</form>
+	<jsp:forward page="/controller?action=authorize"></jsp:forward>
 </body>
 </html>
