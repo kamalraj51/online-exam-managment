@@ -3,12 +3,40 @@ package com.vastpro.onlineexam.dto;
 public class Exam {
 	
 	private int examId;
-    private String examName;
-    private String description;
+	private String examTopic;
+	private String examName;
+	private String description;
+	 private String status; 
     private int duration;
     private int passMarks;
-
-    public int getExamId() {
+    private int totalMarks;
+    private int createdBy;
+    
+    public String getExamTopic() {
+		return examTopic;
+	}
+	public void setExamTopic(String examTopic) {
+		this.examTopic = examTopic;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public int getTotalMarks() {
+		return totalMarks;
+	}
+	public void setTotalMarks(int totalMarks) {
+		this.totalMarks = totalMarks;
+	}
+	public int getCreatedBy() {
+		return createdBy;
+	}
+	public void setCreatedBy(int createdBy) {
+		this.createdBy = createdBy;
+	}
+	public int getExamId() {
     	return examId;
     }
     public void setExamId(int examId) {

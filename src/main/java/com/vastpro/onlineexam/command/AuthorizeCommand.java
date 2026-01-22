@@ -14,7 +14,6 @@ public class AuthorizeCommand implements Command{
 		    } else {
 		    	return false;
 		    }
-		 // return true;
 	}
 	
 	

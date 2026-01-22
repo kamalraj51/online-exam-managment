@@ -7,4 +7,5 @@ import jakarta.servlet.http.HttpServletResponse;
  */
 public interface Command {
 	boolean execute(HttpServletRequest req, HttpServletResponse res);
+	 
 }

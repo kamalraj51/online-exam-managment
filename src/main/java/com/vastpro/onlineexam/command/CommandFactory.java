@@ -38,7 +38,7 @@ public class CommandFactory {
     }
 
     public static Command getCommand(String action) {
-
+    		
         try {
         	if(action == null) {
         		System.out.println("Missing action...");

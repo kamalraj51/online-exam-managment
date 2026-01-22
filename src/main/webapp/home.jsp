@@ -25,7 +25,9 @@
     <th>Description</th>
     <th>Duration (mins)</th>
     <th>Pass Marks</th>
+     <th>Exam Id</th>
     <th>Action</th>
+    
 </tr>
 
 <%
@@ -45,10 +47,12 @@
     <td><%= exam.getDescription() %></td>
     <td><%= exam.getDuration() %></td>
     <td><%= exam.getPassMarks() %></td>
+    <td><%= exam.getExamId()%></td>
     <td>
-        <form action="Controller" method="post">
-            <input type="hidden" name="action" value="startExam">
+        <form action="controller" method="post">
+            <input type="hidden" name="action" value="start_exam">
             <input type="hidden" name="examId" value="<%= exam.getExamId() %>">
+            examId: <%= exam.getExamId() %>
             <button class="btn">Start Exam</button>
         </form>
     </td>
