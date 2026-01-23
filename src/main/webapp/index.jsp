@@ -59,8 +59,10 @@
 
     <div class="container">
         <form action="controller" method="post">
-            <a href="signup.jsp">Signup</a>
-            <a href="login.jsp">Login</a>
+           
+            <input type="submit" name="action" value="Signup">
+            <input type="submit" name="action" value="Login">
+            
         </form>
     </div>
 </body>

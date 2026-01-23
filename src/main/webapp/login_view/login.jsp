@@ -75,7 +75,7 @@
         <h2>Login Page</h2>
 
         <form action="controller" method="post">
-            <input type="hidden" value="login" name="action">
+            <input type="hidden" value="login_user" name="action">
 
             <label>Email</label>
             <input type="text" name="email" required>

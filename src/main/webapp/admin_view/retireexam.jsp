@@ -12,7 +12,7 @@
 		
 		<label>Enter the Exam Id</label>
 		<input type="text" name="exam_id"><br><br>
-		<input type="hidden" name="action" value="retire">
+		<input type="hidden" name="action" value="retire_exam_user">
 		<button>Submit</button>
 		
 	</form>

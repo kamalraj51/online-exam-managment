@@ -29,7 +29,7 @@
         color: #333;
     }
 
-    a {
+    button {
         text-decoration: none;
         background-color: #343a40;
         color: white;
@@ -41,7 +41,7 @@
         transition: background-color 0.3s;
     }
 
-    a:hover {
+    button:hover {
         background-color: #23272b;
     }
 </style>
@@ -51,9 +51,13 @@
     <div class="container">
         <h1>ADMIN PAGE</h1>
 
-        <a href="example.jsp">Create Exam</a>
-        <a href="retireexam.jsp">Retire Exam</a>
-        <!-- <a href="createexam.jsp"> Exam</a>-->
+    
+         <form action="controller" method="post">
+           
+
+            <button  name="action" value="create_exam"> Create Exam</button>
+            <button  name="action" value="retire_exam"> Retire Exam</button>
+        </form>
     </div>
 </body>
 </html>

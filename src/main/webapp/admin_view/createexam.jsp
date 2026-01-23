@@ -86,7 +86,7 @@
         <form action="controller" method="post">
             <h2>Create Exam</h2>
 
-            <input type="hidden" name="action" value="create_exam">
+            <input type="hidden" name="action" value="create_exam_user">
 
             <label>Exam Id</label>
             <input type="text" name="exam_id" required>

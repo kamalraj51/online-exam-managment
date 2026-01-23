@@ -74,7 +74,7 @@
         <h2>Signup Page</h2>
 
         <form action="controller" method="post">
-            <input type="hidden" value="signup" name="action">
+            <input type="hidden" value="signup_user" name="action">
 
             <label for="username">User Name</label>
             <input type="text" name="username">
