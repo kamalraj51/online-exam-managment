@@ -9,18 +9,23 @@ import java.util.List;
 import com.vastpro.onlineexam.db.DBConnection;
 import com.vastpro.onlineexam.dto.ExamDTO;
 
-public class ExamDAO {
-	public static List<ExamDTO> getActiveExams() {
+import jakarta.servlet.http.HttpServletRequest;
+
+public class ListExamDAO {
+	public static boolean getActiveExams(HttpServletRequest request) {
 
         List<ExamDTO> exams = new ArrayList<>();
 
         String sql = "SELECT exam_id, exam_name, description, duration_minutes, pass_min_correct "
-                   + "FROM exam WHERE status = 'ACTIVE'";
+                   + "FROM exam WHERE status = 'ACTIVE' and  exam_topic=?";
 
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
-        	
+        		
+             ) {
+        		String topic = request.getParameter("userSelectedOption");
+        		ps.setString(1, topic);
+        		ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 ExamDTO exam = new ExamDTO();
                 exam.setExamId(rs.getInt("exam_id"));
@@ -34,9 +39,11 @@ public class ExamDAO {
 
         } catch (Exception e) {
             e.printStackTrace();
+            request.setAttribute("examList", exams);
+            return false;
         }
-
-        return exams;
+        request.setAttribute("examList", exams);
+        return true;
     }
 
 }

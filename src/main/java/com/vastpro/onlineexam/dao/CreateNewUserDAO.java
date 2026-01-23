@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import com.vastpro.onlineexam.db.DBConnection;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,6 +16,8 @@ public class CreateNewUserDAO {
 	public static boolean registerUser(HttpServletRequest request) {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		String encryptPassword = BCrypt.hashpw(password, BCrypt.gensalt(10));
+		System.out.println("CreateNewUserDAO encryptPassword: "+encryptPassword);
 		String email = request.getParameter("email");
 		String roleId = request.getParameter("role_id");
 		StringBuilder sql = new StringBuilder();
@@ -24,7 +28,7 @@ public class CreateNewUserDAO {
 		try (Connection conn = DBConnection.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
 
 			pstmt.setString(1, username);
-			pstmt.setString(2, password);
+			pstmt.setString(2, encryptPassword);
 			pstmt.setBoolean(3, true);
 			pstmt.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
 			pstmt.setString(5, email);
