@@ -23,7 +23,7 @@ public class ExampleDAO {
 		double total_marks = Double.parseDouble(request.getParameter("total_marks"));
 		int duration_minutes = Integer.parseInt(request.getParameter("duration_minutes"));
 		int created_by = Integer.parseInt(request.getParameter("user_id"));
-
+		
 		// create question
 		int questionId = Integer.parseInt(request.getParameter("question_id"));
 		// int examId = Integer.parseInt(request.getParameter("exam_id"));

@@ -1,12 +1,11 @@
 package com.vastpro.onlineexam.command;
 
-import java.time.LocalDateTime;
+
 import java.util.List;
 import java.util.Map;
 
 import com.vastpro.onlineexam.dao.ExamAttemptDAO;
 import com.vastpro.onlineexam.dao.ExamResultDAO;
-import com.vastpro.onlineexam.dao.StartExamDAO;
 import com.vastpro.onlineexam.dto.ExamResponseDTO;
 import com.vastpro.onlineexam.dto.QuestionDTO;
 

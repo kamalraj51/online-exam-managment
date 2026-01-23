@@ -87,10 +87,6 @@
             <h2>Create Exam</h2>
 
             <input type="hidden" name="action" value="create_exam_user">
-
-            <label>Exam Id</label>
-            <input type="text" name="exam_id" required>
-
             <label>Topic</label>
             <input type="text" name="exam_topic" required>
 
@@ -100,12 +96,8 @@
             <label>Description</label>
             <input type="text" name="description" required>
 
-            <label>Status</label>
-            <div class="radio-group">
-                <input type="radio" name="status" value="ACTIVE"> Active
-                <input type="radio" name="status" value="RETIRED"> Retired
-            </div>
-
+            <label>Number Of Questions</label>
+			<input type="text" name="add_question" required>
             <label>Minimum Correct Answer</label>
             <input type="text" name="pass_min_correct" required>
 
