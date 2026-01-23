@@ -43,7 +43,7 @@ public class CreateQuestionDAO {
 				while (rs.next()) {
 					int questionId = rs.getInt(1);
 					System.out.println("Question Rows Updated: Question Id " + questionId);
-					for (int j = 1; j <= noOfQuestion * 2; j++) {
+					for (int j = 1; j <=4; j++) {
 						String option_text = request.getParameter("option_" + j);
 						boolean is_correct = Boolean.valueOf(request.getParameter("correct_option"));
 

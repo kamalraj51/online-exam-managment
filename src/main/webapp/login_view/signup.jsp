@@ -85,7 +85,7 @@
             <label for="password">Password</label>
             <input type="password" name="password">
 
-            <input type="hidden" value="2" name="role_id">
+            <input type="hidden" value="1" name="role_id">
 
             <button type="submit">Sign Up</button>
         </form>
