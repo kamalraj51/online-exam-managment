@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
-<%@ page import="java.util.*, com.vastpro.onlineexam.dao.ExamDAO,com.vastpro.onlineexam.dto.ExamDTO" %>
+<%@ page import="java.util.*,com.vastpro.onlineexam.dto.ExamDTO" %>
 
 <!DOCTYPE html>
 <html>
@@ -31,7 +31,7 @@
 </tr>
 
 <%
-List<ExamDTO> exams = ExamDAO.getActiveExams();
+List<ExamDTO> exams = (List<ExamDTO>)request.getAttribute("examList");
 
     if (exams.isEmpty()) {
 %>
