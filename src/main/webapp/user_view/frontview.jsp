@@ -18,7 +18,7 @@
 		
 		<select name="userSelectedOption">
 			<option value="Core Java">Java</option>
-			<option value="Statments">Sql</option>
+			<option value="SQL">Sql</option>
 			<option value="JavaScript">JavaScript</option>
 		</select>
 		

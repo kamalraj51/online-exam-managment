@@ -57,6 +57,8 @@
 
             <button  name="action" value="create_exam"> Create Exam</button>
             <button  name="action" value="retire_exam"> Retire Exam</button>
+            <!-- kamal added this signup button  -->
+            <button  name="action" value="signup_admin"> SignUp Admin</button>
         </form>
     </div>
 </body>

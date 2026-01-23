@@ -106,21 +106,21 @@ input[type="submit"]:hover {
 
 			
 			<label>Option 1</label>
-			<input type="radio" name="correct_option_1" value="true">Correct
-			<input type="radio" name="correct_option_1" value="false">Wrong
-			<input type="text" name="option_1" required> 
+			<input type="radio" name="correct_option_1<%=i %>>" value="true">Correct
+			<input type="radio" name="correct_option_1<%=i %>" value="false">Wrong
+			<input type="text" name="option_1<%=i %>" required> 
 			<label>Option 2</label> 
-			<input type="radio" name="correct_option_2" value="true">Correct
-			<input type="radio" name="correct_option_2" value="false">Wrong
-			<input type="text" name="option_2" required> 
+			<input type="radio" name="correct_option_2<%=i %>" value="true">Correct
+			<input type="radio" name="correct_option_2<%=i %>" value="false">Wrong
+			<input type="text" name="option_2<%=i %>" required> 
 		    <label>Option 3</label> 
-		    <input type="radio" name="correct_option_3" value="true">Correct
-			<input type="radio" name="correct_option_3" value="false">Wrong
-		    <input type="text" name="option_3" required> 
+		    <input type="radio" name="correct_option_3<%=i %>" value="true">Correct
+			<input type="radio" name="correct_option_3<%=i %>" value="false">Wrong
+		    <input type="text" name="option_3<%=i %>" required> 
 		    <label>Option 4</label>
-		    <input type="radio" name="correct_option_4" value="true">Correct
-			<input type="radio" name="correct_option_4" value="false">Wrong
-		     <input type="text" name="option_4" required>
+		    <input type="radio" name="correct_option_4<%=i %>" value="true">Correct
+			<input type="radio" name="correct_option_4<%=i %>" value="false">Wrong
+		     <input type="text" name="option_4<%=i %>" required>
 
 			<%
 			}

@@ -44,9 +44,12 @@ public class CreateQuestionDAO {
 					int questionId = rs.getInt(1);
 					System.out.println("Question Rows Updated: Question Id " + questionId);
 					for (int j = 1; j <=4; j++) {
-						String option_text = request.getParameter("option_" + j);
-						boolean is_correct = Boolean.valueOf(request.getParameter("correct_option"));
-
+						String option_text = request.getParameter("option_" + j+i);
+						Boolean is_correct = Boolean.valueOf(request.getParameter("correct_option_"+j+i));
+						//syso
+						System.out.println("Create question before valueof(): "+request.getParameter("correct_option_"+j+i));
+						System.out.println("Create question after valueof(): "+is_correct);
+						//
 						StringBuilder sqlAnswer = new StringBuilder();
 						sqlAnswer.append("insert into answers(question_id,option_text,is_correct)");
 						sqlAnswer.append("values(?,?,?)");

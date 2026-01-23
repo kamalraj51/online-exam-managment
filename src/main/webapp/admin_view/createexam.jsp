@@ -107,7 +107,7 @@
             <label>Duration</label>
             <input type="text" name="duration_minutes">
 
-            <input type="hidden" name="user_id" value="4">
+            <input type="hidden" name="user_id" value="1">
 
             <button>Create</button>
         </form>

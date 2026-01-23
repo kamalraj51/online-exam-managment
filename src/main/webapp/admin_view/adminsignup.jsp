@@ -70,8 +70,9 @@
 </head>
 
 <body>
+<!-- this is dedicated for admin signup by kamal -->
     <div class="container">
-        <h2>Signup Page</h2>
+        <h2>Admin Signup Page</h2>
 
         <form action="controller" method="post">
             <input type="hidden" value="signup_user" name="action">
@@ -85,7 +86,7 @@
             <label for="password">Password</label>
             <input type="password" name="password">
 
-            <input type="hidden" value="2" name="role_id">
+            <input type="hidden" value="1" name="role_id">
 
             <button type="submit">Sign Up</button>
         </form>
