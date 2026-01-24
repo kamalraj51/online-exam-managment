@@ -9,7 +9,7 @@ public class ExamResponseDTO {
     private String selectedOptionText;
     private String correctOptionText;
 
-    // Getters and Setters
+ 
     public Integer getResponseId() { return responseId; }
     public void setResponseId(Integer responseId) { this.responseId = responseId; }
     public Integer getQuestionId() { return questionId; }
@@ -24,4 +24,12 @@ public class ExamResponseDTO {
     public void setSelectedOptionText(String selectedOptionText) { this.selectedOptionText = selectedOptionText; }
     public String getCorrectOptionText() { return correctOptionText; }
     public void setCorrectOptionText(String correctOptionText) { this.correctOptionText = correctOptionText; }
+	@Override
+	public String toString() {
+		return "ExamResponseDTO [responseId=" + responseId + ", questionId=" + questionId + ", selectedOptionId="
+				+ selectedOptionId + ", isCorrect=" + isCorrect + ", questionText=" + questionText
+				+ ", selectedOptionText=" + selectedOptionText + ", correctOptionText=" + correctOptionText + "]";
+	}
+    
+    
 }

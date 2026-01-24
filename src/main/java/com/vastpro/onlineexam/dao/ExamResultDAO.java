@@ -45,6 +45,7 @@ public class ExamResultDAO {
              PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setInt(1, attemptId);
+            System.out.println("ExamResultDAO attemptId: "+attemptId);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 ExamResponseDTO resp = new ExamResponseDTO();
@@ -59,7 +60,7 @@ public class ExamResultDAO {
                 responses.add(resp);
             }
         }
-
+        System.out.println("ExamResultDAO responses: "+responses);
         return responses;
     }
 

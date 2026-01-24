@@ -4,14 +4,23 @@ import java.sql.*;
 import java.util.*;
 import com.vastpro.onlineexam.db.DBConnection;
 import com.vastpro.onlineexam.dto.AnswerDTO;
+import com.vastpro.onlineexam.dto.ExamDTO;
 import com.vastpro.onlineexam.dto.QuestionDTO;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 public class StartExamDAO {
 
-    public List<QuestionDTO> getQuestionsByExamId(int examId) throws Exception {
+    public List<QuestionDTO> getQuestionsByExamId(HttpServletRequest request) throws Exception {
 
         Map<Integer, QuestionDTO> questionMap = new LinkedHashMap<>();
-
+        ExamDTO exam = new ExamDTO();
+        
+        HttpSession session = request.getSession();
+        int examId = (Integer)session.getAttribute("examId");
+        System.out.println("StartExamDAO examId: "+examId);
+        
         String sql =
             "SELECT q.question_id, q.question_text, a.answer_id, a.option_text, a.is_correct " +
             "FROM question q " +
@@ -19,10 +28,19 @@ public class StartExamDAO {
             "WHERE q.exam_id = ? " +
             "ORDER BY q.question_id, a.answer_id";
 
+        //kamal added sql for get min pass mark
+        String sql_pass = """
+        			 SELECT exam_id, exam_name, description, duration_minutes, pass_min_correct 
+                  FROM exam WHERE exam_id=?
+        		""";
         try (Connection con = DBConnection.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
+             PreparedStatement ps = con.prepareStatement(sql);
+        		PreparedStatement pstmt = con.prepareStatement(sql_pass)) {
 
             ps.setInt(1, examId);
+            
+            pstmt.setInt(1, examId);
+            
             ResultSet rs = ps.executeQuery();
             
             while (rs.next()) {
@@ -36,6 +54,7 @@ public class StartExamDAO {
                     question.setAnswers(new ArrayList<>());
                     questionMap.put(qId, question);
                 }
+               
 
                 AnswerDTO answer = new AnswerDTO();
                 answer.setAnswerId(rs.getInt("answer_id"));
@@ -44,8 +63,25 @@ public class StartExamDAO {
                 System.out.println("startExamDAO is_correct:"+rs.getBoolean("is_correct") );
                 question.getAnswers().add(answer);
             }
+            
+            ResultSet examRs = pstmt.executeQuery(); 
+            
+            //this while is for get exam detail
+            while (examRs.next()) {
+               System.out.println("startexamdao exam_id:"+examRs.getInt("exam_id"));
+                exam.setExamId(examRs.getInt("exam_id"));
+                exam.setExamName(examRs.getString("exam_name"));
+                
+                exam.setDescription(examRs.getString("description"));
+                exam.setDuration(examRs.getInt("duration_minutes"));
+                exam.setPassMarks(examRs.getInt("pass_min_correct"));
+                
+                
+            }
+            session.setAttribute("ExamObject", exam);
         }
-        System.out.println(questionMap);
+        System.out.println("StartExamDao: question map"+questionMap);
+        System.out.println("StartExamDao: exam: "+exam);
         return new ArrayList<>(questionMap.values());
     }
 }

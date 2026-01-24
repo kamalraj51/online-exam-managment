@@ -106,7 +106,7 @@ input[type="submit"]:hover {
 
 			
 			<label>Option 1</label>
-			<input type="radio" name="correct_option_1<%=i %>>" value="true">Correct
+			<input type="radio" name="correct_option_1<%=i %>" value="true">Correct
 			<input type="radio" name="correct_option_1<%=i %>" value="false">Wrong
 			<input type="text" name="option_1<%=i %>" required> 
 			<label>Option 2</label> 

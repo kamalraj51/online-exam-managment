@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.vastpro.onlineexam.dao.ExamAttemptDAO;
 import com.vastpro.onlineexam.dao.ExamResultDAO;
+import com.vastpro.onlineexam.dto.ExamDTO;
 import com.vastpro.onlineexam.dto.ExamResponseDTO;
 import com.vastpro.onlineexam.dto.QuestionDTO;
 
@@ -22,9 +23,12 @@ public class SubmitExamCommand implements Command {
             HttpSession session = req.getSession();
 
             int examId = (Integer)(session.getAttribute("examId"));    
-            System.out.println("SubmitExamCommand: "+examId);
+            System.out.println("SubmitExamCommand examId: "+examId);
             int userId = (Integer) session.getAttribute("user_id");
-            System.out.println("SubmitExamCommand: "+userId);
+            System.out.println("SubmitExamCommand userId: "+userId);
+            ExamDTO exam = (ExamDTO) session.getAttribute("ExamObject");
+            System.out.println("SubmitExamCommand examObject: "+exam);
+            
             List<QuestionDTO> questions =
                 (List<QuestionDTO>) session.getAttribute("questions");
 
@@ -50,10 +54,12 @@ public class SubmitExamCommand implements Command {
                     else incorrect++;
                 }
             }
-
-            boolean passed = correct >= 3; 
-
-           
+            /**kamal changed dynamic c
+            *boolean passed = correct >= 3; 
+            */
+//            boolean passed = correct >= (Exams)req.getAttribute("examList");
+            boolean passed = correct >=exam.getPassMarks();
+            System.out.println("SUbmitExamCommand passed Mark: "+exam.getPassMarks()+" "+passed);
             ExamAttemptDAO dao = new ExamAttemptDAO();
             int attemptId = dao.insertExamAttempt(
                     examId, userId, total, correct, incorrect, unanswered, passed

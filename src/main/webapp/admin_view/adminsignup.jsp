@@ -79,7 +79,7 @@
 
             <label for="username">User Name</label>
             <input type="text" name="username">
-
+ 
             <label for="email">Email</label>
             <input type="email" name="email">
 

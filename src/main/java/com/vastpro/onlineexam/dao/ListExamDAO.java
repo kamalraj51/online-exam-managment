@@ -34,6 +34,7 @@ public class ListExamDAO {
                 exam.setDescription(rs.getString("description"));
                 exam.setDuration(rs.getInt("duration_minutes"));
                 exam.setPassMarks(rs.getInt("pass_min_correct"));
+                
                 exams.add(exam);
             }
 

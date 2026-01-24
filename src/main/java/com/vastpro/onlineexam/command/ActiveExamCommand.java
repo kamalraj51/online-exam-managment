@@ -1,17 +1,15 @@
 package com.vastpro.onlineexam.command;
 
-import com.vastpro.onlineexam.dao.LoadRetireExamDAO;
+import com.vastpro.onlineexam.dao.ActiveExamDAO;
 import com.vastpro.onlineexam.dao.RetireExamDAO;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class RetireExamCommand implements Command {
-
+public class ActiveExamCommand implements Command{
 	@Override
 	public boolean execute(HttpServletRequest req, HttpServletResponse res) {
-	
-		return RetireExamDAO.retireExam(req);
+	System.out.println("ActiveExamCommand called");
+		return ActiveExamDAO.activeExam(req);
 	}
-
 }

@@ -23,15 +23,16 @@ public class ShowQuestionCommand implements Command {
             
             int examId = Integer.parseInt(req.getParameter("examId"));
             session.setAttribute("examId", examId);
-            System.out.println("examId: "+examId);
+            
+            System.out.println("ShowQuestionCommand examId: "+examId);
             String action = req.getParameter("nav"); // next | back | submit
-
+            System.out.println("ShowQuestionCommand action: "+action);
             List<QuestionDTO> questions = (List<QuestionDTO>) session.getAttribute("questions");
 
 
             if (questions == null) {
                 StartExamDAO dao = new StartExamDAO();
-                questions = dao.getQuestionsByExamId(examId);
+                questions = dao.getQuestionsByExamId(req);
 
                 if (questions.isEmpty()) {
                     req.setAttribute("errorMessage", "No questions found for this exam!");
@@ -43,7 +44,7 @@ public class ShowQuestionCommand implements Command {
             }
 
             int currentIndex = (Integer) session.getAttribute("currentIndex");
-
+            System.out.println("ShowQuestionCommand: currentIndex: "+currentIndex);
             
             String answerIdStr = req.getParameter("answerId");
             System.out.println("ShowQuestionCommand: answerIdStr: "+answerIdStr);

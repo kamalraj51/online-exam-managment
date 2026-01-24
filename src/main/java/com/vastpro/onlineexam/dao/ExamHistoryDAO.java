@@ -33,7 +33,9 @@ public class ExamHistoryDAO {
 				where a.user_id=?;
 				     """;
 		//sql for display topics
-		String sql = "SELECT exam_topic FROM exam";
+		String sql = "SELECT exam_topic FROM exam WHERE status = 'ACTIVE'";
+		
+		
 		try (Connection conn = DBConnection.getConnection();
 				PreparedStatement psmtHistory = conn.prepareStatement(sqlUserHistory);
 				Statement stmt = conn.createStatement();) {

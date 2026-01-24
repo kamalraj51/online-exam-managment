@@ -7,21 +7,21 @@ import com.vastpro.onlineexam.db.DBConnection;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-public class RetireExamDAO {
-	public static boolean retireExam(HttpServletRequest request) {
-//		int exam_id =Integer.parseInt(request.getParameter("exam_id"));
-		String examName =request.getParameter("exam_name");
+public class ActiveExamDAO {
+
+	public static boolean activeExam(HttpServletRequest req) {
+		String examName =req.getParameter("exam_name");
 		
 		boolean flag=false;
         String sql = "update exam  "
-                   + "set status='RETIRED' where exam_name = ?";
+                   + "set status='ACTIVE' where exam_name = ?";
         
         try (Connection con = DBConnection.getConnection();
              PreparedStatement pstmt = con.prepareStatement(sql)) {
         		pstmt.setString(1, examName);
         		int rowsInsted = pstmt.executeUpdate();
     			if (rowsInsted > 0) {
-    				System.out.println("RetiredExamDao Retired: " + rowsInsted);
+    				System.out.println("ActiveExamDao Retired: " + rowsInsted);
     				flag = true;
     				return flag;
     			}
@@ -30,4 +30,5 @@ public class RetireExamDAO {
         }
         return flag;
 	}
+		
 }

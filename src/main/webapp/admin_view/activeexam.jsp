@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>active Exam</title>
 <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
@@ -20,13 +20,13 @@
 		
 		
 		<%
-			List<String> aExam = (List<String>) request.getAttribute("activeExam");
-			if(aExam.size()!=0){
+			List<String> rExam = (List<String>) request.getAttribute("retiredExam");
+			if(rExam.size()!=0){
 				%>
 		<select name="exam_name">
 				
 				<%
-			for(String exam : aExam){
+			for(String exam : rExam){
 		%>
 		<option value="<%=exam %>"><%=exam %></option>
 		
@@ -35,12 +35,12 @@
 		%>
 			
 		</select>
-		<button name="action" value="retire_exam_user">Retire</button>
+		<button name="action" value="active_exam_user">Active</button>
 			<%
 			}else{
 			 %>
 			 <select>
-			<option value="No Exams Retired">No Active Exams Found</option>
+			<option value="No Exams Retired">No Retired Exams Found</option>
 			</select>	
 			<%
 			}
