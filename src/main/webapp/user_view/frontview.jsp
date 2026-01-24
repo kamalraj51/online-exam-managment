@@ -38,7 +38,7 @@
 			if(topics.size()!=0){
 				%>
 		<select name="userSelectedOption">
-				
+			<option value="">Select Topic</option>		
 				<%
 			for(String topic : topics){
 		%>

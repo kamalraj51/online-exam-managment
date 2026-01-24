@@ -44,20 +44,6 @@ public class ExamHistoryDAO {
 			ResultSet result = stmt.executeQuery(sql);
 			ResultSet rs = psmtHistory.executeQuery();
 
-			/*
-			 * 
-			 * private int examId; private String examTopic;
-			 * 
-			 * private String examName; private String description;
-			 * 
-			 * private String status; private int duration;
-			 * 
-			 * private int passMarks; private int totalMarks;
-			 * 
-			 * private int createdBy; //below code for history private boolean result;
-			 * 
-			 * private double durationTaken; private int yourMarks;
-			 */
 			while (rs.next()) {
 				ExamHistoryDTO examHistory = new ExamHistoryDTO();
 				examHistory.setExamId(rs.getInt("exam_id"));
