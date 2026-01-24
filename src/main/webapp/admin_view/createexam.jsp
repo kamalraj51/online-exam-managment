@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -107,7 +107,7 @@
             <label>Duration</label>
             <input type="text" name="duration_minutes">
 
-            <input type="hidden" name="user_id" value="1">
+        
 
             <button>Create</button>
         </form>

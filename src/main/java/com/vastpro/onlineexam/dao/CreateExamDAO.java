@@ -18,7 +18,8 @@ public class CreateExamDAO {
 		int pass_min_correct = Integer.parseInt(request.getParameter("pass_min_correct"));
 		double total_marks = Double.parseDouble(request.getParameter("total_marks"));
 		int duration_minutes =Integer.parseInt(request.getParameter("duration_minutes"));
-		int created_by = Integer.parseInt(request.getParameter("user_id"));
+//		int created_by = Integer.parseInt(request.getParameter("user_id"));
+		int created_by = (Integer)request.getSession().getAttribute("user_id");
 		Integer noOfQuestion=Integer.parseInt( request.getParameter("add_question"));
 		request.getSession().setAttribute("questions", noOfQuestion);
 		
@@ -44,6 +45,8 @@ public class CreateExamDAO {
 	            
 	            request.setAttribute("examId", examId);
 				System.out.println("Exam Rows Updated: Exam Id "+examId);
+				System.out.println("createExamDao: created_by "+created_by);
+				
 				return true;
 		} catch (Exception e) {
 			e.printStackTrace();
