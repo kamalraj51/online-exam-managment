@@ -1,5 +1,8 @@
 package com.vastpro.onlineexam.command;
 
+import java.sql.Timestamp;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +26,8 @@ public class ShowQuestionCommand implements Command {
             
             int examId = Integer.parseInt(req.getParameter("examId"));
             session.setAttribute("examId", examId);
-            
+           
+
             System.out.println("ShowQuestionCommand examId: "+examId);
             String action = req.getParameter("nav"); // next | back | submit
             System.out.println("ShowQuestionCommand action: "+action);
@@ -76,22 +80,29 @@ public class ShowQuestionCommand implements Command {
             }else if ("submit".equals(action)) {
 //            		session.removeAttribute("questions");
                 session.removeAttribute("currentIndex");
+                //added for timer
+                
+                
 //                res.sendRedirect("controller?action=submitExam&examId=" + examId);
 //            	req.setAttribute("action", "submitExam");
 //                session.setAttribute("examId", examId);
             	RequestDispatcher rd=req.getRequestDispatcher("controller?action=show_result&examId=" + examId);
             
-            	rd.include(req, res);
-                //return false;
+            	rd.forward(req, res);
+                return false;
             }
 
-            /*else if ("submit".equals(action)) {
-            	System.out.println("submit called");
-                session.removeAttribute("questions");
-                session.removeAttribute("currentIndex");
-                req.setAttribute("message", "You have successfully completed the exam!");
+            
+            long remainingSeconds = getRemainingSeconds(session);
+
+            if (remainingSeconds <= 0) {
+                RequestDispatcher rd =
+                    req.getRequestDispatcher("controller?action=show_result&examId=" + examId);
+                rd.forward(req, res);
                 return false;
-            }*/
+            }
+
+            req.setAttribute("remainingSeconds", remainingSeconds);
 
             session.setAttribute("currentIndex", currentIndex);
 
@@ -112,4 +123,17 @@ public class ShowQuestionCommand implements Command {
             return false;
         }
     }
+   
+    private long getRemainingSeconds(HttpSession session) {
+
+        Timestamp startTs = (Timestamp) session.getAttribute("examStartTime");
+        int totalSeconds = (int) session.getAttribute("examDurationSeconds");
+
+        LocalDateTime startTime = startTs.toLocalDateTime();
+        LocalDateTime now = LocalDateTime.now();
+
+        long elapsed = Duration.between(startTime, now).getSeconds();
+        return totalSeconds - elapsed;
+    }
 }
+

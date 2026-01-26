@@ -1,6 +1,8 @@
 package com.vastpro.onlineexam.command;
 
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -21,7 +23,11 @@ public class SubmitExamCommand implements Command {
     		System.out.println("SubmitExamCommand called");
         try {
             HttpSession session = req.getSession();
-
+            //for timer
+            Timestamp startTime = (Timestamp) session.getAttribute("examStartTime");
+            Timestamp endTime = Timestamp.valueOf(LocalDateTime.now());
+            //
+            
             int examId = (Integer)(session.getAttribute("examId"));    
             System.out.println("SubmitExamCommand examId: "+examId);
             int userId = (Integer) session.getAttribute("user_id");
@@ -62,7 +68,7 @@ public class SubmitExamCommand implements Command {
             System.out.println("SUbmitExamCommand passed Mark: "+exam.getPassMarks()+" "+passed);
             ExamAttemptDAO dao = new ExamAttemptDAO();
             int attemptId = dao.insertExamAttempt(
-                    examId, userId, total, correct, incorrect, unanswered, passed
+                    examId, userId, total, correct, incorrect, unanswered, passed,startTime,endTime
             );
             dao.insertResponses(attemptId, questions, userAnswers);
             	List<ExamResponseDTO> response= ExamResultDAO.getResponsesByAttempt(attemptId);
@@ -72,8 +78,13 @@ public class SubmitExamCommand implements Command {
             session.removeAttribute("questions");
             session.removeAttribute("userAnswers");
             session.removeAttribute("currentIndex");
-
-           
+            // timer
+            session.removeAttribute("examStartTime");
+            session.removeAttribute("examDurationSeconds"); 
+            session.removeAttribute("questions");
+            session.removeAttribute("currentIndex");
+            session.removeAttribute("userAnswers");
+           //timer
             req.setAttribute("totalQuestions", total);
             req.setAttribute("correct", correct);
             req.setAttribute("incorrect", incorrect);

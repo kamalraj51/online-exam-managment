@@ -1,6 +1,7 @@
 package com.vastpro.onlineexam.dao;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.*;
 import com.vastpro.onlineexam.db.DBConnection;
 import com.vastpro.onlineexam.dto.AnswerDTO;
@@ -33,6 +34,7 @@ public class StartExamDAO {
         			 SELECT exam_id, exam_name, description, duration_minutes, pass_min_correct 
                   FROM exam WHERE exam_id=?
         		""";
+        
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql);
         		PreparedStatement pstmt = con.prepareStatement(sql_pass)) {
@@ -79,6 +81,19 @@ public class StartExamDAO {
                 
             }
             session.setAttribute("ExamObject", exam);
+            //  INIT TIMER ONCE
+            if (session.getAttribute("examStartTime") == null) {
+                session.setAttribute("examStartTime",
+                    Timestamp.valueOf(LocalDateTime.now()));
+                session.setAttribute("examDurationSeconds",
+                    exam.getDuration() * 60);
+            }            
+            //System.out.println("StartExamDAO start time(TimeStamp): "+startTs);
+            //System.out.println("StartExamDAO start time(startTime): "+startTime);
+            //System.out.println("StartExamDAO start time(now): "+now);
+            
+            
+            //System.out.println("StartExamDAO exam Duration Seconds: "+session.getAttribute("examDurationSeconds"));
         }
         System.out.println("StartExamDao: question map"+questionMap);
         System.out.println("StartExamDao: exam: "+exam);

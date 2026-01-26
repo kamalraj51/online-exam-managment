@@ -9,6 +9,7 @@ boolean isFirst = Boolean.TRUE.equals(request.getAttribute("isFirst"));
 boolean isLast = Boolean.TRUE.equals(request.getAttribute("isLast"));
 int currentQNo = (Integer) request.getAttribute("currentQNo");
 int totalQuestions = (Integer) request.getAttribute("totalQuestions");
+Long remainingSeconds = (Long) request.getAttribute("remainingSeconds");
 %>
 
 <!DOCTYPE html>
@@ -85,6 +86,12 @@ int totalQuestions = (Integer) request.getAttribute("totalQuestions");
 <body>
 
 <div class="container">
+	<!-- timer code -->
+	<div style="float:right; font-weight:bold; color:red;">
+    Time Left:
+    <span id="timer"></span>
+</div>
+<!--  -->
     <div class="question-number">
         Question <%= currentQNo %> of <%= totalQuestions %>
     </div>
@@ -137,4 +144,35 @@ int totalQuestions = (Integer) request.getAttribute("totalQuestions");
 </div>
 
 </body>
+<script>
+let remaining = <%= remainingSeconds != null ? remainingSeconds : 0 %>;
+let submitted = false;   
+
+let timerId = setInterval(function () {
+
+    if (remaining <= 0 && !submitted) {
+        submitted = true;
+        clearInterval(timerId); 
+
+        alert("Time is up! Exam will be submitted.");
+
+       
+        let buttons = document.querySelectorAll("button");
+        buttons.forEach(btn => btn.disabled = true);
+
+        document.forms[0].submit();
+        return;
+    }
+
+    let min = Math.floor(remaining / 60);
+    let sec = remaining % 60;
+
+    document.getElementById("timer").innerText =
+        min + ":" + (sec < 10 ? "0" + sec : sec);
+
+    remaining--;
+
+}, 1000);
+</script>
+
 </html>

@@ -67,15 +67,13 @@
 	<h1>History</h1>
 	<table>
 		<tr>
-			<th>Exam Topic</th>
-			<th>Exam Name</th>
-			<th>Description</th>
-			<th>Duration (mins)</th>
-			<th>Total Marks</th>
-			<th>Pass Marks</th>
-			<th>Your Marks</th>
-			<th>Duration Taken</th>
-			<th>Result</th>
+				<th>Exam Name</th>
+				<th>Date/Time</th>
+				<th>Your Marks</th>
+				<th>Correct Answer</th>
+				<th>Incorrect Answer</th>
+				<th>Unanswered</th>
+				<th>Result</th>
 
 		</tr>
 
@@ -96,16 +94,16 @@ List<ExamHistoryDTO> examHistory = (List<ExamHistoryDTO>)request.getAttribute("h
         for (ExamHistoryDTO exam : examHistory) {
 %>
 		<tr>
-
-			<td><%= exam.getExamTopic() %></td>
+			
+			
 			<td><%= exam.getExamName() %></td>
-			<td><%= exam.getDescription() %></td>
-			<td><%= exam.getDuration() %></td>
-			<td><%= exam.getTotalMarks() %></td>
-			<td><%= exam.getPassMarks() %></td>
+			<td><%= exam.getDateTime()%></td>
 			<td><%= exam.getYourMarks() %></td>
-			<td><%= exam.getDurationTaken() %></td>
+			<td><%= exam.getCorrect() %></td>
+			<td><%= exam.getIncorrect() %></td>
+			<td><%= exam.getUnanswered() %></td>
 			<td><%= exam.getResult() %></td>
+			
 
 
 

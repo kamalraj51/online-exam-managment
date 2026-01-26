@@ -1,6 +1,10 @@
 package com.vastpro.onlineexam.dao;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.sql.Types;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
@@ -12,8 +16,8 @@ public class ExamAttemptDAO {
 
     public int insertExamAttempt(int examId, int userId,
                                  int total, int correct, int incorrect,
-                                 int unanswered, boolean passed) throws Exception {
-
+                                 int unanswered, boolean passed,Timestamp startTime, Timestamp endTime) throws Exception {
+   
         String sql = """
             INSERT INTO exam_attempt
             (exam_id, user_id, start_time, end_time,
@@ -28,8 +32,8 @@ public class ExamAttemptDAO {
 
             ps.setInt(1, examId);
             ps.setInt(2, userId);
-            ps.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now().minusMinutes(10)));
-            ps.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
+            ps.setTimestamp(3, startTime);
+            ps.setTimestamp(4, endTime);
             ps.setInt(5, total);
             ps.setInt(6, correct);
             ps.setInt(7, incorrect);

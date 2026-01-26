@@ -1,4 +1,7 @@
 package com.vastpro.onlineexam.dto;
+
+import java.sql.Timestamp;
+
 /**
  * this class is DTO for user history
  */
@@ -12,12 +15,89 @@ public class ExamHistoryDTO {
     private int passMarks;
     private int totalMarks;
     private int createdBy;
-    //below code for history
+    //below code for history// exam name, date/time, score, correct/incorrect/unanswered, pass/fail.
     private String result;
     private double durationTaken;
     private int yourMarks;
     private int userId;
+    private Timestamp dateTime;
+    private String correct; 
+    private String incorrect;
+    private String unanswered;
     
+	public ExamHistoryDTO(int examId, String examTopic, String examName, String description, String status,
+			int duration, int passMarks, int totalMarks, int createdBy, String result, double durationTaken,
+			int yourMarks, int userId, Timestamp dateTime, String correct, String incorrect, String unanswered) {
+		super();
+		this.examId = examId;
+		this.examTopic = examTopic;
+		this.examName = examName;
+		this.description = description;
+		this.status = status;
+		this.duration = duration;
+		this.passMarks = passMarks;
+		this.totalMarks = totalMarks;
+		this.createdBy = createdBy;
+		this.result = result;
+		this.durationTaken = durationTaken;
+		this.yourMarks = yourMarks;
+		this.userId = userId;
+		this.dateTime = dateTime;
+		this.correct = correct;
+		this.incorrect = incorrect;
+		this.unanswered = unanswered;
+	}
+
+
+
+	public Timestamp getDateTime() {
+		return dateTime;
+	}
+
+
+
+	public void setDateTime(Timestamp dateTime) {
+		this.dateTime = dateTime;
+	}
+
+
+
+	public String getCorrect() {
+		return correct;
+	}
+
+
+
+	public void setCorrect(String correct) {
+		this.correct = correct;
+	}
+
+
+
+	public String getIncorrect() {
+		return incorrect;
+	}
+
+
+
+	public void setIncorrect(String incorrect) {
+		this.incorrect = incorrect;
+	}
+
+
+
+	public String getUnanswered() {
+		return unanswered;
+	}
+
+
+
+	public void setUnanswered(String unanswered) {
+		this.unanswered = unanswered;
+	}
+
+
+
 	public ExamHistoryDTO(int examId, String examTopic, String examName, String description, String status,
 			int duration, int passMarks, int totalMarks, int createdBy, String result, double durationTaken,
 			int yourMarks, int userId) {
@@ -66,7 +146,8 @@ public class ExamHistoryDTO {
 		return "ExamHistoryDTO [examId=" + examId + ", examTopic=" + examTopic + ", examName=" + examName
 				+ ", description=" + description + ", status=" + status + ", duration=" + duration + ", passMarks="
 				+ passMarks + ", totalMarks=" + totalMarks + ", createdBy=" + createdBy + ", result=" + result
-				+ ", durationTaken=" + durationTaken + ", yourMarks=" + yourMarks + ", userId=" + userId + "]";
+				+ ", durationTaken=" + durationTaken + ", yourMarks=" + yourMarks + ", userId=" + userId + ", dateTime="
+				+ dateTime + ", correct=" + correct + ", incorrect=" + incorrect + ", unanswered=" + unanswered + "]";
 	}
 
 

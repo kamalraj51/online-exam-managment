@@ -26,7 +26,7 @@ public class ExamHistoryDAO {
 
 		System.out.println("exam history dao userId: " + userId);
 		String sqlUserHistory = """
-				        SELECT e.exam_id, e.exam_topic, e.exam_name, e.description, e.duration_minutes, e.total_marks, e.pass_min_correct, e.created_by, e.status,
+				        SELECT a.start_time,e.exam_id, e.exam_topic, e.exam_name, e.description, e.duration_minutes, e.total_marks, e.pass_min_correct, e.created_by, e.status,
 				a.start_time, a.end_time, a.score, a.passed, a.user_id
 				FROM exam e join exam_attempt a
 				on e.exam_id = a.exam_id
@@ -59,6 +59,7 @@ public class ExamHistoryDAO {
 				examHistory.setTotalMarks(rs.getInt("total_marks"));
 
 				examHistory.setCreatedBy(rs.getInt("created_by"));
+				examHistory.setDateTime(rs.getTimestamp("start_time"));
 				//
 				if (rs.getBoolean("passed")) {
 					examHistory.setResult("Pass");
