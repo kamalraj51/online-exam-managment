@@ -82,9 +82,10 @@
             font-weight: bold;
         }
     </style>
+    <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
-
+<jsp:include page="/common/header.jsp"/>
 <div class="result-summary">
     <p>Total Questions: <%= totalQuestions %></p>
     <p>Attempted: <%= correct + incorrect %></p>
@@ -118,6 +119,6 @@
     }
 %>
 </table>
-
+<jsp:include page="/common/footer.jsp"/>
 </body>
 </html>

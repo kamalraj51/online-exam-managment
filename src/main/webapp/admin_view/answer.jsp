@@ -93,9 +93,11 @@
         opacity: 0.9;
     }
 </style>
+<link rel="stylesheet" href="css/style.css"/>
 </head>
 
-<body>
+<body> 
+    <jsp:include page="/common/header.jsp"/>
     <div class="container">
         <form action="controller" method="post">
             <h2>Add Answer</h2>
@@ -118,5 +120,6 @@
             <input type="submit" name="action" value="Done">
         </form>
     </div>
+    <jsp:include page="/common/footer.jsp"/>
 </body>
 </html>

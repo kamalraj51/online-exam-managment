@@ -18,14 +18,14 @@ Long remainingSeconds = (Long) request.getAttribute("remainingSeconds");
     <meta charset="UTF-8">
     <title>Start Exam</title>
     <style>
-        body {
+       body {
             font-family: Arial, sans-serif;
             background-color: #f4f6f8;
             margin: 0;
             padding: 20px;
         }
 
-        .container {
+        .container_startexam {
             max-width: 700px;
             margin: 0 auto;
             background-color: #ffffff;
@@ -82,10 +82,11 @@ Long remainingSeconds = (Long) request.getAttribute("remainingSeconds");
             opacity: 0.9;
         }
     </style>
+    <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
 
-<div class="container">
+<div class="container_startexam">
 	<!-- timer code -->
 	<div style="float:right; font-weight:bold; color:red;">
     Time Left:

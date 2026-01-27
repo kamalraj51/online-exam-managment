@@ -1,7 +1,13 @@
 package com.vastpro.onlineexam.dto;
 
 import java.util.List;
-
+/**
+ * Class Name: QuestionDTO
+ *
+ * Description:
+ * This DTO class represents a question in an exam
+ * along with its possible answers.
+ */
 public class QuestionDTO {
     private int questionId;
     private String questionText;

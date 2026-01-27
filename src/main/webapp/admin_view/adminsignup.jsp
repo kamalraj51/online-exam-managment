@@ -67,9 +67,10 @@
         background-color: #218838;
     }
 </style>
+<link rel="stylesheet" href="css/style.css"/>
 </head>
-
 <body>
+    <jsp:include page="/common/header.jsp"/>
 <!-- this is dedicated for admin signup by kamal -->
     <div class="container">
         <h2>Admin Signup Page</h2>
@@ -91,5 +92,6 @@
             <button type="submit">Sign Up</button>
         </form>
     </div>
+    <jsp:include page="/common/footer.jsp"/>
 </body>
 </html>

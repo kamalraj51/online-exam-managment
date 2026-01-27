@@ -1,5 +1,11 @@
 package com.vastpro.onlineexam.dto;
-
+/**
+ * Class Name: ExamDTO
+ *
+ * Description:
+ * This DTO class represents exam details such as
+ * name, topic, duration, pass marks, and status.
+ */
 public class ExamDTO {
 	
 	private int examId;

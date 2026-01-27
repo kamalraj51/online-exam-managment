@@ -10,8 +10,22 @@ import com.vastpro.onlineexam.db.DBConnection;
 import com.vastpro.onlineexam.dto.ExamDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
-
+/**
+ * Class Name: ListExamDAO
+ *
+ * Description:
+ * This DAO class is responsible for retrieving all
+ * active exams based on the selected exam topic.
+ */
 public class ListExamDAO {
+	/**
+     * Fetches all active exams for the selected topic.
+     *
+     * @param request the HttpServletRequest object containing
+     *                the selected exam topic
+     * @return true if exams are retrieved successfully,
+     *         false if an error occurs
+     */
 	public static boolean getActiveExams(HttpServletRequest request) {
 
         List<ExamDTO> exams = new ArrayList<>();

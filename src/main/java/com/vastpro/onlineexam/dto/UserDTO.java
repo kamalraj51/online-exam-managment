@@ -1,5 +1,11 @@
 package com.vastpro.onlineexam.dto;
-
+/**
+ * Class Name: UserDTO
+ *
+ * Description:
+ * This DTO class represents a user in the online exam system.
+ * It stores username, password, email, and role ID information.
+ */
 public class UserDTO {
 	private String username;
 	private String password;

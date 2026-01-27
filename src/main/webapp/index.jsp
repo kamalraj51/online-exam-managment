@@ -52,6 +52,7 @@
         background-color: #0056b3;
     }
 </style>
+<link rel="stylesheet" href="css/style.css"/>
 </head>
 
 <body>

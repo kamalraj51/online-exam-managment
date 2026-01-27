@@ -11,8 +11,23 @@ import org.mindrot.jbcrypt.BCrypt;
 import com.vastpro.onlineexam.db.DBConnection;
 
 import jakarta.servlet.http.HttpServletRequest;
-
+/**
+ * Class Name: CreateNewUserDAO
+ *
+ * Description:
+ * This DAO class handles the registration of new users
+ * by inserting user details into the database.
+ * Passwords are securely hashed using BCrypt before storage.
+ */
 public class CreateNewUserDAO {
+	/**
+     * Registers a new user in the database.
+     *
+     * @param request the HttpServletRequest object containing
+     *                username, password, email, and role ID
+     * @return true if the user is successfully inserted into the database,
+     *         false otherwise
+     */
 	public static boolean registerUser(HttpServletRequest request) {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");

@@ -10,9 +10,21 @@ import com.vastpro.onlineexam.dto.QuestionDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-
+/**
+ * Class Name: StartExamDAO
+ *
+ * Description:
+ * This DAO class is responsible for loading exam questions,
+ * answers, and exam details from the database when an exam starts.
+ */
 public class StartExamDAO {
-
+	/**
+     * Fetches all questions and answers for a given exam.
+     *
+     * @param request the HttpServletRequest object containing exam ID
+     * @return a list of QuestionDTO objects with answers populated
+     * @throws Exception if a database access error occurs
+     */
     public List<QuestionDTO> getQuestionsByExamId(HttpServletRequest request) throws Exception {
 
         Map<Integer, QuestionDTO> questionMap = new LinkedHashMap<>();
