@@ -1,8 +1,8 @@
-<%@page import="com.vastpro.onlineexam.dto.ExamHistoryDTO"%>
+<%@page import="com.vastpro.onlineexam.dto.UserBasedHistoryDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-	<%@ page import="java.util.List, com.vastpro.onlineexam.dao.ExamHistoryDAO,com.vastpro.onlineexam.dto.ExamHistoryDTO" %>
+	<%@ page import="java.util.List,com.vastpro.onlineexam.dao.ExamHistoryDAO,com.vastpro.onlineexam.dto.UserBasedHistoryDTO" %>
 
 <!DOCTYPE html>
 <html>
@@ -34,31 +34,31 @@
 		
 		
 		<%
-			List<String> topics = (List<String>) request.getAttribute("topics");
-			if(topics.size()!=0){
-				%>
+						List<String> topics = (List<String>) request.getAttribute("topics");
+							if(topics.size()!=0){
+						%>
 		<select name="userSelectedOption">
 			<option value="">Select Topic</option>		
 				<%
-			for(String topic : topics){
-		%>
-		<option value="<%=topic %>"><%=topic %></option>
+						for(String topic : topics){
+						%>
+		<option value="<%=topic%>"><%=topic%></option>
 		
 		<%
-			}
-		%>
+				}
+				%>
 			
 		</select>
 		<button name="action" value="select_exam">Select</button>
 			<%
 			}else{
-			 %>
+			%>
 			 <select>
 			<option value="No Topics Available">No Topics Available</option>
 			</select>	
 			<%
-			}
-			%>
+				}
+				%>
 		
 		
 	</form>
@@ -78,9 +78,9 @@
 		</tr>
 
 		<%
-List<ExamHistoryDTO> examHistory = (List<ExamHistoryDTO>)request.getAttribute("history");
-    if (examHistory.isEmpty()) {
-%>
+		List<UserBasedHistoryDTO> examHistory = (List<UserBasedHistoryDTO>)request.getAttribute("history");
+		    if (examHistory.isEmpty()) {
+		%>
 
 <tr>
     <td colspan="9">No History available</td>
@@ -89,10 +89,9 @@ List<ExamHistoryDTO> examHistory = (List<ExamHistoryDTO>)request.getAttribute("h
 		
 
 		<%
-
-} else {
-        for (ExamHistoryDTO exam : examHistory) {
-%>
+				} else {
+				        for (UserBasedHistoryDTO exam : examHistory) {
+				%>
 		<tr>
 			
 			

@@ -1,16 +1,18 @@
+<%@page import="com.vastpro.onlineexam.dto.ExamBasedHistoryDTO"%>
+<%@page import="com.vastpro.onlineexam.dto.ExamDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <%@ page
 	import="java.util.List,
-	 com.vastpro.onlineexam.dao.ExamHistoryDAO,com.vastpro.onlineexam.dto.UserBasedHistoryDTO,com.vastpro.onlineexam.dto.UsersDTO"%>
+	 com.vastpro.onlineexam.dto.ExamDTO,com.vastpro.onlineexam.dto.ExamBasedHistoryDTO"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 
-<title>Insert title here</title>
+<title>Exam Report</title>
 
 <style>
 body {
@@ -52,32 +54,32 @@ th {
 	<div class="container">
 
 		<form action="controller" method="post" class="user_form">
-			<h1>Select User</h1>
+			<h1>Select Exam</h1>
 
 
 
 			<%
-			List<UsersDTO> userList = (List<UsersDTO>) request.getAttribute("userList");
-				if (userList.size() != 0) {
+			List<ExamDTO> examList = (List<ExamDTO>) request.getAttribute("listOfExams");
+				if (examList.size() != 0) {
 			%>
-			<select name="userSelectedOption">
-					<option value="000">Select User</option>
+			<select name="adminSelectedOption">
+					<option value="000">Select Exam</option>
 				<%
-				for (UsersDTO user : userList) {
+				for (ExamDTO exam : examList) {
 				%>
-				<option value="<%=user.getUserId()%>"><%=user.getUsername()%></option>
+				<option value="<%=exam.getExamId()%>"><%=exam.getExamName()%></option>
 
 				<%
 				}
 				%>
 
 			</select>
-			<button name="action" value="select_user_history">Select</button>
+			<button name="action" value="select_exam_history">Select</button>
 			<%
 			} else {
 			%>
 			<select>
-				<option value="No User Available">No User Available</option>
+				<option value="No User Available">No Exam Report Available</option>
 			</select>
 			<%
 			}
@@ -91,18 +93,15 @@ th {
 		<table>
 			<tr>
 				
-				<th>Exam Name</th>
+				<th>User Name</th>
 				<th>Date/Time</th>
-				<th>Your Marks</th>
-				<th>Correct Answer</th>
-				<th>Incorrect Answer</th>
-				<th>Unanswered</th>
+				<th>Score</th>
 				<th>Result</th>
 
 			</tr>
 
 			<%
-			List<UserBasedHistoryDTO> examHistory = (List<UserBasedHistoryDTO>) request.getAttribute("userBasedHistory");
+			List<ExamBasedHistoryDTO> examHistory = (List<ExamBasedHistoryDTO>) request.getAttribute("examBasedHistory");
 				if (examHistory.isEmpty()) {
 			%>
 
@@ -114,24 +113,19 @@ th {
 
 			<%
 			} else {
-				for (UserBasedHistoryDTO exam : examHistory) {
+				for (ExamBasedHistoryDTO exam : examHistory) {
 			%>
 			<tr>
 				
 				
-				<td><%=exam.getExamName()%></td>
+				<td><%=exam.getUserName()%></td>
 				<td><%=exam.getDateTime()%></td>
-				<td><%=exam.getYourMarks()%></td>
-				<td><%=exam.getCorrect() %></td>
-				<td><%=exam.getIncorrect()%></td>
-				<td><%=exam.getUnanswered()%></td>
+				<td><%=exam.getScore()%></td>
 				<td><%=exam.getResult()%></td>
-
-
 
 			</tr>
 			<%
-			}
+				}
 			}
 			%>
 

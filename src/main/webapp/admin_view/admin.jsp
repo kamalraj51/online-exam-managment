@@ -59,6 +59,7 @@
             <button  name="action" value="retire_exam"> Retire Exam</button>
             <button  name="action" value="active_exam"> Active Exam</button>
             <button  name="action" value="user_based_history"> User Based History</button>
+            <button  name="action" value="exam_based_history"> Exam Based History</button>
             <!-- kamal added this signup button  -->
             <button  name="action" value="signup_admin"> SignUp Admin</button>
             <button  name="action" value="logout">Logout</button>

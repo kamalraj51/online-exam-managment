@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 /**
  * this class is DTO for user history
  */
-public class ExamHistoryDTO {
+public class UserBasedHistoryDTO {
 	private int examId;
 	private String examTopic;
 	private String examName;
@@ -25,7 +25,7 @@ public class ExamHistoryDTO {
     private String incorrect;
     private String unanswered;
     
-	public ExamHistoryDTO(int examId, String examTopic, String examName, String description, String status,
+	public UserBasedHistoryDTO(int examId, String examTopic, String examName, String description, String status,
 			int duration, int passMarks, int totalMarks, int createdBy, String result, double durationTaken,
 			int yourMarks, int userId, Timestamp dateTime, String correct, String incorrect, String unanswered) {
 		super();
@@ -98,7 +98,7 @@ public class ExamHistoryDTO {
 
 
 
-	public ExamHistoryDTO(int examId, String examTopic, String examName, String description, String status,
+	public UserBasedHistoryDTO(int examId, String examTopic, String examName, String description, String status,
 			int duration, int passMarks, int totalMarks, int createdBy, String result, double durationTaken,
 			int yourMarks, int userId) {
 		super();
@@ -249,6 +249,6 @@ public class ExamHistoryDTO {
 	}
     
 	
-	public ExamHistoryDTO(){}
+	public UserBasedHistoryDTO(){}
     
 }

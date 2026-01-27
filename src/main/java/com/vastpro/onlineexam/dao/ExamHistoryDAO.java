@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.vastpro.onlineexam.db.DBConnection;
-import com.vastpro.onlineexam.dto.ExamHistoryDTO;
+import com.vastpro.onlineexam.dto.UserBasedHistoryDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -17,7 +17,7 @@ import jakarta.servlet.http.HttpSession;
 public class ExamHistoryDAO {
 
 	public static boolean getExamsHistoryByUserId(HttpServletRequest request) {
-		List<ExamHistoryDTO> history = new ArrayList<>();
+		List<UserBasedHistoryDTO> history = new ArrayList<>();
 		List<String> topics = new ArrayList<>();
 		HttpSession session = request.getSession();
 		int userId = (Integer) session.getAttribute("user_id");
@@ -45,7 +45,7 @@ public class ExamHistoryDAO {
 			ResultSet rs = psmtHistory.executeQuery();
 
 			while (rs.next()) {
-				ExamHistoryDTO examHistory = new ExamHistoryDTO();
+				UserBasedHistoryDTO examHistory = new UserBasedHistoryDTO();
 				examHistory.setExamId(rs.getInt("exam_id"));
 				examHistory.setExamTopic(rs.getString("exam_topic"));
 
