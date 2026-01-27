@@ -14,7 +14,26 @@ import com.vastpro.onlineexam.dto.UsersDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
 
+/**
+ * Class Name: ListUserBasedHistoryDAO
+ *
+ * Description:
+ * This DAO class provides methods to retrieve all users with role_id=2 (students)
+ * and their corresponding exam history from the database.
+ *
+ * It fetches user information from the 'users' table and exam attempts from the 'exam_attempt' table.
+ */
 public class ListUserBasedHistoryDAO {
+	
+	 /**
+     * Retrieves all users with role_id=2 and the exam history of a specific user
+     * (based on userSelectedOption parameter from the request).
+     *
+     * @param request the HttpServletRequest object where the retrieved data
+     *                will be set as request attributes "userList" and "userBasedHistory"
+     * @return true if users and their exam histories are successfully retrieved,
+     *         false otherwise
+     */
 	public static boolean getAllUsers(HttpServletRequest request) {
 
 		// =============================================================

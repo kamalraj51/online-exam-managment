@@ -59,6 +59,7 @@ public class ShowQuestionCommand implements Command {
 
                 Map<Integer, Integer> userAnswers =
                     (Map<Integer, Integer>) session.getAttribute("userAnswers");
+                
                 		System.out.println("ShowQuestionCommand: userAnswers: "+userAnswers);
                 if (userAnswers == null) {
                     userAnswers = new HashMap<>();
@@ -76,6 +77,7 @@ public class ShowQuestionCommand implements Command {
                 currentIndex = Math.min(currentIndex + 1, questions.size() - 1);
                 System.out.println("ShowQuestionCommand currentIndex: "+currentIndex);
             } else if ("back".equals(action)) {
+            		
                 currentIndex = Math.max(currentIndex - 1, 0);
             }else if ("submit".equals(action)) {
 //            		session.removeAttribute("questions");

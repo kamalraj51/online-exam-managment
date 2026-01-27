@@ -12,8 +12,26 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.HttpSessionEvent;
 
+
+/**
+ * Class Name: LoginDAO
+ *
+ * Description:
+ * This DAO class handles validation of user login credentials.
+ * 
+ * It connects to the database, retrieves the hashed password for the given email,
+ * and verifies the input password using BCrypt.
+ */
 public class LoginDAO {
 	
+    /**
+     * Validates user login credentials.
+     *
+     * @param request the HttpServletRequest object containing parameters:
+     *                "email" and "password"
+     * @return true if the email exists, the account is active, and the password matches,
+     *         false otherwise
+     */
 	public static boolean validateLogin(HttpServletRequest request) {
 		HttpSession session = request.getSession();
         String email = request.getParameter("email");

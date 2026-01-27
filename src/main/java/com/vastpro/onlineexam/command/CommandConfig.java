@@ -4,6 +4,18 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+/**
+ * Class Name: CommandConfig
+ *
+ * Description:
+ * This class represents the configuration details of a command.
+ *
+ * It stores the fully qualified command class name and the
+ * navigation paths for success and failure outcomes.
+ *
+ * This class is also responsible for loading command configurations
+ * from a properties file and converting them into a usable map.
+ */
 public class CommandConfig {
 
 	String className;
@@ -12,6 +24,13 @@ public class CommandConfig {
 	
 	public CommandConfig() {}
 	
+	 /**
+     * Parameterized constructor to initialize command configuration.
+     *
+     * @param className fully qualified command class name
+     * @param success navigation path on successful execution
+     * @param failure navigation path on failed execution
+ 	 */
 	public CommandConfig(String className, String success, String failure) {
 		super();
 		this.className = className;
@@ -43,7 +62,15 @@ public class CommandConfig {
 		this.failure = failure;
 	}
 	
-	//load properties
+    /**
+     * Loads command configurations from a properties object.
+     *
+     * Each entry in the properties file contains the command class
+     * name along with success and failure navigation paths.
+     *
+     * @param commandMappings Properties object containing command mappings
+     * @return a map of command names to their corresponding CommandConfig objects
+     */
     public static Map<String, CommandConfig> loadConfigurations(Properties commandMappings) {
     	Map<String, CommandConfig> configMap = new HashMap<String, CommandConfig>();
     	if(commandMappings != null) {

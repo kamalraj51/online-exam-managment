@@ -10,38 +10,48 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 /**
- * Servlet implementation class Controller
+ * Servlet Name: ControllerServlet
+ *
+ * Description:
+ * This servlet acts as the central controller for the Online Exam system.
+ * It handles all incoming requests with an "action" parameter, delegates
+ * the request to the corresponding Command class, and forwards the response
+ * to the appropriate JSP page based on success or failure.
+ *
+ * Responsibilities:
+ * 1. Read the "action" parameter from the request.
+ * 2. Retrieve the corresponding Command object from CommandFactory.
+ * 3. Execute the Command.
+ * 4. Forward the request to the configured success or failure view.
  */
 @WebServlet("/controller")
 public class ControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	//private static final Logger logger=LogManager.getLogger(ControllerServlet.class);
+
     /**
      * Default constructor. 
      */
     public ControllerServlet() {
-        // TODO Auto-generated constructor stub
+       
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    /**
+     * Handles HTTP GET requests.
+     * Delegates the request to the appropriate Command object
+     * and forwards to the configured JSP page.
+     *
+     * @param request  the HttpServletRequest object containing client request data
+     * @param response the HttpServletResponse object for sending response to the client
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException      if an I/O error occurs
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String action=request.getParameter("action").toLowerCase();
-//		String username=request.getParameter("user");
-		//System.out.println("Logger: "+logger.toString());
 		System.out.println("command action: "+action);
-		//logger.error("error");
-		//logger.warn("warning");
-	//	logger.debug("action:{}",action);
-//		logger.debug("username:{}",username);
-//		if(action==null) {
-//			logger.info("Action is missing");
-//		}
 		Command command=CommandFactory.getCommand(action);
-		//logger.info("Command Object=="+command);
 		boolean flag=command.execute(request, response);
 		if(flag) {
 			String forward=CommandFactory.configMap.get(action).getSuccess();
@@ -55,11 +65,16 @@ public class ControllerServlet extends HttpServlet {
 
 	
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+    /**
+     * Handles HTTP POST requests.
+     * Delegates the POST request to doGet method.
+     *
+     * @param request  the HttpServletRequest object containing client request data
+     * @param response the HttpServletResponse object for sending response to the client
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException      if an I/O error occurs
+     */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

@@ -9,7 +9,22 @@ import com.vastpro.onlineexam.db.DBConnection;
 
 import jakarta.servlet.http.HttpServletRequest;
 
+/**
+ * Class Name: CreateQuestionDAO
+ *
+ * Description:
+ * This class is responsible for creating questions and corresponding answers
+ * in the database.
+ */
 public class CreateQuestionDAO {
+	
+	 /**
+     * AddsQuestion by getting details from request and storing into database
+     *
+     * @param req the HttpServletRequest object containing the exam Id, mark, question text and  and question number in session
+     * @return true if the questions successfully inserted,
+     *         false otherwise
+     */
 	public static boolean addQuestion(HttpServletRequest request) {
 		boolean flag = false;
 		int noOfQuestion = (Integer) request.getSession().getAttribute("questions");

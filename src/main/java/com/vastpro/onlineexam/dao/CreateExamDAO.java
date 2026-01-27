@@ -9,7 +9,27 @@ import com.vastpro.onlineexam.db.DBConnection;
 
 import jakarta.servlet.http.HttpServletRequest;
 
+/**
+ * Class Name: CreateExamDAO
+ *
+ * Description:
+ * This DAO class is responsible for inserting new exams into the database.
+ *
+ * It takes exam details from the request object and inserts them into
+ * the 'exam' table. It also sets the generated exam ID in the request
+ * attributes for further processing.
+ */
 public class CreateExamDAO {
+	
+    /**
+     * Creates a new exam in the database.
+     *
+     * @param request the HttpServletRequest object containing exam details
+     *                (exam_topic, exam_name, description, pass_min_correct,
+     *                 total_marks, duration_minutes, add_question)
+     *                and session attribute user_id for creator.
+     * @return true if the exam is inserted successfully, false otherwise
+     */
 	public static boolean createExam(HttpServletRequest request) {
 		String examTopic = request.getParameter("exam_topic");
 		String examName = request.getParameter("exam_name");
