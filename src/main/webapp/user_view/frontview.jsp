@@ -9,17 +9,14 @@
 <head>
 <meta charset="UTF-8">
 
-<title>Insert title here</title>
-
-<style>
-    body { font-family: Arial; background: #f4f6f8; }
+<title>home</title>
+<style >
+     body { font-family: Arial; background: #f4f6f8; }
     table { width: 100%; border-collapse: collapse; }
     th, td { padding: 10px; border-bottom: 1px solid #ccc; text-align: center; }
     th { background: #2c3e50; color: white; }
     .btn { padding: 6px 12px; background: #27ae60; color: white; border: none; }
 </style>
-
-<title>home</title>
 <link rel="stylesheet" href="css/style.css"/>
 
 </head>

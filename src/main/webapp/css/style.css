@@ -61,3 +61,148 @@
         align-items: center;
         flex-direction: column;
     }
+/*login*/    
+     .login_body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f4f6f8;
+    }
+
+    .container_login {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    h2 {
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .login {
+        background-color: #ffffff;
+        border: 1px solid #ccc;
+        padding: 30px 40px;
+        border-radius: 6px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        width: 320px;
+    }
+
+    .form_label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #555;
+    }
+
+    .text{
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    
+    .password{
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    
+
+    .submit {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        border: none;
+        color: white;
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .submit:hover {
+        background-color: #0056b3;
+    }
+ /*frontview and home.jsp   
+    body { font-family: Arial; background: #f4f6f8; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 10px; border-bottom: 1px solid #ccc; text-align: center; }
+    th { background: #2c3e50; color: white; }
+    .btn { padding: 6px 12px; background: #27ae60; color: white; border: none; }
+  * /    
+ /*startexam.jsp* /       
+   body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container_startexam {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 25px 30px;
+            border-radius: 6px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h3 {
+            color: #333;
+        }
+
+        .question-number {
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .answers {
+            margin-top: 15px;
+        }
+
+        .answers label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button[name="nav"][value="next"] {
+            background-color: #007bff;
+            color: white;
+        }
+
+        button[name="nav"][value="back"] {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        button[name="nav"][value="submit"] {
+            background-color: #28a745;
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+    
+    
+    
+    
+    

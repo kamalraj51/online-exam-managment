@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>load history</title>
+<link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
 	<jsp:forward page="/controller?action=load_history"></jsp:forward>

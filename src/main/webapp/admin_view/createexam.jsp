@@ -79,6 +79,7 @@
         background-color: #218838;
     }
 </style>
+<link rel="stylesheet" href="css/style.css"/>
 </head>
 
 <body>

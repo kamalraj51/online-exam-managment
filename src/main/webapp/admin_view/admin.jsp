@@ -45,9 +45,11 @@
         background-color: #23272b;
     }
 </style>
+<link rel="stylesheet" href="css/style.css"/>
 </head>
 
 <body>
+    <jsp:include page="/common/header.jsp"/>
     <div class="container">
         <h1>ADMIN PAGE</h1>
 
@@ -65,5 +67,6 @@
             <button  name="action" value="logout">Logout</button>
         </form>
     </div>
+    <jsp:include page="/common/footer.jsp"/>
 </body>
 </html>
