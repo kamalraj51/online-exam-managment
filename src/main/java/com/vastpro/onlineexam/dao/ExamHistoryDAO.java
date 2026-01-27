@@ -14,8 +14,25 @@ import com.vastpro.onlineexam.dto.UserBasedHistoryDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
+/**
+ * Class Name: ExamHistoryDAO
+ *
+ * Description:
+ * This DAO class provides methods to retrieve the exam history of a user.
+ *
+ * It queries the database to fetch exam attempts, including exam details,
+ * scores, pass/fail status, and active exam topics.
+ */
 public class ExamHistoryDAO {
 
+    /**
+     * Retrieves all exam history for the logged-in user and sets it
+     * in the request attributes.
+     *
+     * @param request the HttpServletRequest object containing the user's session
+     * @return true if exam history and topics are successfully retrieved,
+     *         false otherwise
+     */
 	public static boolean getExamsHistoryByUserId(HttpServletRequest request) {
 		List<UserBasedHistoryDTO> history = new ArrayList<>();
 		List<String> topics = new ArrayList<>();

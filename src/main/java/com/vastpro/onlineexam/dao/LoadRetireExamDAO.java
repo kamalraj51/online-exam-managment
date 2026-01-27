@@ -11,7 +11,24 @@ import com.vastpro.onlineexam.db.DBConnection;
 
 import jakarta.servlet.http.HttpServletRequest;
 
+/**
+ * Class Name: LoadRetireExamDAO
+ *
+ * Description:
+ * This DAO class provides methods to retrieve all retired exams
+ * from the database.
+ *
+ * It connects to the database using DBConnection and executes
+ * SQL queries to fetch exam names where the status is 'RETIRED'.
+ */
 public class LoadRetireExamDAO {
+	
+    /**
+     * Retrieves the list of all retired exam names from the database.
+     *
+     * @return a List of Strings containing the names of retired exams;
+     *         returns an empty list if no exams are retired or in case of error.
+     */
 	public static List<String> loadAllRetiredExam() {
 		List<String> retiredExam = new ArrayList<>();
 		// sql for display topics

@@ -16,7 +16,27 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+/**
+ * Class Name: SubmitExamCommand
+ *
+ * Description:
+ * This class handles the submission of an exam.
+ * It calculates the exam result, stores attempt details,
+ * saves user responses, and prepares result data.
+ *
+ * It implements the Command interface.
+ */
 public class SubmitExamCommand implements Command {
+	
+	/**
+     * Executes the exam submission process.
+     *
+     * @param req the HttpServletRequest containing session data
+     *            such as exam, questions, and user answers
+     * @param res the HttpServletResponse object
+     * @return true if exam submission is successful,
+     *         false otherwise
+     */
 
     @Override
     public boolean execute(HttpServletRequest req, HttpServletResponse res) {

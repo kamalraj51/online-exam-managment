@@ -1,5 +1,11 @@
 package com.vastpro.onlineexam.dto;
-
+/**
+ * Class Name: ExamResponseDTO
+ *
+ * Description:
+ * This DTO represents a user's response to a question
+ * along with correctness and option details.
+ */
 public class ExamResponseDTO {
     private Integer responseId;
     private Integer questionId;

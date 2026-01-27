@@ -5,7 +5,24 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+
+/**
+ * Class Name: DBConnection
+ *
+ * Description:
+ * This utility class provides methods to manage database connections
+ * for the Online Exam system. It handles creating connections to the
+ * PostgreSQL database and provides helper methods to close connections
+ * and statements safely.
+ */
 public class DBConnection {
+	
+    /**
+     * Establishes and returns a new database connection.
+     *
+     * @return a Connection object connected to the PostgreSQL database
+     * @throws SQLException if a database access error occurs
+     */
 	public static Connection getConnection() throws SQLException {
 		try {
 			Class.forName("org.postgresql.Driver");

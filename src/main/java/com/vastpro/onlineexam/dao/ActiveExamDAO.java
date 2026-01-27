@@ -7,8 +7,23 @@ import com.vastpro.onlineexam.db.DBConnection;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-public class ActiveExamDAO {
+/**
+ * Class Name: ActiveExamDAO
+ *
+ * Description:
+ * This class is responsible for updating the exam status
+ * to 'ACTIVE' in the database.
+ */
 
+public class ActiveExamDAO {
+	
+	 /**
+     * Activates an exam by updating its status to 'ACTIVE'.
+     *
+     * @param req the HttpServletRequest object containing the exam name
+     * @return true if the exam status is updated successfully,
+     *         false otherwise
+     */
 	public static boolean activeExam(HttpServletRequest req) {
 		String examName =req.getParameter("exam_name");
 		
