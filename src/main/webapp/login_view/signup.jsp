@@ -11,7 +11,9 @@
         margin: 0;
         padding: 0;
         font-family: Arial, sans-serif;
-        background-color: #f4f6f8;
+        background-image: url('assets/plainbg.jpg'); 
+        background-size: 100%; 
+        background-repeat: no-repeat;
     }
 
     .container {
@@ -25,15 +27,13 @@
 
     h2 {
         margin-bottom: 20px;
-        color: #333;
+        color: white;
     }
 
     form {
-        background-color: #ffffff;
-        border: 1px solid #ccc;
+    		box-shadow: 0 4px 6px black;
         padding: 30px 40px;
         border-radius: 6px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         width: 320px;
     }
 
@@ -41,7 +41,7 @@
         display: block;
         margin-bottom: 5px;
         font-weight: bold;
-        color: #555;
+        color: black;
     }
 
     input {
@@ -50,21 +50,25 @@
         margin-bottom: 15px;
         border: 1px solid #ccc;
         border-radius: 4px;
+        background-color: none;
     }
 
-    button {
-        width: 100%;
-        padding: 10px;
-        background-color: #28a745;
-        border: none;
-        color: white;
-        font-size: 16px;
-        border-radius: 4px;
-        cursor: pointer;
+   button {
+        text-decoration: none;
+        border:none;
+      	background-color: #75B06F;
+      	color:white;
+        padding: 12px 25px;
+        border-radius: 5px;
+        font-size: 18px;
+        letter-spacing:2px;
+        width: 200px;
+        text-align: center;
+        transition: background-color 0.3s;
     }
 
     button:hover {
-        background-color: #218838;
+        background-color: #628141;
     }
 </style>
 <link rel="stylesheet" href="css/style.css"/>
@@ -72,19 +76,19 @@
 
 <body>
     <div class="container">
-        <h2>Signup Page</h2>
+        <h2 style="color: white;">Signup Page</h2>
 
         <form action="controller" method="post">
             <input type="hidden" value="signup_user" name="action">
 
-            <label for="username">User Name</label>
-            <input type="text" name="username">
+           
+            <input type="text" name="username" placeholder="Enter the username">
 
-            <label for="email">Email</label>
-            <input type="email" name="email">
+            
+            <input type="email" name="email"  placeholder="Enter the email">
 
-            <label for="password">Password</label>
-            <input type="password" name="password">
+            
+            <input type="password" name="password"  placeholder="Enter the password">
 
             <input type="hidden" value="2" name="role_id">
 

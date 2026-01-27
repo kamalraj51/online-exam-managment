@@ -21,7 +21,7 @@
     }
 
     .container {
-        height: 400px;
+        height: 100vh;
         width: 100vw;
         display: flex;
         justify-content: center;
@@ -29,41 +29,46 @@
     }
 
     form {
-        background-color: #ffffff;
-        border: 1px solid #ccc;
+    		display:flex;
+    		flex-direction:column;
+    		gap:10px;
+    		height:200px;
         padding: 30px 40px;
         border-radius: 6px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 6px black;
         text-align: center;
+        justify-content:center;
+        align-items: center;
     }
-
-    a {
-        display: block;
+ button {
         text-decoration: none;
-        color: #ffffff;
-        background-color: #007bff;
-        padding: 10px;
-        margin: 10px 0;
-        border-radius: 4px;
-        font-weight: bold;
+        border:none;
+      	background-color: #75B06F;
+      	color:white;
+        padding: 12px 25px;
+        border-radius: 5px;
+        font-size: 18px;
+        font-weight:bold;
+        letter-spacing:2px;
+        width: 200px;
+        text-align: center;
+        transition: background-color 0.3s;
     }
 
-    a:hover {
-        background-color: #0056b3;
+    button:hover {
+        background-color: #628141;
     }
+   
 </style>
 <link rel="stylesheet" href="css/style.css"/>
 </head>
 
-<body>
-    <h1>Online Exam</h1>
+<body style="background-image: url('assets/bg.jpg'); background-size: 100%; background-repeat: no-repeat;">
 
     <div class="container">
         <form action="controller" method="post">
-           
-            <input type="submit" name="action" value="Signup">
-            <input type="submit" name="action" value="Login">
-            
+           	<button name="action" value="signup">Signup</button>
+           	<button name="action" value="login">Login</button>
         </form>
     </div>
 </body>

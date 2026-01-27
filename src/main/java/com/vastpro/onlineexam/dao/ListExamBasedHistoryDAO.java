@@ -14,7 +14,22 @@ import com.vastpro.onlineexam.dto.ExamDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
 
+/**
+ * Class Name: ListExamBasedHistoryDAO
+ *
+ * Description:
+ * This DAO class handles database operations related to
+ * exam-based user history and exam list retrieval.
+ */
 public class ListExamBasedHistoryDAO {
+	
+	 /**
+     * Fetches all users' exam attempt history for a selected exam
+     * and also loads the list of all exams.
+     *
+     * @param request HttpServletRequest containing selected exam ID
+     * @return true if data retrieval is successful, false otherwise
+     */
 	public static boolean getAllUsers(HttpServletRequest request) {
 
 		List<ExamBasedHistoryDTO> history = new ArrayList<>();
