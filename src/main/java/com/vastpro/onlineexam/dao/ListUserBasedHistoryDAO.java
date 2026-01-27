@@ -10,7 +10,7 @@ import java.util.List;
 
 import com.vastpro.onlineexam.db.DBConnection;
 import com.vastpro.onlineexam.dto.UserBasedHistoryDTO;
-import com.vastpro.onlineexam.dto.UsersDTO;
+import com.vastpro.onlineexam.dto.UserDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -19,7 +19,7 @@ public class ListUserBasedHistoryDAO {
 
 		// =============================================================
 		List<UserBasedHistoryDTO> history = new ArrayList<>();
-		List<UsersDTO> userList = new ArrayList<>();
+		List<UserDTO> userList = new ArrayList<>();
 		String userIdString = (request.getParameter("userSelectedOption") != null)
 				? (request.getParameter("userSelectedOption"))
 				: "00";
@@ -77,7 +77,10 @@ public class ListUserBasedHistoryDAO {
 
 			// this while for get all users
 			while (result.next()) {
-				userList.add(new UsersDTO(result.getString("name"), (result.getString("user_id")) + ""));
+				UserDTO user=new UserDTO();
+				user.setUserId(result.getInt("user_id"));
+				user.setUsername(result.getString("username"));
+				userList.add(user);
 			}
 
 			request.setAttribute("userBasedHistory", history);

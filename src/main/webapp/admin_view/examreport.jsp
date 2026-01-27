@@ -67,7 +67,7 @@ th {
 				<%
 				for (ExamDTO exam : examList) {
 				%>
-				<option value="<%=exam.getExamId()%>"><%=exam.getExamName()%></option>
+				<option value="<%=exam.getExamId() %>"><%=exam.getExamName() %></option>
 
 				<%
 				}

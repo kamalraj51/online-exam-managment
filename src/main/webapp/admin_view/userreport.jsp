@@ -3,7 +3,7 @@
 
 <%@ page
 	import="java.util.List,
-	 com.vastpro.onlineexam.dao.ExamHistoryDAO,com.vastpro.onlineexam.dto.UserBasedHistoryDTO,com.vastpro.onlineexam.dto.UsersDTO"%>
+	 com.vastpro.onlineexam.dao.ExamHistoryDAO,com.vastpro.onlineexam.dto.UserBasedHistoryDTO,com.vastpro.onlineexam.dto.UserDTO"%>
 
 <!DOCTYPE html>
 <html>
@@ -57,13 +57,13 @@ th {
 
 
 			<%
-			List<UsersDTO> userList = (List<UsersDTO>) request.getAttribute("userList");
+			List<UserDTO> userList = (List<UserDTO>) request.getAttribute("userList");
 				if (userList.size() != 0) {
 			%>
 			<select name="userSelectedOption">
 					<option value="000">Select User</option>
 				<%
-				for (UsersDTO user : userList) {
+				for (UserDTO user : userList) {
 				%>
 				<option value="<%=user.getUserId()%>"><%=user.getUsername()%></option>
 

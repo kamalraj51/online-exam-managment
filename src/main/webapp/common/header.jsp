@@ -13,6 +13,7 @@
       <a href="#">Home</a>
       <a href="#">About</a>
       <a href="#">Logout</a>
+     
     </div>
   </nav>
 </div>
