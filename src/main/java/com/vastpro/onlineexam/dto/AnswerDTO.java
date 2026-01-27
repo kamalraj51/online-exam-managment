@@ -1,5 +1,11 @@
 package com.vastpro.onlineexam.dto;
-
+/**
+ * Class Name: AnswerDTO
+ *
+ * Description:
+ * This DTO class represents an answer option for a question.
+ * It stores the answer ID, option text, and whether the answer is correct.
+ */
 public class AnswerDTO {
     private int answerId;
     private String optionText;

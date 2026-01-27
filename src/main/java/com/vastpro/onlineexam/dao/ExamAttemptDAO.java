@@ -11,8 +11,30 @@ import java.util.Map;
 
 import com.vastpro.onlineexam.db.DBConnection;
 import com.vastpro.onlineexam.dto.QuestionDTO;
-
+/**
+ * Class Name: ExamAttemptDAO
+ *
+ * Description:
+ * This DAO class handles database operations related
+ * to exam attempts and responses.
+ */
 public class ExamAttemptDAO {
+	
+	/**
+     * Inserts a new exam attempt record into the database.
+     *
+     * @param examId the ID of the exam being attempted
+     * @param userId the ID of the user attempting the exam
+     * @param total total number of questions in the exam
+     * @param correct number of correctly answered questions
+     * @param incorrect number of incorrectly answered questions
+     * @param unanswered number of unanswered questions
+     * @param passed indicates whether the user passed the exam
+     * @param startTime the timestamp when the exam started
+     * @param endTime the timestamp when the exam ended
+     * @return the generated attempt ID for the exam attempt
+     * @throws Exception if a database error occurs
+     */
 
     public int insertExamAttempt(int examId, int userId,
                                  int total, int correct, int incorrect,
@@ -46,7 +68,15 @@ public class ExamAttemptDAO {
             return rs.getInt(1);
         }
     }
-
+    /**
+     * Inserts responses for each question in an exam attempt.
+     *
+     * @param attemptId the unique ID of the exam attempt
+     * @param questions the list of questions included in the exam
+     * @param userAnswers a map containing question IDs and selected answer IDs
+     * @return void
+     * @throws Exception if a database error occurs
+     */
     public void insertResponses(int attemptId,
                                 List<QuestionDTO> questions,
                                 Map<Integer, Integer> userAnswers) throws Exception {

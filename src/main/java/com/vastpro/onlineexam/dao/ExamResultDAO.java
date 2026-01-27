@@ -7,9 +7,22 @@ import java.util.*;
 import com.vastpro.onlineexam.db.DBConnection;
 import com.vastpro.onlineexam.dto.ExamDTO;
 import com.vastpro.onlineexam.dto.ExamResponseDTO;
-
+/**
+ * Class Name: ExamResultDAO
+ *
+ * Description:
+ * This DAO class is responsible for fetching exam details
+ * and retrieving user responses for a specific exam attempt.
+ */
 public class ExamResultDAO {
-
+	/**
+     * Fetches exam details based on the exam ID.
+     *
+     * @param examId the unique ID of the exam
+     * @return ExamDTO object containing exam details,
+     *         or null if the exam is not found
+     * @throws Exception if a database access error occurs
+     */
     // Get Exam details
     public ExamDTO getExamById(int examId) throws Exception {
         String sql = "SELECT * FROM exam WHERE exam_id = ?";
@@ -29,6 +42,15 @@ public class ExamResultDAO {
         }
         return null;
     }
+    
+    /**
+     * Retrieves all question responses for a given exam attempt.
+     *
+     * @param attemptId the unique ID of the exam attempt
+     * @return a list of ExamResponseDTO objects containing
+     *         question details, selected options, and correctness
+     * @throws Exception if a database access error occurs
+     */
 
     // Get all responses for a given attempt
     public static List<ExamResponseDTO> getResponsesByAttempt(int attemptId) throws Exception {

@@ -3,7 +3,12 @@ package com.vastpro.onlineexam.dto;
 import java.sql.Timestamp;
 
 /**
- * this class is DTO for user history
+ * Class Name: ExamHistoryDTO
+ *
+ * Description:
+ * This DTO class represents the exam history of a user.
+ * It stores details such as exam information, user results,
+ * marks, duration taken, and question statistics (correct/incorrect/unanswered).
  */
 public class ExamHistoryDTO {
 	private int examId;
