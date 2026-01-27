@@ -6,20 +6,22 @@
 <head>
 <meta charset="UTF-8">
 <title>User Dashboard</title>
-<style>
-    body { font-family: Arial; background: #f4f6f8; }
+<style >
+     body { font-family: Arial; background: #f4f6f8; }
     table { width: 100%; border-collapse: collapse; }
     th, td { padding: 10px; border-bottom: 1px solid #ccc; text-align: center; }
     th { background: #2c3e50; color: white; }
     .btn { padding: 6px 12px; background: #27ae60; color: white; border: none; }
 </style>
+    
+<link rel="stylesheet" href="css/style.css"/>
 </head>
 
 <body>
-
+<jsp:include page="/common/header.jsp"/>
 
 <h2>Available Exams</h2>
-
+<div class = "common">
 <table>
 <tr>
     <th>Exam Name</th>
@@ -65,12 +67,8 @@ List<ExamDTO> exams = (List<ExamDTO>)request.getAttribute("examList");
 %>
 
 </table>
-<div style="height: 200px; width: 100vw; display: flex; justify-content: center; align-items: center;flex-direction: column;">
-  <form action = "/exam/controller" method = "post">
-       <input type = "hidden" value = "logout" name = "action"/>
-       <input type = "submit" value = "Logout">
-       
-   </form>
+
    </div>
+   <jsp:include page="/common/footer.jsp"/>
 </body>
 </html>
