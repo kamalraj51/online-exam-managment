@@ -17,23 +17,23 @@ import jakarta.servlet.http.HttpServletRequest;
 /**
  * Class Name: ListUserBasedHistoryDAO
  *
- * Description:
- * This DAO class provides methods to retrieve all users with role_id=2 (students)
- * and their corresponding exam history from the database.
+ * Description: This DAO class provides methods to retrieve all users with
+ * role_id=2 (students) and their corresponding exam history from the database.
  *
- * It fetches user information from the 'users' table and exam attempts from the 'exam_attempt' table.
+ * It fetches user information from the 'users' table and exam attempts from the
+ * 'exam_attempt' table.
  */
 public class ListUserBasedHistoryDAO {
-	
-	 /**
-     * Retrieves all users with role_id=2 and the exam history of a specific user
-     * (based on userSelectedOption parameter from the request).
-     *
-     * @param request the HttpServletRequest object where the retrieved data
-     *                will be set as request attributes "userList" and "userBasedHistory"
-     * @return true if users and their exam histories are successfully retrieved,
-     *         false otherwise
-     */
+
+	/**
+	 * Retrieves all users with role_id=2 and the exam history of a specific user
+	 * (based on userSelectedOption parameter from the request).
+	 *
+	 * @param request the HttpServletRequest object where the retrieved data will be
+	 *                set as request attributes "userList" and "userBasedHistory"
+	 * @return true if users and their exam histories are successfully retrieved,
+	 *         false otherwise
+	 */
 	public static boolean getAllUsers(HttpServletRequest request) {
 
 		// =============================================================
@@ -44,7 +44,7 @@ public class ListUserBasedHistoryDAO {
 				: "00";
 		Integer userId = Integer.parseInt(userIdString);
 
-		System.out.println("userbasedHistorydao userId called: "+userId);
+		System.out.println("userbasedHistorydao userId called: " + userId);
 		String sqlUserHistory = """
 				SELECT e.exam_id, e.exam_topic, e.exam_name, e.description, e.duration_minutes, e.total_marks, e.pass_min_correct, e.created_by, e.status,
 				a.start_time, a.correct_answers, a.incorrect_answers, a.unanswered,a.start_time, a.end_time, a.score, a.passed, a.user_id
@@ -65,40 +65,27 @@ public class ListUserBasedHistoryDAO {
 
 			while (rs.next()) {
 				UserBasedHistoryDTO examHistory = new UserBasedHistoryDTO();
-				examHistory.setExamId(rs.getInt("exam_id"));
-				examHistory.setExamTopic(rs.getString("exam_topic"));
 
 				examHistory.setExamName(rs.getString("exam_name"));
-
-				examHistory.setStatus(rs.getString("status"));
-
-				// actual data for history
 				examHistory.setDateTime(rs.getTimestamp("start_time"));
 				examHistory.setCorrect(rs.getString("correct_answers"));
 				examHistory.setIncorrect(rs.getString("incorrect_answers"));
 				examHistory.setUnanswered(rs.getString("unanswered"));
-				//
 				if (rs.getBoolean("passed")) {
 					examHistory.setResult("Pass");
 				} else {
 					examHistory.setResult("Fail");
 				}
-				//
-
-//				examHistory.setDurationTaken(rs.getDouble("start_time") - rs.getDouble("end_time"));
 				examHistory.setYourMarks(rs.getInt("score"));
-
-				examHistory.setUserId(userId);
-//				System.out.println("examHistoryDao: "+examHistory);
 
 				history.add(examHistory);
 			}
 
 			// this while for get all users
 			while (result.next()) {
-				UserDTO user=new UserDTO();
+				UserDTO user = new UserDTO();
 				user.setUserId(result.getInt("user_id"));
-				user.setUsername(result.getString("username"));
+				user.setUsername(result.getString("name"));
 				userList.add(user);
 			}
 

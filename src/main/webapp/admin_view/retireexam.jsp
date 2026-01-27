@@ -1,53 +1,53 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="java.util.List, com.vastpro.onlineexam.dao.ExamHistoryDAO,com.vastpro.onlineexam.dto.UserBasedHistoryDTO" %>
+	pageEncoding="UTF-8"%>
+<%@ page
+	import="java.util.List, com.vastpro.onlineexam.dao.ExamHistoryDAO,com.vastpro.onlineexam.dto.UserBasedHistoryDTO"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="css/style.css"/>
+<title>Retire Exam</title>
+<link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-	
-	
-		<jsp:include page="/common/header.jsp"></jsp:include>
+	<jsp:include page="/common/header.jsp"></jsp:include>
 	<div class="container">
-	
-	<form action="controller" method="post" class="user_form">
-		<h1>Select Exam:</h1>
 
-		
-		
-		<%
+		<form action="controller" method="post" class="user_form">
+			<h1>Select Exam:</h1>
+
+
+
+			<%
 			List<String> aExam = (List<String>) request.getAttribute("activeExam");
 			if(aExam.size()!=0){
 				%>
-		<select name="exam_name">
-				
+			<select name="exam_name">
+				<option value="">Select Exam</option>
 				<%
 			for(String exam : aExam){
 		%>
-		<option value="<%=exam %>"><%=exam %></option>
-		
-		<%
+				<option value="<%=exam %>"><%=exam %></option>
+
+				<%
 			}
 		%>
-			
-		</select>
-		<button name="action" value="retire_exam_user">Retire</button>
+
+			</select>
+			<button name="action" value="retire_exam_user">Retire</button>
 			<%
 			}else{
 			 %>
-			 <select>
-			<option value="No Exams Retired">No Active Exams Found</option>
-			</select>	
+			<select>
+				<option value="No Exams Retired">No Active Exams Found</option>
+			</select>
 			<%
 			}
 			%>
-		
-		
-	</form>
-	<jsp:include page="/common/footer.jsp"/>
+
+
+		</form>
+	</div>
+	<jsp:include page="/common/footer.jsp" />
 </body>
 </html>

@@ -43,14 +43,14 @@ public class ExamHistoryDAO {
 
 		System.out.println("exam history dao userId: " + userId);
 		String sqlUserHistory = """
-				        SELECT a.start_time,e.exam_id, e.exam_topic, e.exam_name, e.description, e.duration_minutes, e.total_marks, e.pass_min_correct, e.created_by, e.status,
-				a.start_time, a.end_time, a.score, a.passed, a.user_id
+				SELECT e.exam_id, e.exam_name,
+				a.start_time, a.correct_answers, a.incorrect_answers, a.unanswered, a.score, a.passed, a.user_id
 				FROM exam e join exam_attempt a
 				on e.exam_id = a.exam_id
 				where a.user_id=?;
 				     """;
 		//sql for display topics
-		String sql = "SELECT exam_topic FROM exam WHERE status = 'ACTIVE'";
+		String sql = "SELECT DISTINCT exam_topic FROM exam WHERE status = 'ACTIVE'";
 		
 		
 		try (Connection conn = DBConnection.getConnection();
@@ -61,36 +61,23 @@ public class ExamHistoryDAO {
 			ResultSet result = stmt.executeQuery(sql);
 			ResultSet rs = psmtHistory.executeQuery();
 
+		
 			while (rs.next()) {
 				UserBasedHistoryDTO examHistory = new UserBasedHistoryDTO();
-				examHistory.setExamId(rs.getInt("exam_id"));
-				examHistory.setExamTopic(rs.getString("exam_topic"));
 
 				examHistory.setExamName(rs.getString("exam_name"));
-				examHistory.setDescription(rs.getString("description"));
-
-				examHistory.setStatus(rs.getString("status"));
-				examHistory.setDuration(rs.getInt("duration_minutes"));
-
-				examHistory.setPassMarks(rs.getInt("pass_min_correct"));
-				examHistory.setTotalMarks(rs.getInt("total_marks"));
-
-				examHistory.setCreatedBy(rs.getInt("created_by"));
 				examHistory.setDateTime(rs.getTimestamp("start_time"));
+				examHistory.setYourMarks(rs.getInt("score"));
+				examHistory.setCorrect(rs.getString("correct_answers"));
+				examHistory.setIncorrect(rs.getString("incorrect_answers"));
+				examHistory.setUnanswered(rs.getString("unanswered"));
+
 				//
 				if (rs.getBoolean("passed")) {
 					examHistory.setResult("Pass");
 				} else {
 					examHistory.setResult("Fail");
-				}
-				//
-
-//					examHistory.setDurationTaken(rs.getDouble("start_time") - rs.getDouble("end_time"));
-				examHistory.setYourMarks(rs.getInt("score"));
-
-				examHistory.setUserId(userId);
-//					System.out.println("examHistoryDao: "+examHistory);
-				
+				}	
 				history.add(examHistory);
 			}
 			
@@ -99,8 +86,6 @@ public class ExamHistoryDAO {
 				topics.add(result.getString("exam_topic"));
 			}
 			
-//			System.out.println("examHistoryDao history object size: " + history.size());
-//			System.out.println("examHistoryDao Topics object size: " + topics.size());
 			request.setAttribute("history", history);
 			request.setAttribute("topics", topics);
 			return true;
@@ -111,8 +96,5 @@ public class ExamHistoryDAO {
 		}
 
 	}
-	/*
-	 * public static void main(String[] args) { List<ExamHistoryDTO> examHistory =
-	 * ExamHistoryDAO.getExamsHistoryByUserId(4); System.out.println(examHistory); }
-	 */
+
 }

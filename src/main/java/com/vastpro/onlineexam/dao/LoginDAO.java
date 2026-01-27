@@ -59,6 +59,7 @@ public class LoginDAO {
             	if(BCrypt.checkpw( password,dbPassword)) {
             	
             		System.out.println(rs.getString("name"));
+            		session.setAttribute("username", rs.getString("name"));
             		session.setAttribute("role", rs.getInt("role_id"));
             		session.setAttribute("user_id", rs.getInt("user_id"));
             		return true;

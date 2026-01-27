@@ -87,7 +87,7 @@ input[type="submit"]:hover {
 		<form action="controller" method="post">
 			<h2>Add Question</h2>
 			<%
-			int questions = (Integer) session.getAttribute("questions");
+			int questions = (Integer) session.getAttribute("noOfQuestions");
 			for (int i = 1; i <= questions; i++) {
 			%>
 			<h2>

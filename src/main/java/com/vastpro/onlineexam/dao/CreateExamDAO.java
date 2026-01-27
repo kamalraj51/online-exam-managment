@@ -41,7 +41,7 @@ public class CreateExamDAO {
 //		int created_by = Integer.parseInt(request.getParameter("user_id"));
 		int created_by = (Integer)request.getSession().getAttribute("user_id");
 		Integer noOfQuestion=Integer.parseInt( request.getParameter("add_question"));
-		request.getSession().setAttribute("questions", noOfQuestion);
+		request.getSession().setAttribute("noOfQuestions", noOfQuestion);
 		
 		String sql = "insert into exam"
 						+ " (exam_topic,exam_name,description,status,pass_min_correct,total_marks,duration_minutes,created_by,created_at)"

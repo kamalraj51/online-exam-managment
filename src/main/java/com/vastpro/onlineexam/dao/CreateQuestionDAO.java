@@ -27,7 +27,7 @@ public class CreateQuestionDAO {
      */
 	public static boolean addQuestion(HttpServletRequest request) {
 		boolean flag = false;
-		int noOfQuestion = (Integer) request.getSession().getAttribute("questions");
+		int noOfQuestion = (Integer) request.getSession().getAttribute("noOfQuestions");
 		System.out.println("CreateQuestionDAO - no of question " + noOfQuestion);
 		for (int i = 1; i <= noOfQuestion; i++) {
 			String question = request.getParameter("question_id" + i);

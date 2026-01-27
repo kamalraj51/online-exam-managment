@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>active Exam</title>
+<title>Active Exam</title>
 <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
@@ -24,7 +24,7 @@
 			if(rExam.size()!=0){
 				%>
 		<select name="exam_name">
-				
+				<option value="">Select Exam</option>
 				<%
 			for(String exam : rExam){
 		%>
@@ -48,6 +48,7 @@
 		
 		
 	</form>
+	</div>
 	<jsp:include page="/common/footer.jsp"/>
 </body>
 </html>
