@@ -8,14 +8,21 @@
 <title>Active Exam</title>
 <link rel="stylesheet" href="css/style.css"/>
 </head>
-<body>
+<body style="background: radial-gradient(
+  circle farthest-corner at center,
+  #4fe3b1 0%,
+  #2fbf9b 30%,
+  #0f6f5f 55%,
+  #061318 100%
+);
+">
 	
 	
 		<jsp:include page="/common/header.jsp"></jsp:include>
-	<div class="container">
+	<div class="retire_container">
 	
-	<form action="controller" method="post" class="user_form">
-		<h1>Select Exam:</h1>
+	<form action="controller" method="post" class="retire_form">
+		<h2>Select Exam</h2>
 
 		
 		
@@ -24,7 +31,7 @@
 			if(rExam.size()!=0){
 				%>
 		<select name="exam_name">
-				<option value="">Select Exam</option>
+				<option value="">--Select Exam--</option>
 				<%
 			for(String exam : rExam){
 		%>

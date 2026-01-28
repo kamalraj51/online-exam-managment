@@ -12,47 +12,25 @@
 
 <title>User Report</title>
 
-<style>
-body {
-	font-family: Arial;
-	background: #f4f6f8;
-}
-
-table {
-	width: 100%;
-	border-collapse: collapse;
-}
-
-th, td {
-	padding: 10px;
-	border-bottom: 1px solid #ccc;
-	text-align: center;
-}
-
-th {
-	background: #2c3e50;
-	color: white;
-}
-
-.btn {
-	padding: 6px 12px;
-	background: #27ae60;
-	color: white;
-	border: none;
-}
-</style>
 
 <title>home</title>
 <link rel="stylesheet" href="css/style.css" />
 
 </head>
 
-<body>
+<body style="background: radial-gradient(
+  circle farthest-corner at center,
+  #4fe3b1 0%,
+  #2fbf9b 30%,
+  #0f6f5f 55%,
+  #061318 100%
+);
+">
 	<jsp:include page="/common/header.jsp"></jsp:include>
-	<div class="container">
+	<div class="retire_container">
 
-		<form action="controller" method="post" class="user_form">
-			<h1>Select User</h1>
+		<form action="controller" method="post" class="retire_form">
+			<h2>Select User</h2>
 
 
 
@@ -61,7 +39,7 @@ th {
 				if (userList.size() != 0) {
 			%>
 			<select name="userSelectedOption">
-					<option value="000">Select User</option>
+					<option value="000">--Select User--</option>
 				<%
 				for (UserDTO user : userList) {
 				%>
@@ -120,7 +98,7 @@ th {
 				
 				
 				<td><%=exam.getExamName()%></td>
-				<td><%=exam.getDateTime()%></td>
+				<td><%=exam.getDate()%> / <%=exam.getTimeStamp()%></td>
 				<td><%=exam.getYourMarks()%></td>
 				<td><%=exam.getCorrect() %></td>
 				<td><%=exam.getIncorrect()%></td>

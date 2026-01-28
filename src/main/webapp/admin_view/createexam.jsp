@@ -5,108 +5,28 @@
 <head>
 <meta charset="UTF-8">
 <title>Create Exam</title>
-
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-        background-color: #f4f6f8;
-    }
-
-    .container {
-        min-height: 100vh;
-        width: 100vw;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;   /* FIX */
-        padding-top: 40px;         /* FIX */
-        box-sizing: border-box;
-    }
-
-    form {
-        background-color: #ffffff;
-        border: 1px solid #ccc;
-        padding: 30px 40px;
-        border-radius: 6px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        width: 420px;
-    }
-
-    h2 {
-        text-align: center;
-        margin-bottom: 20px;
-        color: #333;
-    }
-
-    label {
-        display: block;
-        font-weight: bold;
-        margin-bottom: 5px;
-        color: #555;
-    }
-
-    input[type="text"] {
-        width: 100%;
-        padding: 8px;
-        margin-bottom: 15px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
-
-    .radio-group {
-        margin-bottom: 15px;
-    }
-
-    .radio-group label {
-        display: inline;
-        font-weight: normal;
-        margin-right: 10px;
-    }
-
-    button {
-        width: 100%;
-        padding: 10px;
-        background-color: #28a745;
-        border: none;
-        color: white;
-        font-size: 16px;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-
-    button:hover {
-        background-color: #218838;
-    }
-</style>
 <link rel="stylesheet" href="css/style.css"/>
+
 </head>
 
-<body>
-    <div class="container">
-        <form action="controller" method="post">
+<body style="background-image: url('assets/bgplain.jpg'); background-size: 100%; background-repeat: no-repeat;">
+    <div class="exam_container">
             <h2>Create Exam</h2>
+        <form action="controller" method="post" class="createexam_form">
 
             <input type="hidden" name="action" value="create_exam_user">
-            <label>Topic</label>
-            <input type="text" name="exam_topic" required>
+           
+            <input type="text" name="exam_topic" required placeholder="enter the topic">
 
-            <label>Name</label>
-            <input type="text" name="exam_name" required>
+            <input type="text" name="exam_name" required placeholder="enter the exam name">
 
-            <label>Description</label>
-            <input type="text" name="description" required>
+            <input type="text" name="description" required placeholder="enter the description">
 
-            <label>Number Of Questions</label>
-			<input type="text" name="add_question" required>
-            <label>Minimum Correct Answer</label>
-            <input type="text" name="pass_min_correct" required>
+			<input type="text" name="add_question" required placeholder="number of questions">
+            <input type="text" name="pass_min_correct" required placeholder="enter the minimum marks">
 
-            <label>Total Marks</label>
-            <input type="text" name="total_marks" required>
-
-            <label>Duration</label>
-            <input type="text" name="duration_minutes">
+            <input type="text" name="total_marks" required placeholder="enter the total marks">
+			 <input type="text" name="duration_minutes" required="required" placeholder="enter the total duration">
 
         
 

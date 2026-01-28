@@ -18,22 +18,8 @@
     <meta charset="UTF-8">
     <title>Exam Result</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f6f8;
-        }
 
-        .result-summary {
-            max-width: 600px;
-            margin: 0 auto 30px auto;
-            padding: 20px;
-            background-color: #ffffff;
-            border-radius: 6px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
+       
         .result-summary p {
             margin: 8px 0;
             font-size: 16px;
@@ -57,16 +43,7 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
-        table th, table td {
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: left;
-        }
-
-        table th {
-            background-color: #007bff;
-            color: white;
-        }
+     
 
         table tr:nth-child(even) {
             background-color: #f2f2f2;
@@ -84,20 +61,29 @@
     </style>
     <link rel="stylesheet" href="css/style.css"/>
 </head>
-<body>
+<body style="background: radial-gradient(
+  circle farthest-corner at center,
+  #4fe3b1 0%,
+  #2fbf9b 30%,
+  #0f6f5f 55%,
+  #061318 100%
+);
+">
 <jsp:include page="/common/header.jsp"/>
+<div class="report_container">
 <div class="result-summary">
-    <p>Total Questions: <%= totalQuestions %></p>
-    <p>Attempted: <%= correct + incorrect %></p>
-    <p>Correct Answers: <%= correct %></p>
-    <p>Incorrect Answers: <%= incorrect %></p>
-    <p>Unanswered: <%= unanswered %></p>
-    <p>Your Score: <%= score %></p>
-    <p>Result: <b class="<%= passed ? "pass" : "fail" %>"><%= passed ? "PASS" : "FAIL" %></b></p>
+    <p class="report_content">Total Questions: <%= totalQuestions %></p>
+    <p class="report_content">Attempted: <%= correct + incorrect %></p>
+    <p class="report_content">Correct Answers: <%= correct %></p>
+    <p class="report_content">Incorrect Answers: <%= incorrect %></p>
+    <p class="report_content">Unanswered: <%= unanswered %></p>
+    <p class="report_content">Your Score: <%= score %></p>
+    <p class="report_content">Result: <b class="<%= passed ? "pass" : "fail" %>"><%= passed ? "PASS" : "FAIL" %></b></p>
 </div>
 
-<h3>Detailed Feedback</h3>
+
 <table>
+<caption style="margin-bottom: 10px;">DETAILED FEEDBACK</caption>
     <tr>
         <th>Question</th>
         <th>Your Answer</th>
@@ -119,6 +105,7 @@
     }
 %>
 </table>
+</div>
 <jsp:include page="/common/footer.jsp"/>
 </body>
 </html>

@@ -1,74 +1,120 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" %>
-<%@ page import="java.util.*,com.vastpro.onlineexam.dto.ExamDTO" %>
+<%@page import="com.vastpro.onlineexam.dto.UserBasedHistoryDTO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<%@ page
+	import="java.util.List,com.vastpro.onlineexam.dao.ExamHistoryDAO,com.vastpro.onlineexam.dto.UserBasedHistoryDTO"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>User Dashboard</title>
-<style >
-     body { font-family: Arial; background: #f4f6f8; }
-    table { width: 100%; border-collapse: collapse; }
-    th, td { padding: 10px; border-bottom: 1px solid #ccc; text-align: center; }
-    th { background: #2c3e50; color: white; }
-    .btn { padding: 6px 12px; background: #27ae60; color: white; border: none; }
-</style>
-    
+
+<title>home</title>
 <link rel="stylesheet" href="css/style.css"/>
+	
 </head>
 
-<body>
-<jsp:include page="/common/header.jsp"/>
+<body style="background: radial-gradient(
+  circle farthest-corner at center,
+  #4fe3b1 0%,
+  #2fbf9b 30%,
+  #0f6f5f 55%,
+  #061318 100%
+);
 
-<h2>Available Exams</h2>
-<div class = "common">
-<table>
-<tr>
-    <th>Exam Name</th>
-    <th>Description</th>
-    <th>Duration (mins)</th>
-    <th>Pass Marks</th>
-    <th>Action</th>
-    
-</tr>
+">
+	<jsp:include page="/common/header.jsp"></jsp:include>
+	<div  class="home_container">
 
-<%
-List<ExamDTO> exams = (List<ExamDTO>)request.getAttribute("examList");
+		<form action="controller" method="post" class="user_form">
+			<h2 style="color:black;">Select Exam Topic</h2>
 
-    if (exams.isEmpty()) {
-%>
-<tr>
-    <td colspan="5">No exams available</td>
-</tr>
-<%
-} else {
-        for (ExamDTO exam : exams) {
-%>
-<tr>
-    <td><%= exam.getExamName() %></td>
-    <td><%= exam.getDescription() %></td>
-    <td><%= exam.getDuration() %></td>
-    <td><%= exam.getPassMarks() %></td>
-    
-    <td>
-        <form action="controller" method="post">
 
-            <input type="hidden" name="action" value="start_exam">
 
-            <input type="hidden" name="examId" value="<%= exam.getExamId() %>">
-           
-            <button class="btn">Start Exam</button>
-        </form>
-    </td>
-</tr>
-<%
-        }
-    }
-%>
+			<%
+			List<String> topics = (List<String>) request.getAttribute("topics");
+			if (topics.size() != 0) {
+			%>
+			<select name="userSelectedOption">
+				<option value="">--Select Topic--</option>
+				<%
+				for (String topic : topics) {
+				%>
+				<option value="<%=topic%>"><%=topic%></option>
 
-</table>
+				<%
+				}
+				%>
 
-   </div>
-   <jsp:include page="/common/footer.jsp"/>
+			</select>
+			<button name="action" value="select_exam">Select</button>
+			<%
+			} else {
+			%>
+			<select>
+				<option value="No Topics Available">No Topics Available</option>
+			</select>
+			<%
+			}
+			%>
+
+
+		</form>
+
+		<!-- old code form home -->
+		<h2 style="color:white;">History</h2>
+		<table>
+			<tr>
+				<th>Exam Name</th>
+				<th>Date/Time</th>
+				<th>Score</th>
+				<th>Correct Answer</th>
+				<th>Incorrect Answer</th>
+				<th>Unanswered</th>
+				<th>Result</th>
+
+			</tr>
+
+			<%
+			List<UserBasedHistoryDTO> examHistory = (List<UserBasedHistoryDTO>) request.getAttribute("history");
+			if (examHistory.isEmpty()) {
+			%>
+
+			<tr>
+				<td colspan="9">No History available</td>
+			</tr>
+
+
+
+			<%
+			} else {
+			for (UserBasedHistoryDTO exam : examHistory) {
+			%>
+			<tr>
+
+
+				<td><%=exam.getExamName()%></td>
+				<td><%=exam.getDate()%> / <%=exam.getTimeStamp()%></td>
+				<td><%=exam.getYourMarks()%></td>
+				<td><%=exam.getCorrect()%></td>
+				<td><%=exam.getIncorrect()%></td>
+				<td><%=exam.getUnanswered()%></td>
+				<td><%=exam.getResult()%></td>
+
+
+
+
+			</tr>
+			<%
+			}
+			}
+			%>
+
+		</table>
+	</div>
+
+	<jsp:include page="/common/footer.jsp"></jsp:include>
+	<!--  -->
 </body>
 </html>

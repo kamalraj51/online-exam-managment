@@ -17,88 +17,34 @@ Long remainingSeconds = (Long) request.getAttribute("remainingSeconds");
 <head>
     <meta charset="UTF-8">
     <title>Start Exam</title>
-    <style>
-       body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f6f8;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .container_startexam {
-            max-width: 700px;
-            margin: 0 auto;
-            background-color: #ffffff;
-            padding: 25px 30px;
-            border-radius: 6px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        h3 {
-            color: #333;
-        }
-
-        .question-number {
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        .answers {
-            margin-top: 15px;
-        }
-
-        .answers label {
-            display: block;
-            margin-bottom: 10px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        button {
-            padding: 10px 20px;
-            margin-right: 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        button[name="nav"][value="next"] {
-            background-color: #007bff;
-            color: white;
-        }
-
-        button[name="nav"][value="back"] {
-            background-color: #6c757d;
-            color: white;
-        }
-
-        button[name="nav"][value="submit"] {
-            background-color: #28a745;
-            color: white;
-        }
-
-        button:hover {
-            opacity: 0.9;
-        }
-    </style>
     <link rel="stylesheet" href="css/style.css"/>
 </head>
-<body>
+<body style="background: radial-gradient(
+  circle farthest-corner at center,
+  #4fe3b1 0%,
+  #2fbf9b 30%,
+  #0f6f5f 55%,
+  #061318 100%
+);
 
-<div class="container_startexam">
+">
+
+<div class="exam_container">
 	<!-- timer code -->
+	<div style="display: flex; justify-content: space-between;width: 50%;">
+    <div >
+       <h2>Question <%= currentQNo %> of <%= totalQuestions %></h2> 
+    </div>
+	
 	<div style="float:right; font-weight:bold; color:red;">
     Time Left:
     <span id="timer"></span>
-</div>
+	</div>
 <!--  -->
-    <div class="question-number">
-        Question <%= currentQNo %> of <%= totalQuestions %>
-    </div>
-    <h3><%= question.getQuestionText() %></h3>
+	</div>
 
-    <form action="controller" method="post" class="answers">
+    <form action="controller" method="post" class="retire_form">
+    <h3><%= question.getQuestionText() %></h3>
 
         <%
         List<AnswerDTO> answers = question.getAnswers();

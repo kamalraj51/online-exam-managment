@@ -45,9 +45,13 @@ public class ListUserBasedHistoryDAO {
 		Integer userId = Integer.parseInt(userIdString);
 
 		System.out.println("userbasedHistorydao userId called: " + userId);
+		String getDateSql="""
+						select 
+						t
+						""";
 		String sqlUserHistory = """
 				SELECT e.exam_id, e.exam_topic, e.exam_name, e.description, e.duration_minutes, e.total_marks, e.pass_min_correct, e.created_by, e.status,
-				a.start_time, a.correct_answers, a.incorrect_answers, a.unanswered,a.start_time, a.end_time, a.score, a.passed, a.user_id
+				to_char(a.start_time,'DD-MM-YYYY') as start_date, to_char(a.start_time,'HH24:MI') as start_time, a.correct_answers, a.incorrect_answers, a.unanswered, a.score, a.passed, a.user_id
 				FROM exam e join exam_attempt a
 				on e.exam_id = a.exam_id
 				where a.user_id=?;
@@ -67,7 +71,8 @@ public class ListUserBasedHistoryDAO {
 				UserBasedHistoryDTO examHistory = new UserBasedHistoryDTO();
 
 				examHistory.setExamName(rs.getString("exam_name"));
-				examHistory.setDateTime(rs.getTimestamp("start_time"));
+				examHistory.setDate(rs.getString("start_date"));
+				examHistory.setTimeStamp(rs.getString("start_time"));
 				examHistory.setCorrect(rs.getString("correct_answers"));
 				examHistory.setIncorrect(rs.getString("incorrect_answers"));
 				examHistory.setUnanswered(rs.getString("unanswered"));

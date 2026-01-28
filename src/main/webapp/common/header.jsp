@@ -10,15 +10,13 @@
     </div>
   <h1  style="color:white">Online Exam Management</h1>
 
-    <div class="menu">
-      <form action="controller" method="post">
-      <button name="action" value="load_history">Home</button>
+    <div class="menu" >
+      <form action="controller" method="post" style="display: flex;
+	flex-direction: row;">
+      <button name="action" value="authorize">Home</button>
       <button name="action" value="about">About</button>
       <button name="action" value="logout">Logout</button>
       </form>
-
-     
-     
     </div>
   </nav>
 </div>

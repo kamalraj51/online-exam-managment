@@ -56,7 +56,8 @@ public class ListExamBasedHistoryDAO {
 			while (rs.next()) {
 				ExamBasedHistoryDTO examHistory = new ExamBasedHistoryDTO();
 				examHistory.setUserName(rs.getString("name"));
-				examHistory.setDateTime(rs.getTimestamp("start_time"));
+				examHistory.setDate(rs.getString("start_date"));
+				examHistory.setTime(rs.getString("start_time"));
 				examHistory.setScore(rs.getInt("score"));
 				examHistory.setResult(rs.getBoolean("passed"));
 				history.add(examHistory);
