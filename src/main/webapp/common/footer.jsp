@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-  <div style="background-color:#A1C2BD; padding:15px; text-align:center;">
+  <div class="fixed-footer">
     <p>
         Contact us : admin@gmail.com | +91-98765-43210
     </p>
