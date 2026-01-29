@@ -57,7 +57,12 @@ public class ListExamBasedHistoryDAO {
 				examHistory.setDate(rs.getString("start_date"));
 				examHistory.setTime(rs.getString("start_time"));
 				examHistory.setScore(rs.getInt("score"));
-				examHistory.setResult(rs.getBoolean("passed"));
+				if (rs.getBoolean("passed")){
+					examHistory.setResult("Pass");
+				} else {
+					examHistory.setResult("Fail");
+				}
+				
 				history.add(examHistory);
 			}
 			while (examResult.next()) {

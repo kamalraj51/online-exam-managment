@@ -43,7 +43,7 @@ text-shadow: 2px 1px black;
 			
 			<textarea rows="3" name="question_id<%=i%>" required="required" placeholder="enter the question..."></textarea>
 
-			 <input type="text" name="marks<%=i%>" placeholder="enter the mark"><br>
+			 <input type="number" name="marks<%=i%>" placeholder="enter the mark"><br>
 
 
 			<h3>Answer</h3>

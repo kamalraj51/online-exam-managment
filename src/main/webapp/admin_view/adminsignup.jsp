@@ -12,7 +12,7 @@
 <body style="background-image: url('assets/bgplain.jpg'); background-size: 100%; background-repeat: no-repeat;">
     <jsp:include page="/common/header.jsp"/>
 <!-- this is dedicated for admin signup by kamal -->
-    <div class="admin_signup_container">
+    <div class="signup_container">
         <h2>Admin Signup Page</h2>
 
         <form action="controller" method="post" class="signup_form">

@@ -16,7 +16,7 @@
 
 h2, caption {
 	color: white;
-	text-transform: uppercase;
+	text-transform: capitalize;
 	letter-spacing: 2px;
 	font-size: 24px;
 	font-weight: bold;
@@ -25,7 +25,7 @@ h2, caption {
 
 h3, .report_content {
 	color: white;
-	text-transform: uppercase;
+	text-transform: capitalize;
 	letter-spacing: 2px;
 	font-size: 18px;
 }
@@ -33,13 +33,13 @@ h3, .report_content {
 	display: inline;
 	font-weight: bold;
 	color: white;
-	text-transform: uppercase;
+	text-transform: capitalize;
 	letter-spacing: 2px;
 	font-size: 16px;
 }
 
 button {
-	text-transform: uppercase;
+	text-transform: capitalize;
 	letter-spacing: 2px;
 	background-color: #061E29;
 	transition: background-color 0.3s;
@@ -133,7 +133,7 @@ form {
 	background-color: #061e29;
 	color: white;
 	text-align: center;
-	height: 50px; /* Define the height of the footer */
+	height: 50px; 
 	padding-bottom: 5px;
 	z-index: 1000;
 }
@@ -222,6 +222,7 @@ textarea::placeholder {
 	color: white;
 	height: 40px;
 	width: 50%;
+	font-size: 18px;
 }
 
 .header {
@@ -289,14 +290,7 @@ select {
 	flex-direction: column;
 }
 
-.admin_signup_container {
-	height: calc(100vh - 120px);
-	width: 100vw;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-}
+
 
 .login_container {
 	height: 100vh;
@@ -420,8 +414,8 @@ select {
 	backdrop-filter: blur(5px);
 }
 
-.attempt_btn {
-	text-transform: uppercase;
+.attempt_btn,.active_btn{
+	text-transform: capitalize;
 	letter-spacing: 2px;
 	background-color: #28a745;
 	transition: background-color 0.3s;
@@ -432,6 +426,19 @@ select {
 	border: none;
 	cursor: pointer;
 }
+.retire_btn {
+	text-transform: capitalize;
+	letter-spacing: 2px;
+	background-color: #c0c0c0;
+	transition: background-color 0.3s;
+	font-weight: bold;
+	border-radius: 10px;
+	padding: 10px;
+	color: black;
+	border: none;
+	cursor: pointer;
+}
+
 
 .exam_container {
 	height: 100vh;

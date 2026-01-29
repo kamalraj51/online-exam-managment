@@ -1,0 +1,76 @@
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+ 
+ <%@ page
+	import="java.util.List,com.vastpro.onlineexam.dao.LoadAllExamsDAO,com.vastpro.onlineexam.dto.ExamDTO"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Active/Retire</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body style="background: radial-gradient(
+  circle farthest-corner at center,
+  #4fe3b1 0%,
+  #2fbf9b 30%,
+  #0f6f5f 55%,
+  #061318 100%
+);
+">
+<jsp:include page="/common/header.jsp"></jsp:include>
+<div  class="retire_container">
+<h2 style="color:white;">Active/Retire Exam</h2>
+		<table>
+			<tr>
+				<th>Exam Name</th>
+				<th>Status</th>
+				<th>Active/Retire</th>
+			</tr>
+
+			<%
+			List<ExamDTO> examHistory = (List<ExamDTO>) request.getSession().getAttribute("examList");
+			if (examHistory.isEmpty()) {
+			%>
+
+			<tr>
+				<td colspan="9">No History available</td>
+			</tr>
+
+
+
+			<%
+			} else {
+			for (ExamDTO exam : examHistory) {
+			%>
+			<tr>
+
+
+				<td><%=exam.getExamName()%></td>
+				
+				<td><%=exam.getStatus()%></td>
+				<td>
+				<form action="controller" method="post">
+				<input type="hidden" name="examName" value="<%= exam.getExamName() %>">
+				<% 
+				
+				if(exam.getStatus().equalsIgnoreCase("Active")){ %>
+				 <button class="retire_btn" name="action" value="retire_exam_user">Retire</button>
+				<% } else { %>
+				 <button class="active_btn" name="action" value="active_exam_user">Active</button>
+				<%} %>
+				</form>
+				</td>
+			</tr>
+			<%
+			}
+			}
+			%>
+
+		</table>
+		
+</div>
+<jsp:include page="/common/footer.jsp"></jsp:include>
+</body>
+</html>
