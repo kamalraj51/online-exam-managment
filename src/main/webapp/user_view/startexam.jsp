@@ -10,14 +10,94 @@ boolean isLast = Boolean.TRUE.equals(request.getAttribute("isLast"));
 int currentQNo = (Integer) request.getAttribute("currentQNo");
 int totalQuestions = (Integer) request.getAttribute("totalQuestions");
 Long remainingSeconds = (Long) request.getAttribute("remainingSeconds");
-%>
+%>	
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Start Exam</title>
-    <link rel="stylesheet" href="css/style.css"/>
+    <style>
+        
+
+        .container {
+            width:100vw;
+            height:100vh;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            margin: 0 auto;
+           /* background-color: #ffffff;*/
+            padding: 25px 30px;
+            border-radius: 6px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h3 {
+            color: #333;
+        }
+
+        .question-number {
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .answers {
+            
+           
+            
+            padding: 30px 40px;
+			border-radius: 6px;
+			box-shadow: 0 4px 6px black;
+	width: 420px;
+	backdrop-filter: blur(5px);
+        }
+
+        .answers label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button {
+            /*padding: 10px 20px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            */
+            	text-transform: uppercase;
+				letter-spacing: 2px;
+				background-color: #061E29;
+	transition: background-color 0.3s;
+	font-weight: bold;
+	border-radius: 10px;
+	padding: 10px;
+	color: white;
+	border: none;
+	cursor: pointer;
+        }
+       
+       button:hover {
+	background-color: #234C6A;
+	color: white;
+	}
+/*
+        button[name="nav"][value="next"] {
+            background-color: #007bff;
+            color: white;
+        }
+
+        button[name="nav"][value="back"] {
+            background-color: #6c757d;
+            color: white;
+        }
+*/
+
+    </style>
 </head>
 <body style="background: radial-gradient(
   circle farthest-corner at center,
@@ -29,9 +109,11 @@ Long remainingSeconds = (Long) request.getAttribute("remainingSeconds");
 
 ">
 
-<div class="exam_container">
-	<!-- timer code -->
-	<div style="display: flex; justify-content: space-between;width: 50%;">
+<div class="container">
+  
+	
+    <form action="controller" method="post" class="answers">
+	<div style="display: flex; justify-content:space-between ; flex-direction:row ;width: 100%; align-items: center;">
     <div >
        <h2>Question <%= currentQNo %> of <%= totalQuestions %></h2> 
     </div>
@@ -40,12 +122,8 @@ Long remainingSeconds = (Long) request.getAttribute("remainingSeconds");
     Time Left:
     <span id="timer"></span>
 	</div>
-<!--  -->
 	</div>
-
-    <form action="controller" method="post" class="retire_form">
-    <h3><%= question.getQuestionText() %></h3>
-
+	 <h3><%= question.getQuestionText() %></h3>
         <%
         List<AnswerDTO> answers = question.getAnswers();
         for (AnswerDTO ans : answers) {
@@ -121,5 +199,4 @@ let timerId = setInterval(function () {
 
 }, 1000);
 </script>
-
 </html>

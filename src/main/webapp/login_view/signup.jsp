@@ -21,6 +21,10 @@
 
 			<button type="submit" class="signup_btn">Sign Up</button>
 		</form>
+		<form class="new_user" action="controller" method="post" >
+        
+            <p class="login_text">Already signed up? - </p> <button name="action" value="login" class="signup_button" >login </button>
+        </form>
 	</div>
 </body>
 </html>

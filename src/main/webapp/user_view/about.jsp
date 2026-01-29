@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>About</title>
 </head>
-<body>
-<h1>hello this is about</h1>
+<body style="background-image: url('assets/bg.jpg'); background-attachment: fixed;  background-size: 100%; background-repeat: no-repeat;">
+
 </body>
 </html>

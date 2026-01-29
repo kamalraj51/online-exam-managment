@@ -17,42 +17,40 @@ import jakarta.servlet.http.HttpServletRequest;
 /**
  * Class Name: ListExamBasedHistoryDAO
  *
- * Description:
- * This DAO class handles database operations related to
- * exam-based user history and exam list retrieval.
+ * Description: This DAO class handles database operations related to exam-based user history and exam list retrieval.
  */
 public class ListExamBasedHistoryDAO {
-	
-	 /**
-     * Fetches all users' exam attempt history for a selected exam
-     * and also loads the list of all exams.
-     *
-     * @param request HttpServletRequest containing selected exam ID
-     * @return true if data retrieval is successful, false otherwise
-     */
+
+	/**
+	 * Fetches all users' exam attempt history for a selected exam and also loads the list of all exams.
+	 *
+	 * @param request
+	 *            HttpServletRequest containing selected exam ID
+	 * @return true if data retrieval is successful, false otherwise
+	 */
 	public static boolean getAllUsers(HttpServletRequest request) {
 
 		List<ExamBasedHistoryDTO> history = new ArrayList<>();
-		List<ExamDTO> listOfExams=new ArrayList<ExamDTO>();
+		List<ExamDTO> listOfExams = new ArrayList<ExamDTO>();
 		String examIdString = (request.getParameter("adminSelectedOption") != null) ? (request.getParameter("adminSelectedOption")) : "00";
 		Integer examId = Integer.parseInt(examIdString);
 
-		System.out.println("ExamBasedHistoryDAO ExamId called: "+examId);
+		System.out.println("ExamBasedHistoryDAO ExamId called: " + examId);
 		String sqlExamHistory = """
-					SELECT  u.name , a.start_time,  a.score, a.passed
-					FROM users u join exam_attempt a
-					on u.user_id = a.user_id
-					where a.exam_id=?;
-						     """;
+						SELECT  u.name , to_char(a.start_time,'DD-MM-YYYY') as start_date, to_char(a.start_time,'HH24:MI') as start_time,  a.score, a.passed
+						FROM users u join exam_attempt a
+						on u.user_id = a.user_id
+						where a.exam_id=?;
+							     """;
 		String sql = "SELECT exam_id,exam_name FROM exam";
 		try (Connection conn = DBConnection.getConnection();
 						PreparedStatement psmtHistory = conn.prepareStatement(sqlExamHistory);
 						Statement stmt = conn.createStatement();) {
 
 			psmtHistory.setInt(1, examId);
-			
+
 			ResultSet rs = psmtHistory.executeQuery();
-			ResultSet examResult=stmt.executeQuery(sql);
+			ResultSet examResult = stmt.executeQuery(sql);
 			while (rs.next()) {
 				ExamBasedHistoryDTO examHistory = new ExamBasedHistoryDTO();
 				examHistory.setUserName(rs.getString("name"));
@@ -62,13 +60,12 @@ public class ListExamBasedHistoryDAO {
 				examHistory.setResult(rs.getBoolean("passed"));
 				history.add(examHistory);
 			}
-			while(examResult.next()) {
-				ExamDTO exam=new ExamDTO();
+			while (examResult.next()) {
+				ExamDTO exam = new ExamDTO();
 				exam.setExamId(examResult.getInt("exam_id"));
 				exam.setExamName(examResult.getString("exam_name"));
 				listOfExams.add(exam);
 			}
-			
 
 			request.setAttribute("examBasedHistory", history);
 			request.setAttribute("listOfExams", listOfExams);

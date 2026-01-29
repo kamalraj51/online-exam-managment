@@ -17,48 +17,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Exam Result</title>
-    <style>
-
-       
-        .result-summary p {
-            margin: 8px 0;
-            font-size: 16px;
-        }
-
-        .result-summary b {
-            font-size: 18px;
-        }
-
-        h3 {
-            text-align: center;
-            color: #333;
-        }
-
-        table {
-            width: 90%;
-            max-width: 900px;
-            margin: 0 auto 40px auto;
-            border-collapse: collapse;
-            background-color: #fff;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-     
-
-        table tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        .pass {
-            color: green;
-            font-weight: bold;
-        }
-
-        .fail {
-            color: red;
-            font-weight: bold;
-        }
-    </style>
+   
     <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body style="background: radial-gradient(
@@ -82,14 +41,17 @@
 </div>
 
 
-<table>
+<table >
 <caption style="margin-bottom: 10px;">DETAILED FEEDBACK</caption>
+<thead>
     <tr>
         <th>Question</th>
         <th>Your Answer</th>
         <th>Correct Answer</th>
         <th>Status</th>
     </tr>
+</thead>
+<tbody>
 <%
     for (ExamResponseDTO r : responses) {
 %>
@@ -104,8 +66,9 @@
 <%
     }
 %>
+</tbody>
 </table>
 </div>
-<jsp:include page="/common/footer.jsp"/>
+
 </body>
 </html>

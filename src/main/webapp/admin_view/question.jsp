@@ -47,11 +47,11 @@ text-shadow: 2px 1px black;
 
 
 			<h3>Answer</h3>
-			<div style="display: flex; gap:20px">
+			<div style="display: flex; gap:20px" >
 			<input type="radio" name="correct_option_1<%=i %>" value="true"> <lable> Correct </lable>
 			<input type="radio" name="correct_option_1<%=i %>" value="false"> <lable> Wrong</lable>
 			</div>
-			<input type="text" name="option_1<%=i %>" required placeholder="enter the option a"> <br>
+			<input type="text" name="option_1<%=i %>" required placeholder="enter the option a"> 
 			<div style="display: flex; gap:20px">
 			<input type="radio" name="correct_option_2<%=i %>" value="true"> <lable> Correct </lable>
 			<input type="radio" name="correct_option_2<%=i %>" value="false"> <lable> Wrong</lable>

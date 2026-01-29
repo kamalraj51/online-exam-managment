@@ -66,7 +66,8 @@
 
 		<!-- old code form home -->
 		<h1>History</h1>
-		<table>
+		<table >
+		<thead>
 			<tr>
 				
 				<th>Exam Name</th>
@@ -78,14 +79,15 @@
 				<th>Result</th>
 
 			</tr>
-
+	</thead>
+	<tbody>
 			<%
 			List<UserBasedHistoryDTO> examHistory = (List<UserBasedHistoryDTO>) request.getAttribute("userBasedHistory");
 				if (examHistory.isEmpty()) {
 			%>
 
-			<tr>
-				<td colspan="9">No History available</td>
+			<tr style="width:100%;background-color:red;">
+				<td colspan="7">No History available</td>
 			</tr>
 
 
@@ -112,7 +114,7 @@
 			}
 			}
 			%>
-
+</tbody>
 		</table>
 	</div>
 

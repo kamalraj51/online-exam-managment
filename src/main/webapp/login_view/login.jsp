@@ -23,6 +23,10 @@
 
             <input type="submit" value="Login" class = "login_btn">
         </form>
+        <form class="new_user" action="controller" method="post" >
+        
+            <p class="login_text">New User - </p> <button name="action" value="signup" class="signup_button" >Signup </button>
+        </form>
         </div>
 </body>
 </html>

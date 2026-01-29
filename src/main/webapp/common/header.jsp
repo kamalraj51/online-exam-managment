@@ -14,7 +14,7 @@
       <form action="controller" method="post" style="display: flex;
 	flex-direction: row;">
       <button name="action" value="authorize">Home</button>
-      <button name="action" value="about">About</button>
+     
       <button name="action" value="logout">Logout</button>
       </form>
     </div>
