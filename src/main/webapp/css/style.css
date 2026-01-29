@@ -434,7 +434,12 @@ select {
 	border: none;
 	cursor: pointer;
 }
+.attempt_btn,.active_btn:hover{
+	background-color: #008000;
+	color: white;
+}
 .retire_btn {
+	background-color: #c0c0c0;
 	text-transform: capitalize;
 	letter-spacing: 2px;
 	transition: background-color 0.3s;
@@ -445,7 +450,10 @@ select {
 	border: none;
 	cursor: pointer;
 }
-
+.retire_btn:hover{
+	background-color: #808080;
+	color: white;
+}
 
 .exam_container {
 	height: 100vh;
