@@ -12,7 +12,7 @@
 
 <title>home</title>
 <link rel="stylesheet" href="css/style.css"/>
-	
+
 </head>
 
 <body style="background: radial-gradient(
@@ -36,7 +36,7 @@
 			List<String> topics = (List<String>) request.getAttribute("topics");
 			if (topics.size() != 0) {
 			%>
-			<select name="userSelectedOption">
+			<select name="userSelectedOption" id="topic_select" onchange="selectButton()">
 				<option value="">--Select Topic--</option>
 				<%
 				for (String topic : topics) {
@@ -48,7 +48,7 @@
 				%>
 
 			</select>
-			<button name="action" value="select_exam">Select</button>
+			<button  name="action" value="select_exam" disabled id="select_btn">Select</button>
 			<%
 			} else {
 			%>
@@ -118,4 +118,11 @@
 	<jsp:include page="/common/footer.jsp"></jsp:include>
 	<!--  -->
 </body>
+<script type="text/javascript">
+	function selectButton(){
+		const select=document.getElementById("topic_select");
+		const button=document.getElementById("select_btn");
+		button.disabled=(select.value==="");
+	}
+</script>
 </html>

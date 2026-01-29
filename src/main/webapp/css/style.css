@@ -51,6 +51,14 @@ button {
 	cursor: pointer;
 }
 
+button:disabled{
+	opacity: 0.5;
+	cursor: default;
+}
+button:disabled:hover{
+	background-color: #061E29;
+}
+
 button:hover {
 	background-color: #234C6A;
 	color: white;
@@ -429,7 +437,6 @@ select {
 .retire_btn {
 	text-transform: capitalize;
 	letter-spacing: 2px;
-	background-color: #c0c0c0;
 	transition: background-color 0.3s;
 	font-weight: bold;
 	border-radius: 10px;

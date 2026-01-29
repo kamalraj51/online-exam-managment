@@ -38,7 +38,7 @@
 			List<UserDTO> userList = (List<UserDTO>) request.getAttribute("userList");
 				if (userList.size() != 0) {
 			%>
-			<select name="userSelectedOption">
+			<select name="userSelectedOption" id="topic_select" onchange="selectButton()">
 					<option value="000">--Select User--</option>
 				<%
 				for (UserDTO user : userList) {
@@ -50,7 +50,7 @@
 				%>
 
 			</select>
-			<button name="action" value="select_user_history">Select</button>
+			<button name="action" value="select_user_history" disabled id="select_btn">Select</button>
 			<%
 			} else {
 			%>
@@ -121,4 +121,11 @@
 	<jsp:include page="/common/footer.jsp"></jsp:include>
 	<!--  -->
 </body>
+<script type="text/javascript">
+	function selectButton(){
+		const select=document.getElementById("topic_select");
+		const button=document.getElementById("select_btn");
+		button.disabled=(select.value==="");
+	}
+</script>
 </html>

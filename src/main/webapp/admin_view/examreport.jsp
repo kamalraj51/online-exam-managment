@@ -38,7 +38,7 @@
 			List<ExamDTO> examList = (List<ExamDTO>) request.getAttribute("listOfExams");
 				if (examList.size() != 0) {
 			%>
-			<select name="adminSelectedOption">
+			<select name="adminSelectedOption" id="topic_select" onchange="selectButton()">
 					<option value="000">--Select Exam--</option>
 				<%
 				for (ExamDTO exam : examList) {
@@ -50,7 +50,7 @@
 				%>
 
 			</select>
-			<button name="action" value="select_exam_history">Select</button>
+			<button name="action" value="select_exam_history" disabled id="select_btn">Select</button>
 			<%
 			} else {
 			%>
@@ -111,4 +111,11 @@
 	<jsp:include page="/common/footer.jsp"></jsp:include>
 	<!--  -->
 </body>
+<script type="text/javascript">
+	function selectButton(){
+		const select=document.getElementById("topic_select");
+		const button=document.getElementById("select_btn");
+		button.disabled=(select.value==="");
+	}
+</script>
 </html>
