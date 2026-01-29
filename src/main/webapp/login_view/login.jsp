@@ -11,7 +11,7 @@
 <body style="background-image: url('assets/bgplain.jpg'); background-size: 100%; background-repeat: no-repeat;">
   
    <div class="login_container">
-        <h2>Login Page</h2>
+        <h2>Login As user</h2>
 
         <form action="controller" method="post" class = "login_form">
             <input type="hidden" value="login_user" name="action">
@@ -29,4 +29,8 @@
         </form>
         </div>
 </body>
+<script type="text/javascript">
+
+	
+</script>
 </html>

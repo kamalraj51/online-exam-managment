@@ -6,7 +6,7 @@ public class ExamBasedHistoryDTO {
     private String date;
     private String time;
     private int score;
-    private boolean result;
+    private String result;
     public ExamBasedHistoryDTO() {
 		// TODO Auto-generated constructor stub
 	}
@@ -24,10 +24,10 @@ public class ExamBasedHistoryDTO {
 	public void setScore(int score) {
 		this.score = score;
 	}
-	public boolean getResult() {
+	public String getResult() {
 		return result;
 	}
-	public void setResult(boolean result) {
+	public void setResult(String result) {
 		this.result = result;
 	}
 
@@ -46,6 +46,7 @@ public class ExamBasedHistoryDTO {
 	public void setTime(String time) {
 		this.time = time;
 	}
+
 	
     
 }

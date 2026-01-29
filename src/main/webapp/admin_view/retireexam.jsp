@@ -21,7 +21,7 @@
 	<div class="retire_container">
 
 		<form action="controller" method="post" class="retire_form">
-			<h2>Select Exam</h2>
+			<h2>Select Exam To Retired</h2>
 
 
 
@@ -30,7 +30,7 @@
 			if(aExam.size()!=0){
 				%>
 			<select name="exam_name">
-				<option value="">--Select Exam--</option>
+				<option value="">--Select Exam To Retired--</option>
 				<%
 			for(String exam : aExam){
 		%>

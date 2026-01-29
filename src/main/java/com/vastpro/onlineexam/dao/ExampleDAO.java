@@ -23,7 +23,7 @@ public class ExampleDAO {
 		double total_marks = Double.parseDouble(request.getParameter("total_marks"));
 		int duration_minutes = Integer.parseInt(request.getParameter("duration_minutes"));
 		int created_by = Integer.parseInt(request.getParameter("user_id"));
-		
+
 		// create question
 		int questionId = Integer.parseInt(request.getParameter("question_id"));
 		// int examId = Integer.parseInt(request.getParameter("exam_id"));
@@ -38,8 +38,8 @@ public class ExampleDAO {
 		boolean is_correct = Boolean.valueOf(request.getParameter("is_correct"));
 
 		String sqlExam = "insert into exam"
-				+ " (exam_id,exam_topic,exam_name,description,status,pass_min_correct,total_marks,duration_minutes,created_by,created_at)"
-				+ "values(?,?,?,?,?,?,?,?,?,?)";
+						+ " (exam_id,exam_topic,exam_name,description,status,pass_min_correct,total_marks,duration_minutes,created_by,created_at)"
+						+ "values(?,?,?,?,?,?,?,?,?,?)";
 		try (Connection conn = DBConnection.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sqlExam)) {
 			pstmt.setInt(1, examId);
 			pstmt.setString(2, examTopic);
@@ -54,51 +54,51 @@ public class ExampleDAO {
 			int updatedRows = pstmt.executeUpdate();
 			if (updatedRows > 0) {
 				System.out.println("Exam Rows Inserted: " + updatedRows);
-				flag=true;
+				flag = true;
 			}
 		} catch (Exception e) {
-			flag=false;
+			flag = false;
 			e.printStackTrace();
 		}
-		
-		//question insertion
-		
+
+		// question insertion
+
 		StringBuilder sqlQuestion = new StringBuilder();
 		sqlQuestion.append("insert into question(question_id,exam_id,question_text,marks)");
 		sqlQuestion.append("values(?,?,?,?)");
-		
+
 		try (Connection conn = DBConnection.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sqlQuestion.toString())) {
 
 			pstmt.setInt(1, questionId);
 			pstmt.setInt(2, examId);
 			pstmt.setString(3, question);
-			pstmt.setInt(4,marks);
+			pstmt.setInt(4, marks);
 
 			// pstmt.executeUpdate();
 
 			int rowsInsted = pstmt.executeUpdate();
 			if (rowsInsted > 0) {
 				System.out.println("Question Rows Inserted: " + rowsInsted);
-				flag=true;
+				flag = true;
 			}
 
 		} catch (SQLException e) {
-			flag=false;
+			flag = false;
 			e.printStackTrace();
 		}
-		
-	//answer insertion
+
+		// answer insertion
 		StringBuilder sql = new StringBuilder();
-		
+
 		sql.append("insert into answers(answer_id,question_id,option_text,is_correct)");
 		sql.append("values(?,?,?,?)");
-		
+
 		try (Connection conn = DBConnection.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
 
-			pstmt.setInt(1,answer_id );
+			pstmt.setInt(1, answer_id);
 			pstmt.setInt(2, question_id);
 			pstmt.setString(3, option_text);
-			pstmt.setBoolean(4,is_correct);
+			pstmt.setBoolean(4, is_correct);
 
 			// pstmt.executeUpdate();
 
@@ -112,7 +112,6 @@ public class ExampleDAO {
 			e.printStackTrace();
 			flag = false;
 		}
-		
 
 		return flag;
 	}
