@@ -1,9 +1,11 @@
 package com.vastpro.onlineexam.db;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 /**
@@ -16,7 +18,7 @@ import java.sql.Statement;
  * and statements safely.
  */
 public class DBConnection {
-	
+	private static final Logger logger = LogManager.getLogger(DBConnection.class);
     /**
      * Establishes and returns a new database connection.
      *
@@ -30,9 +32,10 @@ public class DBConnection {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/onlineexam_db",
-				"postgres", "postgres");
-
+		//Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/onlineexam_db",
+		//		"postgres", "postgres");
+		Connection conn = HikariConnection.getDataSource().getConnection();
+		logger.debug("database connection is created ");
 		return conn;
 	}
 
