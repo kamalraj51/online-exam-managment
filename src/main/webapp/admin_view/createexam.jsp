@@ -9,7 +9,15 @@
 
 </head>
 
-<body style="background-image: url('assets/bgplain.jpg'); background-size: 100%; background-repeat: no-repeat;">
+<body style="background: radial-gradient(
+  circle farthest-corner at center,
+  #4fe3b1 0%,
+  #2fbf9b 30%,
+  #0f6f5f 55%,
+  #061318 100%
+);
+
+">
     <div class="exam_container">
             <h2>Create Exam</h2>
         <form action="controller" method="post" class="createexam_form">

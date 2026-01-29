@@ -10,8 +10,9 @@
 	background-repeat: no-repeat;
 }
 /*
-	same for all the container
+	same for all the page
 */
+
 h2,caption {
 	color: white;
 	text-transform: uppercase;
@@ -109,7 +110,7 @@ form {
 	text-align: center;
 	height: 50px; /* Define the height of the footer */
 	padding-top: 10px;
-	margin-bottom: 10px;
+	
 }
 
 .index_form {
@@ -256,6 +257,14 @@ select {
 	flex-direction: column;
 }
 
+.admin_signup_container{
+	height: calc(100vh - 50px);
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
 .login_container {
 	height: 100vh;
 	width: 100vw;

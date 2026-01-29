@@ -17,7 +17,15 @@ text-shadow: 2px 1px black;
 </style>
 </head>
 
-<body style="background-image: url('assets/bgplain.jpg'); background-size: 100%; background-repeat: no-repeat; background-attachment : fixed;">
+<body style="background: radial-gradient(
+  circle farthest-corner at center,
+  #4fe3b1 0%,
+  #2fbf9b 30%,
+  #0f6f5f 55%,
+  #061318 100%
+);
+
+">
 	<div class="question_container">
 			<h2>Add Questions</h2>
 		<form action="controller" method="post" class="createquestion_form">
