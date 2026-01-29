@@ -84,7 +84,7 @@ public class ExamHistoryDAO {
 			
 			//this while for get all topics
 			while (result.next()) {
-				topics.add(result.getString("exam_topic"));
+				 topics.add(result.getString("exam_topic"));
 			}
 			
 			request.setAttribute("history", history);
