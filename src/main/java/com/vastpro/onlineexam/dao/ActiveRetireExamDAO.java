@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
  * Description: This class is responsible for updating the exam status to 'ACTIVE' in the database.
  */
 
-public class ActiveExamDAO {
+public class ActiveRetireExamDAO {
 
 	/**
 	 * Activates an exam by updating its status to 'ACTIVE'.
@@ -22,14 +22,21 @@ public class ActiveExamDAO {
 	 *            the HttpServletRequest object containing the exam name
 	 * @return true if the exam status is updated successfully, false otherwise
 	 */
-	public static boolean activeExam(HttpServletRequest req) {
+	public static boolean activeRetireExam(HttpServletRequest req) {
 		String examName = req.getParameter("examName");
+		String status = req.getParameter("actions");
 		System.out.println("ActiveExamDAO - examName:" + examName);
 		boolean flag = false;
-		String sql = "update exam  " + "set status='ACTIVE' where exam_name = ?";
+		String sql = "update exam set status=? where exam_name = ?";
 
 		try (Connection con = DBConnection.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql)) {
-			pstmt.setString(1, examName);
+			if (status.equalsIgnoreCase("active")) {
+				pstmt.setString(1, status.toUpperCase());
+				pstmt.setString(2, examName);
+			} else {
+				pstmt.setString(1, status);
+				pstmt.setString(2, examName);
+			}
 			int rowsInsted = pstmt.executeUpdate();
 			if (rowsInsted > 0) {
 				System.out.println("ActiveExamDao Retired: " + rowsInsted);
@@ -41,5 +48,4 @@ public class ActiveExamDAO {
 		}
 		return flag;
 	}
-
 }

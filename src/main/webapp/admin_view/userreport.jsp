@@ -72,7 +72,7 @@
 				
 				<th>Exam Name</th>
 				<th>Date/Time</th>
-				<th>Your Marks</th>
+				<th>Score</th>
 				<th>Correct Answer</th>
 				<th>Incorrect Answer</th>
 				<th>Unanswered</th>
@@ -116,6 +116,9 @@
 			%>
 </tbody>
 		</table>
+		<form action="controller" method="post">
+			<button name="action" value="authorize">Back to Home</button>
+		</form>
 	</div>
 
 	<jsp:include page="/common/footer.jsp"></jsp:include>
