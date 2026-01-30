@@ -17,9 +17,20 @@
 
         <form action="controller" method="post" class="signup_form">
 			<input type="hidden" value="signup_user" name="action"> 
-			<input type="text" name="username" placeholder="enter the username">
-			<input type="email" name="email" placeholder="enter the email">
-			<input type="password" name="password" placeholder="enter the password"> 
+			<div class="label-style">
+			 <input type="text" name="username" placeholder="">
+			  <label for="username">enter the username</label>
+			</div>
+			
+			<div class="label-style">
+			<input type="email" name="email" placeholder="">
+			<label for="email">enter the email</label>
+			</div>
+			
+			<div class="label-style">
+			<input type="password" name="password" placeholder=""> 
+			<label for="password">enter the password</label>
+			</div>
 			<input type="hidden" value="2" name="role_id">
 
 			<button type="submit" class="signup_btn">Sign Up</button>

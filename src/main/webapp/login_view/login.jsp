@@ -13,8 +13,8 @@
    <div class="login_container">
         <h2>Login As user</h2>
 
-        <form action="controller" method="post" class = "login_form">
-            <input type="hidden" value="login_user" name="action">
+        <form action="controller?action=login_user" method="post" class = "login_form">
+            <!-- <input type="hidden" value="login_user" name="action">-->
 
             
             <input type="text" name="email" required class = "text"  placeholder="enter your email">
