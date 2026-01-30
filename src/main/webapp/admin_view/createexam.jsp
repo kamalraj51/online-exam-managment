@@ -16,20 +16,41 @@
 		<form action="controller" method="post" class="createexam_form">
 
 			<input type="hidden" name="action" value="create_exam_user">
-
-			<input type="text" name="exam_topic" required
-				placeholder="enter the topic"> <input type="text"
-				name="exam_name" required placeholder="enter the exam name">
-
-			<input type="text" name="description" required
-				placeholder="enter the description"> <input type="number"
-				name="add_question" required placeholder="number of questions">
-			<input type="number" name="pass_min_correct" required
-				placeholder="enter the minimum marks"> <input type="number"
-				name="total_marks" required placeholder="enter the total marks">
-			<input type="number" name="duration_minutes" required="required"
-				placeholder="enter the total duration">
-
+			
+            <div class="label-style">
+			<input type="text" name="exam_topic" required placeholder=""> 
+			<label for = "exam_topic">enter the topic</label>
+			</div>	
+			
+			<div class="label-style">	
+		    <input type="text" name="exam_name" required placeholder="">
+		    <label for = "exam_name">enter the exam name</label>
+            </div>
+            
+            <div class="label-style">
+			<input type="text" name="description" required placeholder=""> 
+			<label for = "description">enter the description</label>
+			</div>
+			
+			<div class="label-style">
+			<input type="number" name="add_question" required placeholder="">
+			<label for = "add_question">number of questions</label>
+			</div>
+			
+			<div class="label-style">	
+			<input type="number" name="pass_min_correct" required placeholder="">
+			<label for = "pass_min_correct">enter the minimum marks</label>
+			</div>	
+			 
+			<div class="label-style">
+			<input type="number" name="total_marks" required placeholder="">
+			<label for = "total_marks">enter the total marks</label>
+			</div>
+			
+			<div class="label-style">
+			<input type="number" name="duration_minutes" required="required" placeholder="">
+			<label for = "duration_minutes">enter the total duration</label>
+            </div>
 
 
 

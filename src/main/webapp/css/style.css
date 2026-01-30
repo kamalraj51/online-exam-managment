@@ -511,7 +511,7 @@ select {
 .label-style label {
   position: absolute;
   top: 50%;
-  left: 10px;
+  left: 0px;
   transform: translateY(-60%);
   transition: 0.2s ease all;
   pointer-events: none; 
@@ -525,5 +525,5 @@ select {
   color: black;
   background-color: white;
   padding: 4px;
-  border-radius: 10px;
+  border-radius: 5px;
 }

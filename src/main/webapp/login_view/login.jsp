@@ -16,11 +16,16 @@
         <form action="controller?action=login_user" method="post" class = "login_form">
             <!-- <input type="hidden" value="login_user" name="action">-->
 
+            <div class="label-style">
+            <input type="text" name="email" required class = "text"  placeholder="">
+            <label for = "email">enter your email</label>
+            </div>
             
-            <input type="text" name="email" required class = "text"  placeholder="enter your email">
-
-            <input type="password" name="password" required class = "password" placeholder="enter your password">
-
+            <div class="label-style">
+            <input type="password" name="password" required class = "password" placeholder="">
+            <label for = "password">enter your password</label>
+            </div>
+            
             <input type="submit" value="Login" class = "login_btn">
         </form>
         <form class="new_user" action="controller" method="post" >

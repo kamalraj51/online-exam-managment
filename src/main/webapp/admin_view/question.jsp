@@ -40,34 +40,48 @@ text-shadow: 2px 1px black;
 			<input type="hidden" name="exam_id"
 				value=<%=request.getAttribute("examId")%> required="required">
 
-			
-			<textarea rows="3" name="question_id<%=i%>" required="required" placeholder="enter the question..."></textarea>
-
-			 <input type="number" name="marks<%=i%>" placeholder="enter the mark"><br>
-
+			<div class="label-style">
+			<textarea rows="3" name="question_id<%=i%>" required="required" placeholder=""></textarea>
+			<label for = "question_id<%=i%>">enter the question...</label>
+			</div>
+            <div class="label-style">
+			<input type="number" name="marks<%=i%>" placeholder=""><br>
+			<label for = "marks<%=i%>">enter the mark</label>
+            </div>
 
 			<h3>Answer</h3>
 			<div style="display: flex; gap:20px" >
 			<input type="radio" name="correct_option_1<%=i %>" value="true"> <lable> Correct </lable>
 			<input type="radio" name="correct_option_1<%=i %>" value="false"> <lable> Wrong</lable>
 			</div>
-			<input type="text" name="option_1<%=i %>" required placeholder="enter the option a"> 
+			<div class="label-style">
+			<input type="text" name="option_1<%=i %>" required placeholder=""> 
+			<label for = "option_1<%=i %>">enter the option a</label>
+			</div>
 			<div style="display: flex; gap:20px">
 			<input type="radio" name="correct_option_2<%=i %>" value="true"> <lable> Correct </lable>
 			<input type="radio" name="correct_option_2<%=i %>" value="false"> <lable> Wrong</lable>
 			</div>
-			<input type="text" name="option_2<%=i %>" required placeholder="enter the option b"> 
+			<div class="label-style">
+			<input type="text" name="option_2<%=i %>" required placeholder=""> 
+			<label for = "option_2<%=i %>">enter the option b</label>
+			</div>
 		    <div style="display: flex; gap:20px">
 		    <input type="radio" name="correct_option_3<%=i %>" value="true"> <lable> Correct </lable>
 			<input type="radio" name="correct_option_3<%=i %>" value="false"> <lable> Wrong</lable>
 			</div>
-		    <input type="text" name="option_3<%=i %>" required placeholder="enter the option c"> 
+			<div class="label-style">
+		    <input type="text" name="option_3<%=i %>" required placeholder=""> 
+		    <label for = "option_3<%=i %>">enter the option c</label>
+		    </div>
 		    <div style="display: flex; gap:20px">
 		    <input type="radio" name="correct_option_4<%=i %>" value="true"> <lable> Correct </lable>
 			<input type="radio" name="correct_option_4<%=i %>" value="false"> <lable> Wrong</lable>
 			</div>
-		    <input type="text" name="option_4<%=i %>" required placeholder="enter the option d"><br> 
-			
+			<div class="label-style">
+		    <input type="text" name="option_4<%=i %>" required placeholder=""><br> 
+		    <label for = "option_4<%=i %>">enter the option d</label>
+			</div>
 			
 
 			<%
