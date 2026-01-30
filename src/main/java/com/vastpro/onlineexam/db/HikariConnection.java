@@ -2,6 +2,7 @@ package com.vastpro.onlineexam.db;
 
 import javax.sql.DataSource;
 
+
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 public class HikariConnection {
@@ -16,9 +17,9 @@ public class HikariConnection {
 				
 				config.setMinimumIdle(5);
 				config.setMaximumPoolSize(10);
-				config.setConnectionTimeout(20000);
+				config.setConnectionTimeout(200000);
 				config.setIdleTimeout(600000);
-				config.setMaxLifetime(18000);
+				config.setMaxLifetime(1800000);
 				config.setDataSourceJNDI("jdbc/onlineexam_db");
 				
 				config.setPoolName("hikari_pool");

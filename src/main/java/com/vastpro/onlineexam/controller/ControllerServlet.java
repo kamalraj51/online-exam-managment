@@ -10,7 +10,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 /**
  * Servlet Name: ControllerServlet
  *
@@ -29,6 +30,7 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet("/controller")
 public class ControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger logger = LogManager.getLogger(ControllerServlet.class);  
 
     /**
      * Default constructor. 
@@ -49,18 +51,38 @@ public class ControllerServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    	logger.debug("ControllerServlet doGet() called");
 		String action=request.getParameter("action").toLowerCase();
-		System.out.println("command action: "+action);
+		if (action == null) {
+	        logger.error("Action parameter is null");
+	        response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Action is required");
+	        return;
+	    }
+
+	    action = action.toLowerCase();
+	    logger.info("Received action: {}", action);
+		//System.out.println("command action: "+action);
+		
 		Command command=CommandFactory.getCommand(action);
-		boolean flag=command.execute(request, response);
-		if(flag) {
-			String forward=CommandFactory.configMap.get(action).getSuccess();
-			request.getRequestDispatcher(forward).forward(request, response);
-			
-		}else {
-			String forward=CommandFactory.configMap.get(action).getFailure();
-			request.getRequestDispatcher(forward).forward(request, response);
-		}
+		
+		if (command == null) {
+		        logger.error("No command found for action: {}", action);
+		        response.sendError(HttpServletResponse.SC_NOT_FOUND, "Invalid action");
+		        return;
+		    }
+		boolean flag = command.execute(request, response);
+	    logger.debug("Command execution result for {}: {}", action, flag);
+
+	    String forward;
+	    if (flag) {
+	        forward = CommandFactory.configMap.get(action).getSuccess();
+	        logger.info("Forwarding to success page: {}", forward);
+	    } else {
+	        forward = CommandFactory.configMap.get(action).getFailure();
+	        logger.warn("Forwarding to failure page: {}", forward);
+	    }
+
+	    request.getRequestDispatcher(forward).forward(request, response);
 	}
 
 	
