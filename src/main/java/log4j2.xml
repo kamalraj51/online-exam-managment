@@ -3,8 +3,8 @@
 
     <Appenders>
         <RollingFile name="Applog"
-            fileName="D:/project/appLogger/applogger.log"
-            filePattern="D:/project/appLogger/appLogger-%d{yyyy-MM-dd}.log">
+            fileName="D:/examlogs/onlineexamlogger.log"
+            filePattern="D:/examlogs/onlineexamLogger-%d{yyyy-MM-dd}.log">
 
             <PatternLayout
                 pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c - %m%n"/>
