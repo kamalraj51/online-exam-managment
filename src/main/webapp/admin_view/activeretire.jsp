@@ -69,7 +69,9 @@
 			%>
 
 		</table>
-		
+		<form action="controller" method="post">
+			<button name="action" value="authorize">Back to Home</button>
+		</form>
 </div>
 <jsp:include page="/common/footer.jsp"></jsp:include>
 </body>
