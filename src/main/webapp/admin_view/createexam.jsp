@@ -16,7 +16,10 @@
 		<form action="controller" method="post" class="createexam_form">
 
 			<input type="hidden" name="action" value="create_exam_user">
-			
+			<% String examError = (String) request.getAttribute("examError"); %>
+			<% if (examError != null) { %>
+			<p class="error_message"><%=examError %></p>
+			<%} %>
             <div class="label-style">
 			<input type="text" name="exam_topic" required placeholder=""> 
 			<label for = "exam_topic">enter the topic</label>
