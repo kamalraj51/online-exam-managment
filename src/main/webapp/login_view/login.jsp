@@ -50,12 +50,12 @@ label::after {
 
 		        <% } %>
 
+
              <% String loginErrorEmail = (String) request.getAttribute("loginErrorEmail"); %>
 		        <% if (loginErrorEmail != null) { %>
 		        <p style="color:red; font-size: 12px; font-weight: bold; text-shadow: none;"><%= loginErrorEmail %></p>
 		        <% } %>
             
-
 
             <div class="label-style">
             <input type="password" name="password" 	 class = "password" placeholder="" value="<%= request.getParameter("password") != null ? request.getParameter("password") : "" %>">

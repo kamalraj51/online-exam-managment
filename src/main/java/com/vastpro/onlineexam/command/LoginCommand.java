@@ -39,7 +39,7 @@ public class LoginCommand implements Command {
 			request.setAttribute("emailError", "Email cannot be empty.");
 			return false;
 		}
-		if (!isValidEmail(email)) {
+    	if (!email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
 
 			request.setAttribute("emailError", "Invalid email.Enter a valid email address.");
 			return false;
@@ -55,19 +55,19 @@ public class LoginCommand implements Command {
 		return LoginDAO.validateLogin(request);
 	}
 
-	// Helper method for email validation (only Gmail)
-	private boolean isValidEmail(String email) {
-		Pattern emailPattern = Pattern.compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
-		Matcher matcher = emailPattern.matcher(email);
-		return matcher.matches();
-	}
+//	// Helper method for email validation (only Gmail)
+//	private boolean isValidEmail(String email) {
+//		Pattern emailPattern = Pattern.compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+//		Matcher matcher = emailPattern.matcher(email);
+//		return matcher.matches();
+//	}
 
 	// Helper method for password validation (letters, numbers, special characters,
 	// minimum length of 6)
-	private boolean isValidPassword(String password) {
-		Pattern passwordPattern = Pattern.compile("^[\\S]{6,}$");
-		Matcher matcher = passwordPattern.matcher(password);
-		return matcher.matches();
-	}
+//	private boolean isValidPassword(String password) {
+//		Pattern passwordPattern = Pattern.compile("^[\\S]{6,}$");
+//		Matcher matcher = passwordPattern.matcher(password);
+//		return matcher.matches();
+//	}
 
 }

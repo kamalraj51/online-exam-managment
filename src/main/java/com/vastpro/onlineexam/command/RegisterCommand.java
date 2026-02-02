@@ -44,19 +44,19 @@ public class RegisterCommand implements Command {
 			req.setAttribute("nameError", "Username cannot be empty");
 			return false;
 		}
-		if (!isValidUsername(username)) {
+		if (!username.matches("^[a-zA-Z0-9]+$")) {
 			req.setAttribute("nameError", "Username must contain letters or numbers");
 			return false;
 		}
 
 		// Email validation (only Gmail allowed)
-		if (email == null || !isValidEmail(email)) {
+		if (email == null || !email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
 			req.setAttribute("emailError", "Invalid email. Please provide a valid email address.");
 			return false;
 		}
 
 		// Password validation (allow letters, numbers, and special characters with a minimum length of 6)
-		if (password == null || !isValidPassword(password)) {
+		if (password == null || !password.matches("^[\\S]{6,}$")) {
 			req.setAttribute("passwordError", "Password must be at least 6 characters long");
 			return false;
 		}
@@ -65,24 +65,4 @@ public class RegisterCommand implements Command {
 		return CreateNewUserDAO.registerUser(req);
 	}
 
-	// Helper method for email validation (only Gmail)
-	private boolean isValidEmail(String email) {
-		Pattern emailPattern = Pattern.compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
-		Matcher matcher = emailPattern.matcher(email);
-		return matcher.matches();
-	}
-
-	// Helper method for username validation (only letters and numbers)
-	private boolean isValidUsername(String username) {
-		Pattern usernamePattern = Pattern.compile("^[a-zA-Z0-9]+$");
-		Matcher matcher = usernamePattern.matcher(username);
-		return matcher.matches();
-	}
-
-	// Helper method for password validation (letters, numbers, special characters, minimum length of 6)
-	private boolean isValidPassword(String password) {
-		Pattern passwordPattern = Pattern.compile("^[\\S]{6,}$");
-		Matcher matcher = passwordPattern.matcher(password);
-		return matcher.matches();
-	}
 }
