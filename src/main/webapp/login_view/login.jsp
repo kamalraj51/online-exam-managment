@@ -39,14 +39,15 @@ label::after {
 
              <input type="hidden" value="login_user" name="action">
 
-
             <div class="label-style">
             <input type="text" name="email"  class = "text"  placeholder="" value="<%= request.getParameter("email") != null ? request.getParameter("email") : "" %>">
             <label for = "email">enter your email</label>
             </div>
+
             <% String emailError = (String) request.getAttribute("emailError"); %>
 		        <% if (emailError != null) { %>
-		        <p style="color:red; font-size: 12px; font-weight: bold; text-shadow: none;"><%= emailError %></p>
+		        <p class="error_message"><%= emailError %></p>
+
 		        <% } %>
 
              <% String loginErrorEmail = (String) request.getAttribute("loginErrorEmail"); %>
@@ -60,13 +61,15 @@ label::after {
             <input type="password" name="password" 	 class = "password" placeholder="" value="<%= request.getParameter("password") != null ? request.getParameter("password") : "" %>">
             <label for = "password">enter your password</label>
             </div>
-            <% String passwordError = (String) request.getAttribute("passwordError"); %>
+
+             <% String passwordError = (String) request.getAttribute("passwordError"); %>
 		        <% if (passwordError != null) { %>
-		        <p style="color:red; font-size: 12px; font-weight: bold; text-shadow: none;"><%= passwordError %></p>
+		        <p class="error_message"><%= passwordError %></p>
+
 		        <% } %>
-              <% String loginErrorPassword = (String) request.getAttribute("loginErrorPassword"); %>
+		          <% String loginErrorPassword = (String) request.getAttribute("loginErrorPassword"); %>
 		        <% if (loginErrorPassword != null) { %>
-		        <p style="color:red; font-size: 12px; font-weight: bold; text-shadow: none;"><%= loginErrorPassword %></p>
+		        <p class="error_message"><%= loginErrorPassword %></p>
 		        <% } %>
             <input type="submit" value="Login" class = "login_btn">
         </form>

@@ -64,12 +64,12 @@ public class LoginDAO {
 				} else {
 
 					System.out.println("LoginDAO: Invalid password");
-					request.setAttribute("loginErrorPassword", "Invalid password");
+					request.setAttribute("loginErrorPassword", "Password not matching");
 					return false;
 				}
 			}
 			System.out.println("LoginDAO: Invalid email");
-			request.setAttribute("loginErrorEmail", "Invalid email");
+			request.setAttribute("loginErrorEmail", "Email not found");
 
 		} catch (Exception e) {
 			System.out.println("catched");
