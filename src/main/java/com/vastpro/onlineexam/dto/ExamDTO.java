@@ -16,6 +16,7 @@ public class ExamDTO {
 	private int passMarks;
 	private int totalMarks;
 	private int createdBy;
+	private int numberOfQuestion;
 
 	public String getExamTopic() {
 		return examTopic;
@@ -94,6 +95,14 @@ public class ExamDTO {
 
 	public void setPassMarks(int passMarks) {
 		this.passMarks = passMarks;
+	}
+
+	public int getNumberOfQuestion() {
+		return numberOfQuestion;
+	}
+
+	public void setNumberOfQuestion(int numberOfQuestion) {
+		this.numberOfQuestion = numberOfQuestion;
 	}
 
 }

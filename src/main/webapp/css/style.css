@@ -4,10 +4,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: Arial, sans-serif;
-	background-image: url('assets/bgplain.jpg');
-	background-size: 100%;
-	background-repeat: no-repeat;
+	font-family: sans-serif;	
 }
 /*
 	same for all the page
@@ -90,7 +87,7 @@ form {
 
 .error_message {
 	color: red;
-	font-size: 13px;
+	font-size: 12px;
 	font-weight: bold;
 	text-shadow: none;
 }

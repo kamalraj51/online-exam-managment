@@ -29,8 +29,10 @@ label::after {
 <link rel="stylesheet" href="css/style.css"/>
 </head>
 
-<body style="background-image: url('assets/bgplain.jpg'); background-size: 100%; background-repeat: no-repeat;">
-  
+<body>
+  <div>
+  	<img alt="no image" src="./assets/bgplain.jpg"/>
+  </div>
    <div class="login_container">
         <h2>Login As user</h2>
 
@@ -71,7 +73,8 @@ label::after {
 		        <% if (loginErrorPassword != null) { %>
 		        <p class="error_message"><%= loginErrorPassword %></p>
 		        <% } %>
-            <input type="submit" value="Login" class = "login_btn">
+            	
+            <button class="login_btn">Login</button>
         </form>
         <form class="new_user" action="controller" method="post" >
         

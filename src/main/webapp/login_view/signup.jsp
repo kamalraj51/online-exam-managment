@@ -71,7 +71,7 @@ label::after {
 			<% } %>
 			<input type="hidden" value="2" name="role_id">
 
-			<button type="submit" class="signup_btn">Sign Up</button>
+			<button type="submit" class="signup_btn">Signup</button>
 		</form>
 		<form class="new_user" action="controller" method="post">
 
