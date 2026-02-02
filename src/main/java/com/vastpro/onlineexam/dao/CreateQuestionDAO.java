@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import com.vastpro.onlineexam.db.DBConnection;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 /**
  * Class Name: CreateQuestionDAO
@@ -27,13 +28,16 @@ public class CreateQuestionDAO {
      */
 	public static boolean addQuestion(HttpServletRequest request) {
 		boolean flag = false;
-		int noOfQuestion = (Integer) request.getSession().getAttribute("noOfQuestions");
+		HttpSession session = request.getSession();
+		int noOfQuestion = (Integer) session.getAttribute("noOfQuestions");
+		int marks = (Integer) session.getAttribute("marks");
 		System.out.println("CreateQuestionDAO - no of question " + noOfQuestion);
+		System.out.println("CreateQuestionDAO - each question answer " + marks);
+		
 		for (int i = 1; i <= noOfQuestion; i++) {
 			String question = request.getParameter("question_id" + i);
 			System.out.println("Question Text" + question);
 			int examId = Integer.parseInt(request.getParameter("exam_id"));
-			int marks = Integer.parseInt(request.getParameter("marks" + i));
 			StringBuilder sql = new StringBuilder();
 
 			sql.append("insert into question(exam_id,question_text,marks)");

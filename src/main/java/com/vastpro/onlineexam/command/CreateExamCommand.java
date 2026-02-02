@@ -38,37 +38,37 @@ public class CreateExamCommand implements Command {
 		String rollId = request.getParameter("role_id");
 
 		
-		if(exam_topic == null || !exam_topic.matches("^[a-zA-Z]+$")) {
+		if(exam_topic == null || !exam_topic.matches("^[a-zA-Z0-9 ,._]+$")) {
 			request.setAttribute("examTopicError", "Invalid Exam Topic");
 			return false;
 		}
-		if(exam_name == null || !exam_name.matches("^[a-zA-Z]+$")) {
+		if(exam_name == null || !exam_name.matches("^[a-zA-Z0-9 ,._]+$")) {
 			request.setAttribute("examNameError", "Invalid Exam Name");
 			return false;
 		}
-		if(description == null || !description.matches("^[a-zA-Z]+$")) {
+		if(description == null || !description.matches("^[a-zA-Z0-9 ,._]+$")) {
 			request.setAttribute("descriptionError", "Invalid Description");
 			return false;
 		}
-		if(add_question == null || !add_question.matches("^[0-9]+$")) {
+		if(add_question == null || !add_question.matches("^[1-9][0-9]*$")) {
 			request.setAttribute("addQuestionError", "Invalid.Please provide a valid number");
 			return false;
 		}
-		if(pass_min_correct == null || !pass_min_correct.matches("^[0-9]+$")) {
+		if(pass_min_correct == null || !pass_min_correct.matches("^[1-9][0-9]*$")) {
 			request.setAttribute("minCorrectError", "Invalid.Please provide a valid minimum correct mark");
 			return false;
 		}
-		if(each_question_mark == null || !each_question_mark.matches("^[0-9]+$")) {
+		if(each_question_mark == null || !each_question_mark.matches("^[1-9][0-9]*$")) {
 			request.setAttribute("eachQuestionMarkError", "Invalid.Please provide a valid marks");
 			return false;
 		}
-		int durationMinutes = 0;
+	
 		if (durationStr == null || !durationStr.matches("^[1-9][0-9]*$")) {
 		    request.setAttribute("durationMinError", "Invalid exam duration");
 		    return false;
 		}
 
-		durationMinutes = Integer.parseInt(durationStr);
+	
 		
 		if (!CreateExamDAO.checkExamAvailable(request)) {
 
