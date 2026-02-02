@@ -34,14 +34,20 @@ label::after {
    <div class="login_container">
         <h2>Login As user</h2>
 
-        <form action="controller?action=login_user" method="post" class = "login_form">
-            <!-- <input type="hidden" value="login_user" name="action">-->
-
+        <form action="controller" method="post" class = "login_form">
+             <input type="hidden" value="login_user" name="action">
+            <% String emailError = (String) request.getAttribute("emailError"); %>
+		        <% if (emailError != null) { %>
+		        <p style="color:red; font-size: 12px; font-weight: bold; text-shadow: none;"><%= emailError %></p>
+		        <% } %>
             <div class="label-style">
             <input type="text" name="email" required class = "text"  placeholder="" value="<%= request.getParameter("email") != null ? request.getParameter("email") : "" %>">
             <label for = "email">enter your email</label>
             </div>
-            
+            <% String passwordError = (String) request.getAttribute("passwordError"); %>
+		        <% if (passwordError != null) { %>
+		        <p style="color:red; font-size: 12px; font-weight: bold; text-shadow: none;"><%= passwordError %></p>
+		        <% } %>
             <div class="label-style">
             <input type="password" name="password" required class = "password" placeholder="" value="<%= request.getParameter("password") != null ? request.getParameter("password") : "" %>">
             <label for = "password">enter your password</label>

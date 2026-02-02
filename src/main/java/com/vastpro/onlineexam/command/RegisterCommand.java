@@ -40,21 +40,22 @@ public class RegisterCommand implements Command {
         String password = req.getParameter("password");
         String rollId = req.getParameter("role_id");
 
-        // Email validation (only Gmail allowed)
-        if (email == null || !isValidEmail(email)) {
-            req.setAttribute("error", "Invalid email. Please provide a valid Gmail address.");
-            return false;
-        }
 
         // Username validation (allow only alphabets and numbers)
         if (username == null || !isValidUsername(username)) {
             req.setAttribute("error", "Username must contain only letters and/or numbers.");
             return false;
         }
+        
+       // Email validation (only Gmail allowed)
+        if (email == null || !isValidEmail(email)) {
+            req.setAttribute("error", "Invalid email. Please provide a valid email address.");
+            return false;
+        }
 
         // Password validation (allow letters, numbers, and special characters with a minimum length of 6)
         if (password == null || !isValidPassword(password)) {
-            req.setAttribute("error", "Password must be at least 6 characters long and can contain letters, numbers, and special characters(0-9,_,@,a-z,A-Z).");
+            req.setAttribute("error", "Password must be at least 6 characters long");
             return false;
         }
 
@@ -64,7 +65,7 @@ public class RegisterCommand implements Command {
 
     // Helper method for email validation (only Gmail)
     private boolean isValidEmail(String email) {
-        Pattern emailPattern = Pattern.compile("^[a-zA-Z0-9._%+-]+@gmail\\.com$");
+        Pattern emailPattern = Pattern.compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
         Matcher matcher = emailPattern.matcher(email);
         return matcher.matches();
     }
