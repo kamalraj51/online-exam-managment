@@ -35,15 +35,15 @@ public class CreateExamCommand implements Command {
 		String rollId = request.getParameter("role_id");
 
 		
-		if(exam_topic == null || !exam_topic.matches("^[a-zA-Z]+$")) {
+		if(exam_topic == null || !exam_topic.matches("^[a-zA-Z0-9 ,._]+$")) {
 			request.setAttribute("examTopicError", "Invalid Exam Topic");
 			return false;
 		}
-		if(exam_name == null || !exam_name.matches("^[a-zA-Z]+$")) {
+		if(exam_name == null || !exam_name.matches("^[a-zA-Z0-9 ,._]+$")) {
 			request.setAttribute("examNameError", "Invalid Exam Name");
 			return false;
 		}
-		if(description == null || !description.matches("^[a-zA-Z]+$")) {
+		if(description == null || !description.matches("^[a-zA-Z0-9 ,._]+$")) {
 			request.setAttribute("descriptionError", "Invalid Description");
 			return false;
 		}
@@ -59,13 +59,13 @@ public class CreateExamCommand implements Command {
 			request.setAttribute("eachQuestionMarkError", "Invalid.Please provide a valid marks");
 			return false;
 		}
-		int durationMinutes = 0;
+	
 		if (durationStr == null || !durationStr.matches("^[1-9][0-9]*$")) {
 		    request.setAttribute("durationMinError", "Invalid exam duration");
 		    return false;
 		}
 
-		durationMinutes = Integer.parseInt(durationStr);
+	
 		
 		if (!CreateExamDAO.checkExamAvailable(request)) {
 

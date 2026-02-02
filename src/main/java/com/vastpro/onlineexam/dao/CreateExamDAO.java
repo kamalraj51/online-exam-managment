@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 import com.vastpro.onlineexam.db.DBConnection;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 /**
  * Class Name: CreateExamDAO
@@ -33,13 +34,17 @@ public class CreateExamDAO {
 		String examName = request.getParameter("exam_name");
 		String description = request.getParameter("description");
 		int passMinCorrect = Integer.parseInt(request.getParameter("pass_min_correct"));
-		double eachQuestionMark = Double.parseDouble(request.getParameter("each_question_mark"));
+		Integer eachQuestionMark = Integer.parseInt(request.getParameter("each_question_mark"));
+		
 		int durationMinutes = Integer.parseInt(request.getParameter("duration_minutes"));
 		// int created_by = Integer.parseInt(request.getParameter("user_id"));
 		int createdBy = (Integer) request.getSession().getAttribute("user_id");
 		Integer noOfQuestion = Integer.parseInt(request.getParameter("add_question"));
-		request.getSession().setAttribute("noOfQuestions", noOfQuestion);
-
+		Integer totalMark = noOfQuestion*eachQuestionMark;
+		HttpSession session = request.getSession();
+		session.setAttribute("noOfQuestions", noOfQuestion);
+		session.setAttribute("marks", eachQuestionMark);
+		
 		String sql = "insert into exam"
 						+ " (exam_topic,exam_name,description,status,pass_min_correct,total_marks,duration_minutes,created_by,created_at)"
 						+ "values(?,?,?,?,?,?,?,?,?)" + " RETURNING exam_id";
@@ -51,7 +56,7 @@ public class CreateExamDAO {
 			pstmt.setString(3, description);
 			pstmt.setString(4, "ACTIVE");
 			pstmt.setInt(5, passMinCorrect);
-			pstmt.setDouble(6, eachQuestionMark);
+			pstmt.setDouble(6, totalMark);
 			pstmt.setInt(7, durationMinutes);
 			pstmt.setInt(8, createdBy);
 			pstmt.setTimestamp(9, new Timestamp(System.currentTimeMillis()));
