@@ -28,6 +28,7 @@
 	<div  class="home_container">
 
 		<form action="controller" method="post" class="user_form">
+		<div class="select_container">
 			<h2 style="color:black;">Select Exam Topic</h2>
 
 
@@ -59,11 +60,12 @@
 			}
 			%>
 
+		</div>
 
 		</form>
 
 		<!-- old code form home -->
-		<h2 style="color:white;">History</h2>
+		<h2 style="color:white; text-align: center;	">History</h2>
 		<table>
 			<tr>
 				<th>Exam Name</th>

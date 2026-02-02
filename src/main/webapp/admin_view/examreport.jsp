@@ -29,7 +29,8 @@
 	<jsp:include page="/common/header.jsp"></jsp:include>
 	<div class="retire_container">
 
-		<form action="controller" method="post" class="retire_form">
+		<form action="controller" method="post" class="user_form">
+		<div class="select_container">
 			<h2>Select Exam</h2>
 
 
@@ -61,11 +62,11 @@
 			}
 			%>
 
-
+		</div>
 		</form>
 
 		<!-- old code form home -->
-		<h1>Exam Based History</h1>
+		<h2 style="color:white; text-align: center;">Exam Based History</h2>
 		<table>
 			<tr>
 				
