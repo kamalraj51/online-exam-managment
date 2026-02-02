@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 public class LoadAllExamsDAO {
 	public static boolean getAllExams(HttpServletRequest request) {
 		List<ExamDTO> allExams = new ArrayList<ExamDTO>();
-		String sql = "SELECT exam_id, exam_name, status FROM exam";
+		String sql = "SELECT exam_id, exam_name, status FROM exam ORDER BY exam_name";
 
 		try (Connection con = DBConnection.getConnection(); PreparedStatement ps = con.prepareStatement(sql);) {
 			ResultSet rs = ps.executeQuery();

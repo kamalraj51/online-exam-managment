@@ -91,11 +91,13 @@ public class ShowQuestionCommand implements Command {
             
             // navigation
             if ("next".equals(action)) {
-                currentIndex = Math.min(currentIndex + 1, questions.size() - 1);
-                System.out.println("ShowQuestionCommand currentIndex: "+currentIndex);
+                //currentIndex = Math.min(currentIndex + 1, questions.size() - 1);
+            	currentIndex = currentIndex + 1;
+                System.out.println("ShowQuestionCommand currentIndex \"next\": "+currentIndex);
             } else if ("back".equals(action)) {
             		
                 currentIndex = Math.max(currentIndex - 1, 0);
+                System.out.println("ShowQuestionCommand currentIndex \"back\": "+currentIndex);
             }else if ("submit".equals(action)) {
 //            		session.removeAttribute("questions");
                 session.removeAttribute("currentIndex");
