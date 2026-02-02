@@ -21,7 +21,7 @@
 ">
 <jsp:include page="/common/header.jsp"></jsp:include>
 <div  class="retire_container">
-<h2 style="color:white;">Active/Retire Exam</h2>
+<h2 style="color:white; text-align: center;">Active/Retire Exam</h2>
 		<table>
 			<tr>
 				<th>Exam Name</th>
