@@ -32,11 +32,11 @@ public class CreateExamDAO {
 		String examTopic = request.getParameter("exam_topic");
 		String examName = request.getParameter("exam_name");
 		String description = request.getParameter("description");
-		int pass_min_correct = Integer.parseInt(request.getParameter("pass_min_correct"));
-		double total_marks = Double.parseDouble(request.getParameter("total_marks"));
-		int duration_minutes = Integer.parseInt(request.getParameter("duration_minutes"));
+		int passMinCorrect = Integer.parseInt(request.getParameter("pass_min_correct"));
+		double eachQuestionMark = Double.parseDouble(request.getParameter("each_question_mark"));
+		int durationMinutes = Integer.parseInt(request.getParameter("duration_minutes"));
 		// int created_by = Integer.parseInt(request.getParameter("user_id"));
-		int created_by = (Integer) request.getSession().getAttribute("user_id");
+		int createdBy = (Integer) request.getSession().getAttribute("user_id");
 		Integer noOfQuestion = Integer.parseInt(request.getParameter("add_question"));
 		request.getSession().setAttribute("noOfQuestions", noOfQuestion);
 
@@ -50,10 +50,10 @@ public class CreateExamDAO {
 			pstmt.setString(2, examName);
 			pstmt.setString(3, description);
 			pstmt.setString(4, "ACTIVE");
-			pstmt.setInt(5, pass_min_correct);
-			pstmt.setDouble(6, total_marks);
-			pstmt.setInt(7, duration_minutes);
-			pstmt.setInt(8, created_by);
+			pstmt.setInt(5, passMinCorrect);
+			pstmt.setDouble(6, eachQuestionMark);
+			pstmt.setInt(7, durationMinutes);
+			pstmt.setInt(8, createdBy);
 			pstmt.setTimestamp(9, new Timestamp(System.currentTimeMillis()));
 			ResultSet rs = pstmt.executeQuery();
 			rs.next();
@@ -61,7 +61,7 @@ public class CreateExamDAO {
 
 			request.setAttribute("examId", examId);
 			System.out.println("Exam Rows Updated: Exam Id " + examId);
-			System.out.println("createExamDao: created_by " + created_by);
+			System.out.println("createExamDao: created_by " + createdBy);
 
 			return true;
 		} catch (Exception e) {

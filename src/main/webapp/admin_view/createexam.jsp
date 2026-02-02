@@ -73,13 +73,13 @@
 		        <p class="error_message"><%=  minCorrectError %></p>
 		        <% } %>
 			<div class="label-style">
-				<input type="number" name="total_marks"  placeholder=""
-					value="<%=request.getParameter("total_marks")!= null ? request.getParameter("total_marks") : ""%>">
-				<label for="total_marks">enter the total marks</label>
+				<input type="number" name="each_question_mark"  placeholder=""
+					value="<%=request.getParameter("each_question_mark")!= null ? request.getParameter("each_question_mark") : ""%>">
+				<label for="each_question_mark">enter the each question mark</label>
 			</div>
-			<% String totalMarksError = (String) request.getAttribute("totalMarksError"); %>
-		        <% if ( totalMarksError != null) { %>
-		        <p class="error_message"><%= totalMarksError %></p>
+			<% String eachQuestionMarkError = (String) request.getAttribute("eachQuestionMarkError"); %>
+		        <% if ( eachQuestionMarkError != null) { %>
+		        <p class="error_message"><%= eachQuestionMarkError %></p>
 		        <% } %>
 
 			<div class="label-style">
@@ -91,8 +91,6 @@
 		        <% if ( durationMinError != null) { %>
 		        <p class="error_message"><%= durationMinError %></p>
 		        <% } %>
-			
-
 
 			<button>Create</button>
 		</form>

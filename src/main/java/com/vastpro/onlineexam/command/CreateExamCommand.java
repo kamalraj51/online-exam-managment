@@ -1,8 +1,5 @@
 package com.vastpro.onlineexam.command;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import com.vastpro.onlineexam.dao.CreateExamDAO;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -33,7 +30,7 @@ public class CreateExamCommand implements Command {
 		String description = request.getParameter("description");
 		String add_question = request.getParameter("add_question");
 		String pass_min_correct = request.getParameter("pass_min_correct");
-		String total_marks = request.getParameter("total_marks");
+		String each_question_mark = request.getParameter("each_question_mark");
 		String durationStr = request.getParameter("duration_minutes");
 		String rollId = request.getParameter("role_id");
 
@@ -58,8 +55,8 @@ public class CreateExamCommand implements Command {
 			request.setAttribute("minCorrectError", "Invalid.Please provide a valid minimum correct mark");
 			return false;
 		}
-		if(total_marks == null || !total_marks.matches("^[1-9][0-9]*$")) {
-			request.setAttribute("totalMarksError", "Invalid.Please provide a valid minimum total marks");
+		if(each_question_mark == null || !each_question_mark.matches("^[1-9][0-9]*$")) {
+			request.setAttribute("eachQuestionMarkError", "Invalid.Please provide a valid marks");
 			return false;
 		}
 		int durationMinutes = 0;
