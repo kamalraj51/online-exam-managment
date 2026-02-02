@@ -50,15 +50,15 @@ public class CreateExamCommand implements Command {
 			request.setAttribute("descriptionError", "Invalid Description");
 			return false;
 		}
-		if(add_question == null || !add_question.matches("^[0-9]+$")) {
+		if(add_question == null || !add_question.matches("^[1-9][0-9]*$")) {
 			request.setAttribute("addQuestionError", "Invalid.Please provide a valid number");
 			return false;
 		}
-		if(pass_min_correct == null || !pass_min_correct.matches("^[0-9]+$")) {
+		if(pass_min_correct == null || !pass_min_correct.matches("^[1-9][0-9]*$")) {
 			request.setAttribute("minCorrectError", "Invalid.Please provide a valid minimum correct mark");
 			return false;
 		}
-		if(total_marks == null || !total_marks.matches("^[0-9]+$")) {
+		if(total_marks == null || !total_marks.matches("^[1-9][0-9]*$")) {
 			request.setAttribute("totalMarksError", "Invalid.Please provide a valid minimum total marks");
 			return false;
 		}

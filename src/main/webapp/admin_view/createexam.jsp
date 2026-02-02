@@ -89,7 +89,7 @@
 			</div>
 			<% String durationMinError = (String) request.getAttribute("durationMinError"); %>
 		        <% if ( durationMinError != null) { %>
-		        <p class="error_message"><%= totalMarksError %></p>
+		        <p class="error_message"><%= durationMinError %></p>
 		        <% } %>
 			
 
