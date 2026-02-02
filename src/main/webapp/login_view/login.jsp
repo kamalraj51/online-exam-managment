@@ -34,19 +34,26 @@ label::after {
    <div class="login_container">
         <h2>Login As user</h2>
 
-        <form action="controller?action=login_user" method="post" class = "login_form">
-            <!-- <input type="hidden" value="login_user" name="action">-->
+        <form action="controller" method="post" class = "login_form">
+            <input type="hidden" value="login_user" name="action">
 
             <div class="label-style">
             <input type="text" name="email" required class = "text"  placeholder="" value="<%= request.getParameter("email") != null ? request.getParameter("email") : "" %>">
             <label for = "email">enter your email</label>
             </div>
+             <% String loginErrorEmail = (String) request.getAttribute("loginErrorEmail"); %>
+		        <% if (loginErrorEmail != null) { %>
+		        <p style="color:red; font-size: 12px; font-weight: bold; text-shadow: none;"><%= loginErrorEmail %></p>
+		        <% } %>
             
             <div class="label-style">
             <input type="password" name="password" required class = "password" placeholder="" value="<%= request.getParameter("password") != null ? request.getParameter("password") : "" %>">
             <label for = "password">enter your password</label>
             </div>
-            
+              <% String loginErrorPassword = (String) request.getAttribute("loginErrorPassword"); %>
+		        <% if (loginErrorPassword != null) { %>
+		        <p style="color:red; font-size: 12px; font-weight: bold; text-shadow: none;"><%= loginErrorPassword %></p>
+		        <% } %>
             <input type="submit" value="Login" class = "login_btn">
         </form>
         <form class="new_user" action="controller" method="post" >
