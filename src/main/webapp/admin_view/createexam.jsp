@@ -77,9 +77,9 @@
 					value="<%=request.getParameter("each_question_mark")!= null ? request.getParameter("each_question_mark") : ""%>">
 				<label for="each_question_mark">enter the each question mark</label>
 			</div>
-			<% String eachQuestionMark = (String) request.getAttribute("eachMarkError"); %>
-		        <% if ( eachQuestionMark != null) { %>
-		        <p class="error_message"><%= eachQuestionMark %></p>
+			<% String eachQuestionMarkError = (String) request.getAttribute("eachQuestionMarkError"); %>
+		        <% if ( eachQuestionMarkError != null) { %>
+		        <p class="error_message"><%= eachQuestionMarkError %></p>
 		        <% } %>
 
 			<div class="label-style">
@@ -91,8 +91,6 @@
 		        <% if ( durationMinError != null) { %>
 		        <p class="error_message"><%= durationMinError %></p>
 		        <% } %>
-			
-
 
 			<button>Create</button>
 		</form>
