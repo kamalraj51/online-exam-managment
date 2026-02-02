@@ -38,12 +38,10 @@ public class RegisterCommand implements Command {
 		String username = req.getParameter("username");
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
-		String rollId = req.getParameter("role_id");
 
 		// Username validation (allow only alphabets and numbers)
 		if (username == null) {
 			req.setAttribute("nameError", "Username cannot be empty");
-
 			return false;
 		}
 		if (!isValidUsername(username)) {
