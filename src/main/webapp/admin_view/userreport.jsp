@@ -65,7 +65,7 @@
 		</form>
 
 		<!-- old code form home -->
-		<h1>History</h1>
+		<h1> User Based History</h1>
 		<table >
 		<thead>
 			<tr>

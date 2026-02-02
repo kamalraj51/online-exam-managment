@@ -5,6 +5,27 @@
 <head>
 <meta charset="UTF-8">
 <title>Login</title>
+<style>
+input:required::after {
+    content: '';
+    display: none; /* Hide the red asterisk */
+}
+
+input:required:invalid {
+    border-color: red;  /* This will make the border red if the field is invalid */
+}
+
+input:required:focus {
+    border-color: #4CAF50;  /* Make border green when the field is focused (optional) */
+}
+
+label::after {
+    content: '*'; 
+    color: red;
+    margin-left: 5px;  /* Space between label and asterisk */
+}
+
+</style>
 <link rel="stylesheet" href="css/style.css"/>
 </head>
 
@@ -17,12 +38,12 @@
             <!-- <input type="hidden" value="login_user" name="action">-->
 
             <div class="label-style">
-            <input type="text" name="email" required class = "text"  placeholder="">
+            <input type="text" name="email" required class = "text"  placeholder="" value="<%= request.getParameter("email") != null ? request.getParameter("email") : "" %>">
             <label for = "email">enter your email</label>
             </div>
             
             <div class="label-style">
-            <input type="password" name="password" required class = "password" placeholder="">
+            <input type="password" name="password" required class = "password" placeholder="" value="<%= request.getParameter("password") != null ? request.getParameter("password") : "" %>">
             <label for = "password">enter your password</label>
             </div>
             
