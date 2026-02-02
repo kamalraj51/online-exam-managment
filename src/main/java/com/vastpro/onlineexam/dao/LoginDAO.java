@@ -31,6 +31,7 @@ public class LoginDAO {
 	 *         matches, false otherwise
 	 */
 	public static boolean validateLogin(HttpServletRequest request) {
+		System.out.println("login called");
 		HttpSession session = request.getSession();
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");

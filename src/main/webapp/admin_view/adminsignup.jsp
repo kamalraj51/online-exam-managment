@@ -31,7 +31,7 @@
 			<input type="password" name="password" placeholder=""> 
 			<label for="password">enter the password</label>
 			</div>
-			<input type="hidden" value="2" name="role_id">
+			<input type="hidden" value="1" name="role_id">
 
 			<button type="submit" class="signup_btn">Sign Up</button>
 		</form>
