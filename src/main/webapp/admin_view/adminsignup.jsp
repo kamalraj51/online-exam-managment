@@ -35,6 +35,9 @@
 
 			<button type="submit" class="signup_btn">Sign Up</button>
 		</form>
+		<form action="controller" method="post">
+			<button name="action" value="authorize">Back to Home</button>
+		</form>
     </div>
     <jsp:include page="/common/footer.jsp"/>
 </body>

@@ -53,12 +53,13 @@
 				<td>
 				<form action="controller" method="post">
 				<input type="hidden" name="examName" value="<%= exam.getExamName() %>">
+				<input type="hidden" name="action" value="active_retire">
 				<% 
 				
 				if(exam.getStatus().equalsIgnoreCase("Active")){ %>
-				 <button class="retire_btn" name="action" value="retire_exam_user">Retire</button>
+				 <button class="retire_btn" name="actions" value="RETIRE">Retire</button>
 				<% } else { %>
-				 <button class="active_btn" name="action" value="active_exam_user">Active</button>
+				 <button class="active_btn" name="actions" value="ACTIVE">Active</button>
 				<%} %>
 				</form>
 				</td>
@@ -69,7 +70,9 @@
 			%>
 
 		</table>
-		
+		<form action="controller" method="post">
+			<button name="action" value="authorize">Back to Home</button>
+		</form>
 </div>
 <jsp:include page="/common/footer.jsp"></jsp:include>
 </body>
