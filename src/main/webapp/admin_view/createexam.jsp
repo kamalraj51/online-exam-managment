@@ -20,40 +20,47 @@
 			<% if (examError != null) { %>
 			<p class="error_message"><%=examError %></p>
 			<%} %>
-            <div class="label-style">
-			<input type="text" name="exam_topic" required placeholder=""> 
-			<label for = "exam_topic">enter the topic</label>
-			</div>	
-			
-			<div class="label-style">	
-		    <input type="text" name="exam_name" required placeholder="">
-		    <label for = "exam_name">enter the exam name</label>
-            </div>
-            
-            <div class="label-style">
-			<input type="text" name="description" required placeholder=""> 
-			<label for = "description">enter the description</label>
-			</div>
-			
 			<div class="label-style">
-			<input type="number" name="add_question" required placeholder="">
-			<label for = "add_question">number of questions</label>
+				<input type="text" name="exam_topic" required placeholder=""
+					value="<%=request.getParameter("exam_topic")!= null ? request.getParameter("exam_topic") : ""%>">
+				<label for="exam_topic">enter the topic</label>
 			</div>
-			
-			<div class="label-style">	
-			<input type="number" name="pass_min_correct" required placeholder="">
-			<label for = "pass_min_correct">enter the minimum marks</label>
-			</div>	
-			 
+
 			<div class="label-style">
-			<input type="number" name="total_marks" required placeholder="">
-			<label for = "total_marks">enter the total marks</label>
+				<input type="text" name="exam_name" required placeholder="">
+				<label for="exam_name">enter the exam name</label>
 			</div>
-			
+
 			<div class="label-style">
-			<input type="number" name="duration_minutes" required="required" placeholder="">
-			<label for = "duration_minutes">enter the total duration</label>
-            </div>
+				<input type="text" name="description" required placeholder=""
+					value="<%=request.getParameter("description")!= null ? request.getParameter("description") : ""%>">
+				<label for="description">enter the description</label>
+			</div>
+
+			<div class="label-style">
+				<input type="number" name="add_question" required placeholder=""
+					value="<%=request.getParameter("add_question")!= null ? request.getParameter("add_question") : ""%>">
+				<label for="add_question">number of questions</label>
+			</div>
+
+			<div class="label-style">
+				<input type="number" name="pass_min_correct" required placeholder=""
+					value="<%=request.getParameter("pass_min_correct")!= null ? request.getParameter("pass_min_correct") : ""%>">
+				<label for="pass_min_correct">enter the minimum marks</label>
+			</div>
+
+			<div class="label-style">
+				<input type="number" name="total_marks" required placeholder=""
+					value="<%=request.getParameter("total_marks")!= null ? request.getParameter("total_marks") : ""%>">
+				<label for="total_marks">enter the total marks</label>
+			</div>
+
+			<div class="label-style">
+				<input type="number" name="duration_minutes" required="required"
+					placeholder=""
+					value="<%=request.getParameter("duration_minutes")!= null ? request.getParameter("duration_minutes") : ""%>">
+				<label for="duration_minutes">enter the total duration</label>
+			</div>
 
 
 

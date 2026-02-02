@@ -43,38 +43,37 @@ public class CreateExamDAO {
 		String sql = "insert into exam"
 						+ " (exam_topic,exam_name,description,status,pass_min_correct,total_marks,duration_minutes,created_by,created_at)"
 						+ "values(?,?,?,?,?,?,?,?,?)" + " RETURNING exam_id";
-		System.out.println("CreateExamDAO" + checkExamAvailable(request, examName));
-		if (!checkExamAvailable(request, examName)) {
-			try (Connection conn = DBConnection.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+		System.out.println("CreateExamDAO" + checkExamAvailable(request));
+		try (Connection conn = DBConnection.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-				pstmt.setString(1, examTopic);
-				pstmt.setString(2, examName);
-				pstmt.setString(3, description);
-				pstmt.setString(4, "ACTIVE");
-				pstmt.setInt(5, pass_min_correct);
-				pstmt.setDouble(6, total_marks);
-				pstmt.setInt(7, duration_minutes);
-				pstmt.setInt(8, created_by);
-				pstmt.setTimestamp(9, new Timestamp(System.currentTimeMillis()));
-				ResultSet rs = pstmt.executeQuery();
-				rs.next();
-				int examId = rs.getInt(1);
+			pstmt.setString(1, examTopic);
+			pstmt.setString(2, examName);
+			pstmt.setString(3, description);
+			pstmt.setString(4, "ACTIVE");
+			pstmt.setInt(5, pass_min_correct);
+			pstmt.setDouble(6, total_marks);
+			pstmt.setInt(7, duration_minutes);
+			pstmt.setInt(8, created_by);
+			pstmt.setTimestamp(9, new Timestamp(System.currentTimeMillis()));
+			ResultSet rs = pstmt.executeQuery();
+			rs.next();
+			int examId = rs.getInt(1);
 
-				request.setAttribute("examId", examId);
-				System.out.println("Exam Rows Updated: Exam Id " + examId);
-				System.out.println("createExamDao: created_by " + created_by);
+			request.setAttribute("examId", examId);
+			System.out.println("Exam Rows Updated: Exam Id " + examId);
+			System.out.println("createExamDao: created_by " + created_by);
 
-				return true;
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		request.setAttribute("examError", "Already Exam Available");
+
 		return false;
 	}
 
-	public static boolean checkExamAvailable(HttpServletRequest request, String examName) {
+	public static boolean checkExamAvailable(HttpServletRequest request) {
 		boolean flag = false;
+		String examName = request.getParameter("exam_name");
 		String sql = "select exam_id from exam where exam_name=?";
 		try (Connection conn = DBConnection.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setString(1, examName);
