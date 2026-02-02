@@ -65,4 +65,5 @@ public class RegisterCommand implements Command {
 		return CreateNewUserDAO.registerUser(req);
 	}
 
+	
 }

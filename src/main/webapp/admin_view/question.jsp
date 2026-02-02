@@ -14,6 +14,15 @@ lable{
 color:white;
 text-shadow: 2px 1px black;
 }
+.label-style textarea:focus+label, .label-style textarea:not(:placeholder-shown)+label
+	{
+	top: 0;
+	font-size: 12px;
+	color: black;
+	background-color: white;
+	padding: 4px;
+	border-radius: 5px;
+}
 </style>
 </head>
 
@@ -44,7 +53,13 @@ text-shadow: 2px 1px black;
 			<textarea rows="3" name="question_id<%=i%>" required="required" placeholder=""></textarea>
 			<label for = "question_id<%=i%>">enter the question...</label>
 			</div>
-       
+
+			
+            <div class="label-style">
+			<input type="number" name="marks<%=i%>" placeholder="">
+			<label for = "marks<%=i%>">enter the mark</label>
+            </div>
+
 
 			<h3>Answer</h3>
 			<div style="display: flex; gap:20px" >
@@ -76,7 +91,7 @@ text-shadow: 2px 1px black;
 			<input type="radio" name="correct_option_4<%=i %>" value="false" required> <lable> Wrong</lable>
 			</div>
 			<div class="label-style">
-		    <input type="text" name="option_4<%=i %>" required placeholder=""><br> 
+		    <input type="text" name="option_4<%=i %>" required placeholder="">
 		    <label for = "option_4<%=i %>">enter the option d</label>
 			</div>
 			

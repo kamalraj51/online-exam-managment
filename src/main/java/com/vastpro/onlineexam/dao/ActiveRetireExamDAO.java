@@ -44,6 +44,7 @@ public class ActiveRetireExamDAO {
 				return flag;
 			}
 		} catch (Exception e) {
+			System.out.println("ActiveRetireExamDAO - activeRetireExam : " );
 			e.printStackTrace();
 		}
 		return flag;
