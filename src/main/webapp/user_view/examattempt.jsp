@@ -20,8 +20,9 @@
 ">
 <jsp:include page="/common/header.jsp"/>
 <div class="home_container">
-<h2>Available Exams</h2>
-<div class = "common">
+
+<h2 style="text-align: center">Available Exams</h2>
+
 <table>
 <tr>
     <th>Exam Name</th>
@@ -68,8 +69,12 @@ List<ExamDTO> exams = (List<ExamDTO>)request.getAttribute("examList");
 
 </table>
 	
+  
+   <form action="controller" method="post">
+			<button name="action" value="authorize">Back to Home</button>
+		</form>
    </div>
-   </div>
+   
    <jsp:include page="/common/footer.jsp"/>
 </body>
 </html>

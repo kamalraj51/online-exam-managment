@@ -1,7 +1,7 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
-<%@ page import="com.vastpro.onlineexam.dto.QuestionDTO" %>
-<%@ page import="com.vastpro.onlineexam.dto.AnswerDTO" %>
-<%@ page import="java.util.List" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page import="com.vastpro.onlineexam.dto.QuestionDTO"%>
+<%@ page import="com.vastpro.onlineexam.dto.AnswerDTO"%>
+<%@ page import="java.util.List"%>
 
 <%
 QuestionDTO question = (QuestionDTO) request.getAttribute("question");
@@ -10,68 +10,60 @@ boolean isLast = Boolean.TRUE.equals(request.getAttribute("isLast"));
 int currentQNo = (Integer) request.getAttribute("currentQNo");
 int totalQuestions = (Integer) request.getAttribute("totalQuestions");
 Long remainingSeconds = (Long) request.getAttribute("remainingSeconds");
-%>	
+%>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Start Exam</title>
-    <style>
-        
+<meta charset="UTF-8">
+<title>Start Exam</title>
+<style>
+.container {
+	width: 100%;
+	height: calc(100vh - 80px);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border-radius: 6px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
 
-        .container {
-            width:100vw;
-            height:100vh;
-            display:flex;
-            flex-direction:column;
-            justify-content:center;
-            align-items:center;
-            margin: 0 auto;
-           /* background-color: #ffffff;*/
-            padding: 25px 30px;
-            border-radius: 6px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
+h3 {
+	color: #333;
+}
 
-        h3 {
-            color: #333;
-        }
+.question-number {
+	font-weight: bold;
+	margin-bottom: 15px;
+}
 
-        .question-number {
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        .answers {
-            
-           
-            
-            padding: 30px 40px;
-			border-radius: 6px;
-			box-shadow: 0 4px 6px black;
+.answers {
+	padding: 30px 40px;
+	border-radius: 6px;
+	box-shadow: 0 4px 6px black;
 	width: 420px;
 	backdrop-filter: blur(5px);
-        }
+}
 
-        .answers label {
-            display: block;
-            margin-bottom: 10px;
-            font-size: 16px;
-            cursor: pointer;
-        }
+.answers label {
+	display: block;
+	margin-bottom: 10px;
+	font-size: 16px;
+	cursor: pointer;
+}
 
-        button {
-            /*padding: 10px 20px;
+button {
+	/*padding: 10px 20px;
             margin-right: 10px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             font-size: 16px;
             */
-            	text-transform: uppercase;
-				letter-spacing: 2px;
-				background-color: #061E29;
+	text-transform: capitalize;
+	letter-spacing: 2px;
+	background-color: #061E29;
 	transition: background-color 0.3s;
 	font-weight: bold;
 	border-radius: 10px;
@@ -79,12 +71,12 @@ Long remainingSeconds = (Long) request.getAttribute("remainingSeconds");
 	color: white;
 	border: none;
 	cursor: pointer;
-        }
-       
-       button:hover {
+}
+
+button:hover {
 	background-color: #234C6A;
 	color: white;
-	}
+}
 /*
         button[name="nav"][value="next"] {
             background-color: #007bff;
@@ -96,77 +88,75 @@ Long remainingSeconds = (Long) request.getAttribute("remainingSeconds");
             color: white;
         }
 */
-
-    </style>
+</style>
 </head>
-<body style="background: radial-gradient(
-  circle farthest-corner at center,
-  #4fe3b1 0%,
-  #2fbf9b 30%,
-  #0f6f5f 55%,
-  #061318 100%
-);
+<body
+	style="background: radial-gradient(circle farthest-corner at center, #4fe3b1 0%, #2fbf9b 30%, #0f6f5f 55%, #061318 100%);">
 
-">
+	<div class="container">
 
-<div class="container">
-  
-	
-    <form action="controller" method="post" class="answers">
-	<div style="display: flex; justify-content:space-between ; flex-direction:row ;width: 100%; align-items: center;">
-    <div >
-       <h2>Question <%= currentQNo %> of <%= totalQuestions %></h2> 
-    </div>
-	
-	<div style="float:right; font-weight:bold; color:red;">
-    Time Left:
-    <span id="timer"></span>
-	</div>
-	</div>
-	 <h3><%= question.getQuestionText() %></h3>
-        <%
+
+		<form action="controller" method="post" class="answers">
+			<div
+				style="display: flex; justify-content: space-between; flex-direction: row; width: 100%; align-items: center;">
+				<div>
+					<h2>
+						Question
+						<%= currentQNo %>
+						of
+						<%= totalQuestions %></h2>
+				</div>
+
+				<div style="float: right; font-weight: bold; color: red;">
+					Time Left: <span id="timer"></span>
+				</div>
+			</div>
+			<h3><%= question.getQuestionText() %></h3>
+			<%
         List<AnswerDTO> answers = question.getAnswers();
         for (AnswerDTO ans : answers) {
         %>
-            <label>
-                <input type="radio" name="answerId" value="<%= ans.getAnswerId() %>">
-                <%= ans.getOptionText() %>
-            </label>
-        <%
+			<label> <input type="radio" name="answerId"
+				value="<%= ans.getAnswerId() %>"> <%= ans.getOptionText() %>
+			</label>
+			<%
         }
         %>
 
-        <div style="margin-top: 20px;">
-        <%
+			<div style="margin-top: 20px;">
+				<%
             if (totalQuestions == 1) { // Only one question
         %>
-            <input type="hidden" name="examId" value="<%= request.getParameter("examId") %>"/>
-            <button type="submit" name="nav" value="submit">Submit</button>
-        <%
+				<input type="hidden" name="examId"
+					value="<%= request.getParameter("examId") %>" />
+				<button type="submit" name="nav" value="submit">Submit</button>
+				<%
             } else if (isFirst) { // First question, more than 1
         %>
-            <button type="submit" name="nav" value="next">Next</button>
-        <%
+				<button type="submit" name="nav" value="next">Next</button>
+				<%
             } else if (isLast) { // Last question
         %>
-            <input type="hidden" name="examId" value="<%= request.getParameter("examId") %>"/>
-            <button type="submit" name="nav" value="back">Back</button>
-            <button type="submit" name="nav" value="submit">Submit</button>
-        <%
+				<input type="hidden" name="examId"
+					value="<%= request.getParameter("examId") %>" />
+				<button type="submit" name="nav" value="back">Back</button>
+				<button type="submit" name="nav" value="submit">Submit</button>
+				<%
             } else { // Middle questions
         %>
-            <button type="submit" name="nav" value="back">Back</button>
-            <button type="submit" name="nav" value="next">Next</button>
-        <%
+				<button type="submit" name="nav" value="back">Back</button>
+				<button type="submit" name="nav" value="next">Next</button>
+				<%
             }
         %>
-        </div>
+			</div>
 
-        <input type="hidden" name="action" value="start_exam"/>
-        <input type="hidden" name="examId" value="<%= request.getParameter("examId") %>"/>
+			<input type="hidden" name="action" value="start_exam" /> <input
+				type="hidden" name="examId"
+				value="<%= request.getParameter("examId") %>" />
 
-    </form>
-</div>
+		</form>
+	</div>
 
 </body>
 <script>
