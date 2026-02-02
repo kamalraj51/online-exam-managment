@@ -16,52 +16,82 @@
 		<form action="controller" method="post" class="createexam_form">
 
 			<input type="hidden" name="action" value="create_exam_user">
+			
 			<% String examError = (String) request.getAttribute("examError"); %>
 			<% if (examError != null) { %>
 			<p class="error_message"><%=examError %></p>
 			<%} %>
+			
 			<div class="label-style">
-				<input type="text" name="exam_topic" required placeholder=""
+				<input type="text" name="exam_topic" placeholder=""
 					value="<%=request.getParameter("exam_topic")!= null ? request.getParameter("exam_topic") : ""%>">
 				<label for="exam_topic">enter the topic</label>
 			</div>
+			<% String examTopicError = (String) request.getAttribute("examTopicError"); %>
+		        <% if (examTopicError != null) { %>
+		        <p class="error_message"><%= examTopicError %></p>
+		        <% } %>
+			
 
 			<div class="label-style">
-				<input type="text" name="exam_name" required placeholder="">
+				<input type="text" name="exam_name" placeholder="" 
+				     value="<%=request.getParameter("exam_name")!= null ? request.getParameter("exam_name") : ""%>" >
 				<label for="exam_name">enter the exam name</label>
 			</div>
+			<% String examNameError = (String) request.getAttribute("examNameError"); %>
+		        <% if (examNameError != null) { %>
+		        <p class="error_message"><%= examNameError %></p>
+		        <% } %>
 
 			<div class="label-style">
-				<input type="text" name="description" required placeholder=""
+				<input type="text" name="description" placeholder=""
 					value="<%=request.getParameter("description")!= null ? request.getParameter("description") : ""%>">
 				<label for="description">enter the description</label>
 			</div>
+			<% String descriptionError = (String) request.getAttribute("descriptionError"); %>
+		        <% if (descriptionError != null) { %>
+		        <p class="error_message"><%= descriptionError %></p>
+		        <% } %>
 
 			<div class="label-style">
-				<input type="number" name="add_question" required placeholder=""
+				<input type="number" name="add_question" placeholder=""
 					value="<%=request.getParameter("add_question")!= null ? request.getParameter("add_question") : ""%>">
 				<label for="add_question">number of questions</label>
 			</div>
+			<% String addQuestionError = (String) request.getAttribute("addQuestionError"); %>
+		        <% if (addQuestionError != null) { %>
+		        <p class="error_message"><%= addQuestionError %></p>
+		        <% } %>
 
 			<div class="label-style">
-				<input type="number" name="pass_min_correct" required placeholder=""
+				<input type="number" name="pass_min_correct" placeholder=""
 					value="<%=request.getParameter("pass_min_correct")!= null ? request.getParameter("pass_min_correct") : ""%>">
 				<label for="pass_min_correct">enter the minimum marks</label>
 			</div>
-
+			<% String minCorrectError = (String) request.getAttribute("minCorrectError"); %>
+		        <% if ( minCorrectError != null) { %>
+		        <p class="error_message"><%=  minCorrectError %></p>
+		        <% } %>
 			<div class="label-style">
-				<input type="number" name="total_marks" required placeholder=""
+				<input type="number" name="total_marks"  placeholder=""
 					value="<%=request.getParameter("total_marks")!= null ? request.getParameter("total_marks") : ""%>">
 				<label for="total_marks">enter the total marks</label>
 			</div>
+			<% String totalMarksError = (String) request.getAttribute("totalMarksError"); %>
+		        <% if ( totalMarksError != null) { %>
+		        <p class="error_message"><%= totalMarksError %></p>
+		        <% } %>
 
 			<div class="label-style">
-				<input type="number" name="duration_minutes" required="required"
-					placeholder=""
+				<input type="number" name="duration_minutes" placeholder=""
 					value="<%=request.getParameter("duration_minutes")!= null ? request.getParameter("duration_minutes") : ""%>">
 				<label for="duration_minutes">enter the total duration</label>
 			</div>
-
+			<% String durationMinError = (String) request.getAttribute("durationMinError"); %>
+		        <% if ( durationMinError != null) { %>
+		        <p class="error_message"><%= totalMarksError %></p>
+		        <% } %>
+			
 
 
 			<button>Create</button>

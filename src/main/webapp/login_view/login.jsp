@@ -50,6 +50,7 @@ label::after {
 		        <% if (passwordError != null) { %>
 		        <p style="color:red; font-size: 12px; font-weight: bold; text-shadow: none;"><%= passwordError %></p>
 		        <% } %>
+		        
             <div class="label-style">
             <input type="password" name="password" 	 class = "password" placeholder="" value="<%= request.getParameter("password") != null ? request.getParameter("password") : "" %>">
             <label for = "password">enter your password</label>
