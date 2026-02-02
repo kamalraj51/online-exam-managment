@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
  * It implements the Command interface and processes
  * the request to create questions and answers.
  */
-public class AddQuestionCommand implements Command{
+public class CreateQuestionCommand implements Command{
 
 	 /**
      * Executes the command to create questions and answers.

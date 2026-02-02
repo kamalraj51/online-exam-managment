@@ -44,10 +44,7 @@ text-shadow: 2px 1px black;
 			<textarea rows="3" name="question_id<%=i%>" required="required" placeholder=""></textarea>
 			<label for = "question_id<%=i%>">enter the question...</label>
 			</div>
-            <div class="label-style">
-			<input type="number" name="marks<%=i%>" placeholder=""><br>
-			<label for = "marks<%=i%>">enter the mark</label>
-            </div>
+       
 
 			<h3>Answer</h3>
 			<div style="display: flex; gap:20px" >
