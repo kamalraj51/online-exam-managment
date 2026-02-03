@@ -30,6 +30,8 @@
 ">
 <jsp:include page="/common/header.jsp"/>
 <div class="report_container">
+<div>
+	<h2 style="text-align: center;">Final Report</h2>
 <div class="result-summary">
     <p class="report_content">Total Questions: <%= totalQuestions %></p>
     <p class="report_content">Attempted: <%= correct + incorrect %></p>
@@ -40,7 +42,7 @@
     <p class="report_content">Result: <b class="<%= passed ? "pass" : "fail" %>"><%= passed ? "PASS" : "FAIL" %></b></p>
 </div>
 
-
+</div>
 <table >
 <caption style="margin-bottom: 10px;">DETAILED FEEDBACK</caption>
 <thead>

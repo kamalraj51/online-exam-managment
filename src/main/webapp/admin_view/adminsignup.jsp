@@ -5,40 +5,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Signup</title>
-<style>
-input:required::after {
-	content: '';
-	display: none; /* Hide the red asterisk */
-}
-
-input:required:invalid {
-	border-color: red;
-	/* This will make the border red if the field is invalid */
-}
-
-input:required:focus {
-	border-color: #4CAF50;
-	/* Make border green when the field is focused (optional) */
-}
-
-label::after {
-	content: '*';
-	color: red;
-	margin-left: 5px; /* Space between label and asterisk */
-}
-</style>
-<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/style2.css" />
 
 </head>
 
-<body
-	style="background-image: url('assets/bgplain.jpg'); background-size: 100%; background-repeat: no-repeat;">
-	<div class="signup_container">
+<body>
+	<div class="container">
+		<div class="img_container">
+			<img class="img_style" alt="no image" src="./assets/bgplain.jpg" />
+		</div>
+		<div class="form_container">
+		<h2>Signup as admin user</h2>
 
-		<h2>Sign up as user</h2>
 
-
-		<form action="controller" method="post" class="signup_form">
+		<form action="controller" method="post" class="login_form">
 
 			<input type="hidden" value="signup_user" name="action">
 
@@ -71,14 +51,15 @@ label::after {
 			<% } %>
 			<input type="hidden" value="1" name="role_id">
 
-			<button type="submit" class="signup_btn">Sign Up</button>
+			<button type="submit" class="login_btn">Sign Up</button>
 		</form>
 		<form class="new_user" action="controller" method="post">
 
 			<p class="login_text">Already signed up? -</p>
-			<button name="action" value="login" class="signup_button">login
+			<button name="action" value="login" class="signup_button">Login
 			</button>
 		</form>
+		</div>
 	</div>
 </body>
 </html>

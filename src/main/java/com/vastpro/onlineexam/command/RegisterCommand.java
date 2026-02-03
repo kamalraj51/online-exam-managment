@@ -1,13 +1,10 @@
 package com.vastpro.onlineexam.command;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.vastpro.onlineexam.controller.ControllerServlet;
-import com.vastpro.onlineexam.dao.CreateNewUserDAO;
+import com.vastpro.onlineexam.dao.RegisterDAO;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -33,7 +30,7 @@ public class RegisterCommand implements Command {
 	@Override
 	public boolean execute(HttpServletRequest req, HttpServletResponse res) {
 		logger.info("register called");
-
+		boolean flag = false;
 		// Retrieve form parameters
 		String username = req.getParameter("username");
 		String email = req.getParameter("email");
@@ -42,28 +39,32 @@ public class RegisterCommand implements Command {
 		// Username validation (allow only alphabets and numbers)
 		if (username == null) {
 			req.setAttribute("nameError", "Username cannot be empty");
-			return false;
+			return flag;
 		}
 		if (!username.matches("^[a-zA-Z0-9]+$")) {
 			req.setAttribute("nameError", "Username must contain letters or numbers");
-			return false;
+			return flag;
 		}
 
 		// Email validation (only Gmail allowed)
 		if (email == null || !email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
 			req.setAttribute("emailError", "Invalid email. Please provide a valid email address.");
-			return false;
+			return flag;
 		}
 
 		// Password validation (allow letters, numbers, and special characters with a minimum length of 6)
 		if (password == null || !password.matches("^[\\S]{6,}$")) {
 			req.setAttribute("passwordError", "Password must be at least 6 characters long");
-			return false;
+			return flag;
 		}
 
 		// All validations passed, proceed with user registration
-		return CreateNewUserDAO.registerUser(req);
+		if (!RegisterDAO.checkUser(req)) {
+			return RegisterDAO.registerUser(req);
+		} else {
+			req.setAttribute("signupErrorEmail", "User Already Available");
+			return flag;
+		}
 	}
 
-	
 }

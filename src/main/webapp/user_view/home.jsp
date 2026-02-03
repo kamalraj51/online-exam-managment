@@ -25,7 +25,7 @@
 
 ">
 	<jsp:include page="/common/header.jsp"></jsp:include>
-	<div  class="retire_container">
+	<div  class="home_container">
 
 		<form action="controller" method="post" class="user_form">
 		<div class="select_container">

@@ -10,12 +10,12 @@
 	same for all the page
 */
 h2, caption {
-	color: white;
+	color: black;
 	text-transform: capitalize;
 	letter-spacing: 2px;
 	font-size: 24px;
 	font-weight: bold;
-	text-shadow: 1px 2px black;
+	
 }
 
 h3, .report_content {
@@ -28,7 +28,7 @@ h3, .report_content {
 .login_text {
 	display: inline;
 	font-weight: bold;
-	color: white;
+	color: black;
 	text-transform: capitalize;
 	letter-spacing: 2px;
 	font-size: 16px;
@@ -79,7 +79,7 @@ form {
 }
 
 .nav_container {
-	height: 100vh;
+	height:calc(100vh - 50px);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -91,11 +91,13 @@ form {
 	font-weight: bold;
 	text-shadow: none;
 }
-
-.new_user {
-	display: flex;
-	flex-direction: row;
+.error_text{
+	border: 2px solid black;
+	height: 30px;
+	width: 100%;
 }
+
+
 
 .profile_img_div {
 	display: flex;
@@ -126,19 +128,15 @@ form {
 
 .admin_form {
 	display: flex;
-	flex-direction: row;
+	flex-direction:row;
 	height: 100px;
-	width: 785px; /*890*/
+	width: 75%;
 	padding: 30px 40px;
-	border-radius: 6px;
-	margin-top: 100px;
 	box-shadow: 0 4px 6px black;
 	text-align: center;
 	justify-content: center;
 	align-items: center;
 	border-radius: 10px;
-	padding: 30px 40px;
-	box-shadow: 0 4px 6px black;
 }
 
 .fixed-footer {
@@ -147,7 +145,7 @@ form {
 	color: white;
 	text-align: center;
 	height: 50px;
-	padding-bottom: 5px;
+	padding: 5px;
 	margin-top: auto;
 }
 
@@ -227,7 +225,8 @@ textarea::placeholder {
 	width: 300px;
 	height: 300px;
 	padding: 10px;
-	box-shadow: 0 4px 6px black;
+	box-shadow: 1px 2px white;
+	background:white;
 	border-radius: 6px;
 	gap: 20px;
 }
@@ -275,7 +274,7 @@ table {
 th, td {
 	padding: 10px;
 	border-bottom: 1px solid #ccc;
-	text-align: center;
+	
 }
 
 td, tr {
@@ -316,8 +315,7 @@ select {
 }
 
 .login_form {
-	width: 300px;
-	height: 250px;
+	
 	box-shadow: 0 4px 6px black;
 	border-radius: 6px;
 	padding: 10px;
@@ -393,6 +391,9 @@ select {
 	margin-top: 80px; 
 	overflow-y: auto;
 	padding: 20px;
+	display: flex;
+	flex-direction:column;
+	gap:10px;
 	
 }
 .select_container{
@@ -493,19 +494,19 @@ select {
 	padding: 20px;
 	display:flex;
 	flex-direction:column;
-	gap:10px;
 	justify-content: center;
 	align-items: center;
+	gap:15px;
 }
 
 .result-summary {
 	width: 300px;
 	height: 300px;
-	margin-top: 100px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	gap:6px;
 	border-radius: 6px;
 	background-color: #2c3e50;
 }
@@ -518,7 +519,7 @@ select {
 .label-style label {
 	position: absolute;
 	top: 40%;
-	left: 0px;
+	left: 5px;
 	transform: translateY(-60%);
 	transition: 0.2s ease all;
 	pointer-events: none;

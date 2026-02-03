@@ -5,85 +5,130 @@
 <head>
 <meta charset="UTF-8">
 <title>Login</title>
-<style>
-input:required::after {
-    content: '';
-    display: none; /* Hide the red asterisk */
-}
-
-input:required:invalid {
-    border-color: red;  /* This will make the border red if the field is invalid */
-}
-
-input:required:focus {
-    border-color: #4CAF50;  /* Make border green when the field is focused (optional) */
-}
-
-label::after {
-    content: '*'; 
-    color: red;
-    margin-left: 5px;  /* Space between label and asterisk */
-}
-
-</style>
-<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/style2.css"/>
 </head>
 
 <body>
-  <div>
-  	<img alt="no image" src="./assets/bgplain.jpg"/>
-  </div>
-   <div class="login_container">
-        <h2>Login As user</h2>
+	<div class="container">
 
-        <form action="controller" method="post" class = "login_form">
+		<div class="img_container">
+			<img class="img_style" alt="no image" src="./assets/bgplain.jpg" />
+		</div>
+		<div class="form_container">
+			<h2>Login As user</h2>
 
-
-             <input type="hidden" value="login_user" name="action">
-
-            <div class="label-style">
-            <input type="text" name="email"  class = "text"  placeholder="" value="<%= request.getParameter("email") != null ? request.getParameter("email") : "" %>">
-            <label for = "email">enter your email</label>
-            </div>
-
-            <% String emailError = (String) request.getAttribute("emailError"); %>
-		        <% if (emailError != null) { %>
-		        <p class="error_message"><%= emailError %></p>
-
-		        <% } %>
+			<form action="controller" method="post" class="login_form">
 
 
-             <% String loginErrorEmail = (String) request.getAttribute("loginErrorEmail"); %>
-		        <% if (loginErrorEmail != null) { %>
-		        <p style="color:red; font-size: 12px; font-weight: bold; text-shadow: none;"><%= loginErrorEmail %></p>
-		        <% } %>
-            
+				<input type="hidden" value="login_user" name="action">
 
-            <div class="label-style">
-            <input type="password" name="password" 	 class = "password" placeholder="" value="<%= request.getParameter("password") != null ? request.getParameter("password") : "" %>">
-            <label for = "password">enter your password</label>
-            </div>
+				<div class="label-style">
+					<input type="text" name="email" class="text" placeholder=""
+						value="<%= request.getParameter("email") != null ? request.getParameter("email") : "" %>">
+					<label for="email">enter your email</label>
+				</div>
+				
 
-             <% String passwordError = (String) request.getAttribute("passwordError"); %>
-		        <% if (passwordError != null) { %>
-		        <p class="error_message"><%= passwordError %></p>
 
-		        <% } %>
-		          <% String loginErrorPassword = (String) request.getAttribute("loginErrorPassword"); %>
-		        <% if (loginErrorPassword != null) { %>
-		        <p class="error_message"><%= loginErrorPassword %></p>
-		        <% } %>
-            	
-            <button class="login_btn">Login</button>
-        </form>
-        <form class="new_user" action="controller" method="post" >
-        
-            <p class="login_text">New User - </p> <button name="action" value="signup" class="signup_button" >Signup </button>
-        </form>
-        </div>
+				
+
+
+				<div class="label-style">
+					<input type="password" name="password" class="password"
+						placeholder=""
+						value="<%= request.getParameter("password") != null ? request.getParameter("password") : "" %>">
+					<label for="password">enter your password</label>
+				</div>
+
+				
+				<button class="login_btn">Login</button>
+			</form>
+			<form class="new_user" action="controller" method="post">
+
+				<p class="login_text">New User -</p>
+				<button name="action" value="signup" class="signup_button">Signup
+				</button>
+			</form>
+		</div>
+	</div>
 </body>
-<script type="text/javascript">
+<script>
+document.addEventListener("DOMContentLoaded", function () {
 
-	
+    const form = document.querySelector(".login_form");
+    const emailInput = form.querySelector('input[name="email"]');
+    const passwordInput = form.querySelector('input[name="password"]');
+    
+    const userRegex = /^[a-zA-Z][a-zA-Z0-9_]{4,14}$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    const passRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/;
+    
+    const backendEmailError = "<%= request.getAttribute("loginErrorEmail") != null ? request.getAttribute("loginErrorEmail") : "" %>";
+    const backendPasswordError = "<%= request.getAttribute("loginErrorPassword") != null ? request.getAttribute("loginErrorPassword") : "" %>";
+
+    function showError(input, message) {
+        removeError(input);
+
+        const error = document.createElement("p");
+        error.className = "js-error";
+        error.innerText = message;
+
+        input.classList.add("input-error");
+        input.parentElement.appendChild(error);
+    }
+
+    function removeError(input) {
+        input.classList.remove("input-error");
+        const error = input.parentElement.querySelector(".js-error");
+        if (error) error.remove();
+    }
+
+    emailInput.addEventListener("input", () => removeError(emailInput));
+    passwordInput.addEventListener("input", () => removeError(passwordInput));
+
+  
+    if (backendEmailError !== "") {
+        showError(emailInput, backendEmailError);
+    }
+
+    if (backendPasswordError !== "") {
+        showError(passwordInput, backendPasswordError);
+    }
+
+    form.addEventListener("submit", function (e) {
+        let isValid = true;
+
+        if (emailInput.value.trim() === "") {
+            showError(emailInput, "Email is required");
+            isValid = false;
+        } else if (!emailRegex.test(emailInput.value.trim())) {
+            showError(emailInput, "Enter a valid email address");
+            isValid = false;
+        }
+
+        if (passwordInput.value.trim() === "") {
+            showError(passwordInput, "Password is required");
+            isValid = false;
+        }
+
+        if (!isValid) {
+            e.preventDefault();
+        }
+    });
+});
 </script>
+
+<style>
+
+.js-error {
+    color: #e63946;
+    font-size: 12px;
+    margin-top: 5px;
+    font-weight: 600;
+}
+
+
+
+</style>
+
 </html>

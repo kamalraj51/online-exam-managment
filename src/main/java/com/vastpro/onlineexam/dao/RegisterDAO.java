@@ -18,7 +18,7 @@ import jakarta.servlet.http.HttpServletRequest;
  * Description: This DAO class handles the registration of new users by inserting user details into the database. Passwords are securely
  * hashed using BCrypt before storage.
  */
-public class CreateNewUserDAO {
+public class RegisterDAO {
 	/**
 	 * Registers a new user in the database.
 	 *
@@ -64,25 +64,22 @@ public class CreateNewUserDAO {
 		return flag;
 	}
 
-	static void display() {
-		try (Connection conn = DBConnection.getConnection();) {
+	public static boolean checkUser(HttpServletRequest request) {
+		String email = request.getParameter("email");
+		boolean flag = false;
+		String sqlCheckUser = "select name from users where email=?";
+		try (Connection conn = DBConnection.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sqlCheckUser)) {
 
-			ResultSet rs = conn.createStatement().executeQuery("select * from users");
-			System.out.println("hello");
-			System.out.println(rs);
-			while (rs.next()) {
-
-				System.out.println(rs.getString(1));
+			pstmt.setString(1, email);
+			ResultSet resultUser = pstmt.executeQuery();
+			resultUser.next();
+			if (resultUser.getString("name") != null) {
+				flag = true;
 			}
-
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			flag = false;
+			System.out.println("CreateNewUserDAO - checkUser: " + e.getMessage());
 		}
+		return flag;
 	}
-	/*
-	 * public static void main(String[] args) { new CreateNewUser().registerUser("kamal", "123", "kamal raj"); display();
-	 * 
-	 * }
-	 */
 }
