@@ -90,15 +90,7 @@ button:hover {
 */
 </style>
 </head>
-<body style="background: radial-gradient(
-  circle farthest-corner at center,
-  #4fe3b1 0%,
-  #2fbf9b 30%,
-  #0f6f5f 55%,
-  #061318 100%
-);
-
-">
+<body>
 
 	<div class="container">
 

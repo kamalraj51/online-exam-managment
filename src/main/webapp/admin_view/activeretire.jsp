@@ -11,14 +11,7 @@
 <title>Active/Retire</title>
 <link rel="stylesheet" href="css/style.css" />
 </head>
-<body style="background: radial-gradient(
-  circle farthest-corner at center,
-  #4fe3b1 0%,
-  #2fbf9b 30%,
-  #0f6f5f 55%,
-  #061318 100%
-);
-">
+<body>
 <jsp:include page="/common/header.jsp"></jsp:include>
 <div  class="retire_container">
 <h2 style="color:white; text-align: center;">Active/Retire Exam</h2>
