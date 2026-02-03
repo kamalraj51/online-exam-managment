@@ -30,16 +30,15 @@ public class CreateExamDAO {
 	 * @return true if the exam is inserted successfully, false otherwise
 	 */
 	public static boolean createExam(HttpServletRequest request) {
+		boolean flag = false;
 		String examTopic = request.getParameter("exam_topic");
 		String examName = request.getParameter("exam_name");
 		String description = request.getParameter("description");
 		int passMinCorrect = Integer.parseInt(request.getParameter("pass_min_correct"));
 		Integer eachQuestionMark = Integer.parseInt(request.getParameter("each_question_mark"));
-
 		int durationMinutes = Integer.parseInt(request.getParameter("duration_minutes"));
-		// int created_by = Integer.parseInt(request.getParameter("user_id"));
 		int createdBy = (Integer) request.getSession().getAttribute("user_id");
-		Integer noOfQuestion = Integer.parseInt(request.getParameter("add_question"));
+		Integer noOfQuestion = Integer.parseInt(request.getParameter("no_of_question"));
 		Integer totalMark = noOfQuestion * eachQuestionMark;
 		HttpSession session = request.getSession();
 		session.setAttribute("noOfQuestions", noOfQuestion);
@@ -68,14 +67,22 @@ public class CreateExamDAO {
 			System.out.println("Exam Rows Updated: Exam Id " + examId);
 			System.out.println("createExamDao: created_by " + createdBy);
 
-			return true;
+			flag = true;
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("CreateExamDAO - createExam: " + e.getMessage());
 		}
 
-		return false;
+		return flag;
 	}
 
+	/**
+	 * Check the exam available in the database by using exam name.
+	 *
+	 * @param request
+	 *            the HttpServletRequest object containing exam details (exam_topic, exam_name, description, pass_min_correct, total_marks,
+	 *            duration_minutes, add_question) and session attribute user_id for creator.
+	 * @return true if the exam is available, false otherwise
+	 */
 	public static boolean checkExamAvailable(HttpServletRequest request) {
 		boolean flag = false;
 		String examName = request.getParameter("exam_name");

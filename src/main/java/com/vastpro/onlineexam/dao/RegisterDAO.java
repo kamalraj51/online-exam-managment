@@ -13,7 +13,7 @@ import com.vastpro.onlineexam.db.DBConnection;
 import jakarta.servlet.http.HttpServletRequest;
 
 /**
- * Class Name: CreateNewUserDAO
+ * Class Name: RegiterDAO
  *
  * Description: This DAO class handles the registration of new users by inserting user details into the database. Passwords are securely
  * hashed using BCrypt before storage.
@@ -30,7 +30,7 @@ public class RegisterDAO {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String encryptPassword = BCrypt.hashpw(password, BCrypt.gensalt(10));
-		System.out.println("CreateNewUserDAO encryptPassword: " + encryptPassword);
+		System.out.println("RegisterDAO encryptPassword: " + encryptPassword);
 		String email = request.getParameter("email");
 		String roleId = request.getParameter("role_id");
 
@@ -78,7 +78,7 @@ public class RegisterDAO {
 			}
 		} catch (SQLException e) {
 			flag = false;
-			System.out.println("CreateNewUserDAO - checkUser: " + e.getMessage());
+			System.out.println("RegisterDAO - checkUser: " + e.getMessage());
 		}
 		return flag;
 	}

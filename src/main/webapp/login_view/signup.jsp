@@ -26,24 +26,24 @@
 				<div class="label-style">
 					<input type="text" name="username" placeholder=""
 						value="<%=request.getParameter("username") != null ? request.getParameter("username") : ""%>">
-					<label for="username">enter the username</label>
+					<label for="username">Enter the username</label>
 				</div>
 
 				<div class="label-style">
 					<input type="text" name="email" placeholder=""
 						value="<%=request.getParameter("email") != null ? request.getParameter("email") : ""%>">
-					<label for="email">enter the email</label>
+					<label for="email">Enter the email</label>
 				</div>
 
 				<div class="label-style">
 					<input type="password" name="password" placeholder=""
 						value="<%=request.getParameter("password") != null ? request.getParameter("password") : ""%>">
-					<label for="password">enter the password</label>
+					<label for="password">Enter the password</label>
 				</div>
 				<div class="label-style">
 					<input type="password" name="confirm_password" placeholder=""
 					value="<%=request.getParameter("password") != null ? request.getParameter("confirm_password") : ""%>">
-					<label for="confirm_password">confirm the password</label>
+					<label for="confirm_password">Confirm the password</label>
 				</div>
 				<input type="hidden" value="2" name="role_id">
 

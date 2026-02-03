@@ -47,7 +47,7 @@ label::after {
 			<div class="label-style">
 				<input type="text" name="exam_topic" placeholder=""
 					value="<%=request.getParameter("exam_topic")!= null ? request.getParameter("exam_topic") : ""%>">
-				<label for="exam_topic">enter the topic</label>
+				<label for="exam_topic">Enter the topic</label>
 			</div>
 			<% String examTopicError = (String) request.getAttribute("examTopicError"); %>
 		        <% if (examTopicError != null) { %>
@@ -58,7 +58,7 @@ label::after {
 			<div class="label-style">
 				<input type="text" name="exam_name" placeholder="" 
 				     value="<%=request.getParameter("exam_name")!= null ? request.getParameter("exam_name") : ""%>" >
-				<label for="exam_name">enter the exam name</label>
+				<label for="exam_name">Enter the exam name</label>
 			</div>
 			<% String examNameError = (String) request.getAttribute("examNameError"); %>
 		        <% if (examNameError != null) { %>
@@ -68,7 +68,7 @@ label::after {
 			<div class="label-style">
 				<input type="text" name="description" placeholder=""
 					value="<%=request.getParameter("description")!= null ? request.getParameter("description") : ""%>">
-				<label for="description">enter the description</label>
+				<label for="description">Enter the description</label>
 			</div>
 			<% String descriptionError = (String) request.getAttribute("descriptionError"); %>
 		        <% if (descriptionError != null) { %>
@@ -76,9 +76,9 @@ label::after {
 		        <% } %>
 
 			<div class="label-style">
-				<input type="number" name="add_question" placeholder=""
-					value="<%=request.getParameter("add_question")!= null ? request.getParameter("add_question") : ""%>">
-				<label for="add_question">number of questions</label>
+				<input type="number" name="no_of_question" placeholder=""
+					value="<%=request.getParameter("no_of_question")!= null ? request.getParameter("no_of_question") : ""%>">
+				<label for="no_of_question">Number of questions</label>
 			</div>
 			<% String addQuestionError = (String) request.getAttribute("addQuestionError"); %>
 		        <% if (addQuestionError != null) { %>
@@ -88,7 +88,7 @@ label::after {
 			<div class="label-style">
 				<input type="number" name="pass_min_correct" placeholder=""
 					value="<%=request.getParameter("pass_min_correct")!= null ? request.getParameter("pass_min_correct") : ""%>">
-				<label for="pass_min_correct">enter the minimum marks</label>
+				<label for="pass_min_correct">Enter the minimum marks</label>
 			</div>
 			<% String minCorrectError = (String) request.getAttribute("minCorrectError"); %>
 		        <% if ( minCorrectError != null) { %>
@@ -97,7 +97,7 @@ label::after {
 			<div class="label-style">
 				<input type="number" name="each_question_mark"  placeholder=""
 					value="<%=request.getParameter("each_question_mark")!= null ? request.getParameter("each_question_mark") : ""%>">
-				<label for="each_question_mark">enter the each question mark</label>
+				<label for="each_question_mark">Enter the each question mark</label>
 			</div>
 			<% String eachQuestionMarkError = (String) request.getAttribute("eachQuestionMarkError"); %>
 		        <% if ( eachQuestionMarkError != null) { %>
@@ -107,7 +107,7 @@ label::after {
 			<div class="label-style">
 				<input type="number" name="duration_minutes" placeholder=""
 					value="<%=request.getParameter("duration_minutes")!= null ? request.getParameter("duration_minutes") : ""%>">
-				<label for="duration_minutes">enter the total duration</label>
+				<label for="duration_minutes">Enter the total duration</label>
 			</div>
 			<% String durationMinError = (String) request.getAttribute("durationMinError"); %>
 		        <% if ( durationMinError != null) { %>

@@ -17,51 +17,44 @@ import jakarta.servlet.http.HttpSession;
 /**
  * Class Name: ExamHistoryDAO
  *
- * Description:
- * This DAO class provides methods to retrieve the exam history of a user.
+ * Description: This DAO class provides methods to retrieve the exam history of a user.
  *
- * It queries the database to fetch exam attempts, including exam details,
- * scores, pass/fail status, and active exam topics.
+ * It queries the database to fetch exam attempts, including exam details, scores, pass/fail status, and active exam topics.
  */
 public class ExamHistoryDAO {
 
-    /**
-     * Retrieves all exam history for the logged-in user and sets it
-     * in the request attributes.
-     *
-     * @param request the HttpServletRequest object containing the user's session
-     * @return true if exam history and topics are successfully retrieved,
-     *         false otherwise
-     */
+	/**
+	 * Retrieves all exam history for the logged-in user and sets it in the request attributes.
+	 *
+	 * @param request
+	 *            the HttpServletRequest object containing the user's session
+	 * @return true if exam history and topics are successfully retrieved, false otherwise
+	 */
 	public static boolean getExamsHistoryByUserId(HttpServletRequest request) {
 		List<UserBasedHistoryDTO> history = new ArrayList<>();
 		List<String> topics = new ArrayList<>();
 		HttpSession session = request.getSession();
 		int userId = (Integer) session.getAttribute("user_id");
 
-//		int userId = id;
-
 		System.out.println("exam history dao userId: " + userId);
 		String sqlUserHistory = """
-				SELECT e.exam_id, e.exam_name,
-				to_char(a.start_time,'DD-MM-YYYY') as start_date, to_char(a.start_time,'HH24:MI') as start_time, a.correct_answers, a.incorrect_answers, a.unanswered, a.score, a.passed, a.user_id
-				FROM exam e join exam_attempt a
-				on e.exam_id = a.exam_id
-				where a.user_id=?;
-				     """;
-		//sql for display topics
+						SELECT e.exam_id, e.exam_name,
+						to_char(a.start_time,'DD-MM-YYYY') as start_date, to_char(a.start_time,'HH24:MI') as start_time, a.correct_answers, a.incorrect_answers, a.unanswered, a.score, a.passed, a.user_id
+						FROM exam e join exam_attempt a
+						on e.exam_id = a.exam_id
+						where a.user_id=?;
+						     """;
+		// sql for display topics
 		String sql = "SELECT DISTINCT exam_topic FROM exam WHERE status = 'ACTIVE'";
-		
-		
+
 		try (Connection conn = DBConnection.getConnection();
-				PreparedStatement psmtHistory = conn.prepareStatement(sqlUserHistory);
-				Statement stmt = conn.createStatement();) {
+						PreparedStatement psmtHistory = conn.prepareStatement(sqlUserHistory);
+						Statement stmt = conn.createStatement();) {
 
 			psmtHistory.setInt(1, userId);
 			ResultSet result = stmt.executeQuery(sql);
 			ResultSet rs = psmtHistory.executeQuery();
 
-		
 			while (rs.next()) {
 				UserBasedHistoryDTO examHistory = new UserBasedHistoryDTO();
 
@@ -78,15 +71,15 @@ public class ExamHistoryDAO {
 					examHistory.setResult("Pass");
 				} else {
 					examHistory.setResult("Fail");
-				}	
+				}
 				history.add(examHistory);
 			}
-			
-			//this while for get all topics
+
+			// this while for get all topics
 			while (result.next()) {
-				 topics.add(result.getString("exam_topic"));
+				topics.add(result.getString("exam_topic"));
 			}
-			
+
 			request.setAttribute("history", history);
 			request.setAttribute("topics", topics);
 			return true;

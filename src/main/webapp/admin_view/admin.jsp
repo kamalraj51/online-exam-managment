@@ -24,11 +24,9 @@
            
 
             <button  name="action" value="create_exam"> Create Exam</button>
-            <button name="action" value="edit_exam">Edit Exam</button>
             <button  name="action" value="activeretire_exam"> Active/Retire Exam</button>
             <button  name="action" value="user_based_history"> User History</button>
             <button  name="action" value="exam_based_history"> Exam History</button>
-            <!-- kamal added this signup button  -->
             <button  name="action" value="signup_admin">Admin SignUp</button>
 
         </form>

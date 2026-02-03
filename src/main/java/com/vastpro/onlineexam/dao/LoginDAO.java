@@ -10,25 +10,22 @@ import com.vastpro.onlineexam.db.DBConnection;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import jakarta.servlet.http.HttpSessionEvent;
 
 /**
  * Class Name: LoginDAO
  *
  * Description: This DAO class handles validation of user login credentials.
  * 
- * It connects to the database, retrieves the hashed password for the given
- * email, and verifies the input password using BCrypt.
+ * It connects to the database, retrieves the hashed password for the given email, and verifies the input password using BCrypt.
  */
 public class LoginDAO {
 
 	/**
 	 * Validates user login credentials.
 	 *
-	 * @param request the HttpServletRequest object containing parameters: "email"
-	 *                and "password"
-	 * @return true if the email exists, the account is active, and the password
-	 *         matches, false otherwise
+	 * @param request
+	 *            the HttpServletRequest object containing parameters: "email" and "password"
+	 * @return true if the email exists, the account is active, and the password matches, false otherwise
 	 */
 	public static boolean validateLogin(HttpServletRequest request) {
 		System.out.println("login called");
@@ -37,8 +34,7 @@ public class LoginDAO {
 		String password = request.getParameter("password");
 		String dbPassword;
 		/*
-		 * sql changed by kamal added String sql =
-		 * "SELECT name,role_id,user_id FROM users " +
+		 * sql changed by kamal added String sql = "SELECT name,role_id,user_id FROM users " +
 		 * "WHERE email = ? AND password_hash = ? AND active = true";
 		 */
 		String sql = "SELECT password_hash,name,role_id,user_id FROM users " + "WHERE email = ? AND active = true";
@@ -64,7 +60,7 @@ public class LoginDAO {
 				} else {
 
 					System.out.println("LoginDAO: Invalid password");
-					request.setAttribute("loginErrorPassword", "Password not matching");
+					request.setAttribute("loginErrorPassword", "Invalid password");
 					return false;
 				}
 			}
