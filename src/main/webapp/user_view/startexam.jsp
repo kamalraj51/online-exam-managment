@@ -20,7 +20,7 @@ Long remainingSeconds = (Long) request.getAttribute("remainingSeconds");
 <style>
 .container {
 	width: 100%;
-	height: calc(100vh - 80px);
+	height: 100vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -90,8 +90,15 @@ button:hover {
 */
 </style>
 </head>
-<body
-	style="background: radial-gradient(circle farthest-corner at center, #4fe3b1 0%, #2fbf9b 30%, #0f6f5f 55%, #061318 100%);">
+<body style="background: radial-gradient(
+  circle farthest-corner at center,
+  #4fe3b1 0%,
+  #2fbf9b 30%,
+  #0f6f5f 55%,
+  #061318 100%
+);
+
+">
 
 	<div class="container">
 

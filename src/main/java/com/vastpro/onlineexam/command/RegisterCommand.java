@@ -59,12 +59,22 @@ public class RegisterCommand implements Command {
 		}
 
 		// All validations passed, proceed with user registration
+
 		if (!RegisterDAO.checkUser(req)) {
-			return RegisterDAO.registerUser(req);
+			boolean isRegistered = RegisterDAO.registerUser(req);
+
+			if (isRegistered) {
+
+				req.getSession().setAttribute("createAccToast", "Account created successfully!");
+				flag = true;
+			}
+
 		} else {
 			req.setAttribute("signupErrorEmail", "User Already Available");
 			return flag;
 		}
+
+		return flag;
 	}
 
 }

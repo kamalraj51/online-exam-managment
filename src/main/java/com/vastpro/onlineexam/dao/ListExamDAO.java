@@ -48,14 +48,14 @@ public class ListExamDAO {
 
 				exams.add(exam);
 			}
+			request.setAttribute("examList", exams);
+			return true;
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("examList", exams);
 			return false;
 		}
-		request.setAttribute("examList", exams);
-		return true;
 	}
 
 }

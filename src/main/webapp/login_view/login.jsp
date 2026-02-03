@@ -5,7 +5,46 @@
 <head>
 <meta charset="UTF-8">
 <title>Login</title>
+<style>
+/*Toast*/
+#toast{
+	visibility: hidden;
+	width:250px;
+	background-color: #28a745;
+	color:#fff;
+	text-align: center;
+	padding: 15px;
+	border-radius: 4px;
+	position:fixed;
+	z-index:999;
+	left: 50%;
+	 bottom: 30px;
+  transform: translateX(-50%);
+  font-size: 16px;
+}
+
+#toast.show{
+	visibility: visible;
+	 animation: fadein 0.5s, fadeout 0.5s 2.5s;
+} 
+#toast.success{
+  background-color: #28a745;
+  }
+#toast.failed {
+    background-color: #dc3545;
+}
+
+@keyframes fadein {
+  from { bottom: 0; opacity: 0; }
+  to { bottom: 30px; opacity: 1; }
+}
+
+@keyframes fadeout {
+  from { bottom: 30px; opacity: 1; }
+  to { bottom: 0; opacity: 0; }
+}</style>
 <link rel="stylesheet" href="css/style2.css"/>
+
 </head>
 
 <body>
@@ -29,10 +68,6 @@
 				</div>
 				
 
-
-				
-
-
 				<div class="label-style">
 					<input type="password" name="password" class="password"
 						placeholder=""
@@ -40,7 +75,7 @@
 					<label for="password">enter your password</label>
 				</div>
 
-				
+	
 				<button class="login_btn">Login</button>
 			</form>
 			<form class="new_user" action="controller" method="post">
@@ -50,9 +85,28 @@
 				</button>
 			</form>
 		</div>
-	</div>
+	
+		    
+       
+        </div>
+        <div id="toast">
+        		<%=(session.getAttribute("createAccToast")!=null)?session.getAttribute("createAccToast"):"hello" %>
+        </div>
+
 </body>
+
 <script>
+	window.onload = function(){
+	var message = "<%=session.getAttribute("createAccToast")%>";
+	if(message && message !=="null"){
+		var toast = document.getElementById("toast");
+		toast.classList.add("show");
+		
+		setTimeout(function(){
+			toast.classList.remove("show");
+		}, 3000);
+	}
+};
 document.addEventListener("DOMContentLoaded", function () {
 
     const form = document.querySelector(".login_form");
@@ -116,7 +170,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+	
+
 </script>
+
 
 <style>
 
@@ -131,4 +189,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </style>
 
+
+<%
+    session.removeAttribute("createAccToast");
+%>
 </html>

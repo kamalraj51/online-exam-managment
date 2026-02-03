@@ -84,7 +84,7 @@
 			%>
 
 			<tr>
-				<td colspan="9">No History available</td>
+				<td colspan="7" style="text-align: center;">No History available</td>
 			</tr>
 
 

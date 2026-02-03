@@ -35,16 +35,16 @@ public class CreateExamDAO {
 		String description = request.getParameter("description");
 		int passMinCorrect = Integer.parseInt(request.getParameter("pass_min_correct"));
 		Integer eachQuestionMark = Integer.parseInt(request.getParameter("each_question_mark"));
-		
+
 		int durationMinutes = Integer.parseInt(request.getParameter("duration_minutes"));
 		// int created_by = Integer.parseInt(request.getParameter("user_id"));
 		int createdBy = (Integer) request.getSession().getAttribute("user_id");
 		Integer noOfQuestion = Integer.parseInt(request.getParameter("add_question"));
-		Integer totalMark = noOfQuestion*eachQuestionMark;
+		Integer totalMark = noOfQuestion * eachQuestionMark;
 		HttpSession session = request.getSession();
 		session.setAttribute("noOfQuestions", noOfQuestion);
 		session.setAttribute("marks", eachQuestionMark);
-		
+
 		String sql = "insert into exam"
 						+ " (exam_topic,exam_name,description,status,pass_min_correct,total_marks,duration_minutes,created_by,created_at)"
 						+ "values(?,?,?,?,?,?,?,?,?)" + " RETURNING exam_id";
@@ -64,7 +64,7 @@ public class CreateExamDAO {
 			rs.next();
 			int examId = rs.getInt(1);
 
-			request.setAttribute("examId", examId);
+			request.getSession().setAttribute("examId", examId);
 			System.out.println("Exam Rows Updated: Exam Id " + examId);
 			System.out.println("createExamDao: created_by " + createdBy);
 
