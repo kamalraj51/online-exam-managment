@@ -21,8 +21,6 @@ import jakarta.servlet.http.HttpSession;
  * This class is responsible for displaying exam questions one by one.
  * It handles navigation (next, back, submit), saves user answers,
  * and manages exam timer functionality.
- *
- * It implements the Command interface.
  */
 public class ShowQuestionCommand implements Command {
 	 /**

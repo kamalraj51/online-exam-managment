@@ -35,6 +35,7 @@ public class SubmitExamCommand implements Command {
 
 	@Override
 	public boolean execute(HttpServletRequest req, HttpServletResponse res) {
+		boolean flag = false;
 		System.out.println("SubmitExamCommand called");
 		try {
 			HttpSession session = req.getSession();
@@ -101,11 +102,12 @@ public class SubmitExamCommand implements Command {
 			req.setAttribute("score", correct);
 			req.setAttribute("responses", response);
 			System.out.println("SubmitExamCommand end:" + correct);
-			return true;
+			flag = true;
 
 		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
+			System.out.println("SubmitExamCommand: " + e.getMessage());
+
 		}
+		return flag;
 	}
 }

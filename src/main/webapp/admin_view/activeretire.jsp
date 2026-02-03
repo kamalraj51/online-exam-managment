@@ -35,7 +35,7 @@
 			%>
 
 			<tr>
-				<td colspan="9">No History available</td>
+				<td colspan="3" style="text-align:center;">No Exams Available</td>
 			</tr>
 
 
@@ -71,9 +71,8 @@
 
 		</table>
 		<form action="controller" method="post">
-			<button name="action" value="authorize">Back to Home</button>
+			<button name="action" value="authorize">Back To Home</button>
 		</form>
 </div>
-<jsp:include page="/common/footer.jsp"></jsp:include>
 </body>
 </html>

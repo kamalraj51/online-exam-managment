@@ -15,15 +15,7 @@
 
 </head>
 
-<body style="background: radial-gradient(
-  circle farthest-corner at center,
-  #4fe3b1 0%,
-  #2fbf9b 30%,
-  #0f6f5f 55%,
-  #061318 100%
-);
-
-">
+<body style="background-color: #f4f6f8 ">
 	<jsp:include page="/common/header.jsp"></jsp:include>
 	<div  class="home_container">
 
