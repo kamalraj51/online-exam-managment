@@ -28,9 +28,9 @@ public class ListExamBasedHistoryDAO {
 	 *            HttpServletRequest containing selected exam ID
 	 * @return true if data retrieval is successful, false otherwise
 	 */
-	public static boolean getAllUsers(HttpServletRequest request) {
+	public static boolean getAllExams(HttpServletRequest request) {
 
-		List<ExamBasedHistoryDTO> history = new ArrayList<>();
+		List<ExamBasedHistoryDTO> examHistoryList = new ArrayList<>();
 		List<ExamDTO> listOfExams = new ArrayList<ExamDTO>();
 		String examIdString = (request.getParameter("adminSelectedOption") != null) ? (request.getParameter("adminSelectedOption")) : "00";
 		Integer examId = Integer.parseInt(examIdString);
@@ -57,13 +57,13 @@ public class ListExamBasedHistoryDAO {
 				examHistory.setDate(rs.getString("start_date"));
 				examHistory.setTime(rs.getString("start_time"));
 				examHistory.setScore(rs.getInt("score"));
-				if (rs.getBoolean("passed")){
+				if (rs.getBoolean("passed")) {
 					examHistory.setResult("Pass");
 				} else {
 					examHistory.setResult("Fail");
 				}
-				
-				history.add(examHistory);
+
+				examHistoryList.add(examHistory);
 			}
 			while (examResult.next()) {
 				ExamDTO exam = new ExamDTO();
@@ -72,13 +72,13 @@ public class ListExamBasedHistoryDAO {
 				listOfExams.add(exam);
 			}
 
-			request.setAttribute("examBasedHistory", history);
+			request.setAttribute("examBasedHistory", examHistoryList);
 			request.setAttribute("listOfExams", listOfExams);
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("exception occured exambasedhistory");
-			request.setAttribute("examBasedHistory", history);
+			request.setAttribute("examBasedHistory", examHistoryList);
 			return false;
 		}
 

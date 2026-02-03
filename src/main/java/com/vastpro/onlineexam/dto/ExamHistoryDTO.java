@@ -80,18 +80,6 @@ public class ExamHistoryDTO {
 						+ ", incorrect=" + incorrect + ", unanswered=" + unanswered + ", result=" + result + "]";
 	}
 
-	public ExamHistoryDTO(String examName, Timestamp dateTime, int yourMarks, String correct, String incorrect, String unanswered,
-					String result) {
-		super();
-		this.examName = examName;
-		this.dateTime = dateTime;
-		this.yourMarks = yourMarks;
-		this.correct = correct;
-		this.incorrect = incorrect;
-		this.unanswered = unanswered;
-		this.result = result;
-	}
-
 	public ExamHistoryDTO() {
 	}
 }
