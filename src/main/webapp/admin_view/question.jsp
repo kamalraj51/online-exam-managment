@@ -15,6 +15,7 @@ color:white;
 text-shadow: 2px 1px black;
 }
 </style>
+<link rel="stylesheet" href="css/style.css"/>
 </head>
 
 <body style="background: radial-gradient(
@@ -87,6 +88,30 @@ text-shadow: 2px 1px black;
 
 			<button name="action" value="submit">Submit</button>
 		</form>
-	</div>
-</body>
+	</div>     <div id="toast" class="<%= session.getAttribute("questionToastStatus") != null 
+             ? session.getAttribute("questionToastStatus") 
+             : "" %>">
+        		<%=(session.getAttribute("questionToast")!=null)?session.getAttribute("questionToast"):"" %>
+        </div>
+
+    </body>
+    <script >
+
+	window.onload = function(){
+	var message = "<%=session.getAttribute("questionToast")%>";
+	if(message && message !=="null"){
+		var toast = document.getElementById("toast");
+		toast.classList.add("show");
+		
+		setTimeout(function(){
+			toast.classList.remove("show");
+		}, 3000);
+	}
+};
+</script>
+<%
+    session.removeAttribute("questionToast");
+%>
+	
+
 </html>

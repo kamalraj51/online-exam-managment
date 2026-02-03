@@ -537,3 +537,41 @@ select {
 	padding: 4px;
 	border-radius: 5px;
 }
+
+/*Toast*/
+#toast{
+	visibility: hidden;
+	width:250px;
+	background-color: #28a745;
+	color:#fff;
+	text-align: center;
+	padding: 15px;
+	border-radius: 4px;
+	position:fixed;
+	z-index:999;
+	left: 50%;
+	 bottom: 30px;
+  transform: translateX(-50%);
+  font-size: 16px;
+}
+
+#toast.show{
+	visibility: visible;
+	 animation: fadein 0.5s, fadeout 0.5s 2.5s;
+} 
+#toast.success{
+  background-color: #28a745;
+  }
+#toast.failed {
+    background-color: #dc3545;
+}
+
+@keyframes fadein {
+  from { bottom: 0; opacity: 0; }
+  to { bottom: 30px; opacity: 1; }
+}
+
+@keyframes fadeout {
+  from { bottom: 30px; opacity: 1; }
+  to { bottom: 0; opacity: 0; }
+}

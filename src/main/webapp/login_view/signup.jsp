@@ -27,7 +27,7 @@ label::after {
 	margin-left: 5px; /* Space between label and asterisk */
 }
 </style>
-<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/style.css"/>
 
 </head>
 

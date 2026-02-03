@@ -62,7 +62,19 @@ public class RegisterCommand implements Command {
 		}
 
 		// All validations passed, proceed with user registration
-		return CreateNewUserDAO.registerUser(req);
+		
+		 boolean isRegistered = CreateNewUserDAO.registerUser(req);
+
+		    if (isRegistered) {
+		    
+		        req.getSession().setAttribute(
+		            "createAccToast",
+		            "Account created successfully!"
+		        );
+		        return true;
+		    }
+
+		    return false;
 	}
 
 }

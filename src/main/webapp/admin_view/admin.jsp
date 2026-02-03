@@ -5,9 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Admin Page</title>
-
 <link rel="stylesheet" href="css/style.css"/>
 </head>
+
 
 <body  style="background-image: url('assets/bgplain.jpg'); background-size: 100%; background-repeat: no-repeat;">
     <jsp:include page="/common/header.jsp"/>
@@ -25,6 +25,30 @@
 
         </form>
     </div>
+     <div id="toast" class="<%= session.getAttribute("adminToastStatus") != null 
+             ? session.getAttribute("adminToastStatus") 
+             : "" %>">
+        		<%=(session.getAttribute("adminToast")!=null)?session.getAttribute("adminToast"):"" %>
+        </div>
     <jsp:include page="/common/footer.jsp"/>
-</body>
+    </body>
+    <script >
+
+	window.onload = function(){
+	var message = "<%=session.getAttribute("adminToast")%>";
+	if(message && message !=="null"){
+		var toast = document.getElementById("toast");
+		toast.classList.add("show");
+		
+		setTimeout(function(){
+			toast.classList.remove("show");
+		}, 3000);
+	}
+};
+	
+</script>
+
+<%
+    session.removeAttribute("adminToast");
+%>
 </html>

@@ -55,6 +55,7 @@ public class CreateNewUserDAO {
 			if (rowsInsted > 0) {
 				System.out.println("Rows Inserted: " + rowsInsted);
 				flag = true;
+				
 			}
 
 		} catch (SQLException e) {

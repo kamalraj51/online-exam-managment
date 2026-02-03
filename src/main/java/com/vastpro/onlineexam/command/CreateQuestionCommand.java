@@ -27,7 +27,15 @@ public class CreateQuestionCommand implements Command{
      */
 	@Override
 	public boolean execute(HttpServletRequest req, HttpServletResponse res) {
-		return CreateQuestionDAO.addQuestion(req);
+		boolean isCreated = CreateQuestionDAO.addQuestion(req);
+		if(isCreated) {
+			req.getSession().setAttribute("adminToastStatus", "success");
+			req.getSession().setAttribute("adminToast", "exam created successfully!");
+			return true;
+		}else {
+			req.getSession().setAttribute("questionToastStatus", "failed");
+			req.getSession().setAttribute("questionToast", "exam creation faild!");
+		return false;}
 	}
 
 }

@@ -78,9 +78,27 @@ label::after {
             <p class="login_text">New User - </p> <button name="action" value="signup" class="signup_button" >Signup </button>
         </form>
         </div>
+        <div id="toast">
+        		<%=(session.getAttribute("createAccToast")!=null)?session.getAttribute("createAccToast"):"hello" %>
+        </div>
 </body>
-<script type="text/javascript">
+<script >
 
+	window.onload = function(){
+	var message = "<%=session.getAttribute("createAccToast")%>";
+	if(message && message !=="null"){
+		var toast = document.getElementById("toast");
+		toast.classList.add("show");
+		
+		setTimeout(function(){
+			toast.classList.remove("show");
+		}, 3000);
+	}
+};
 	
 </script>
+
+<%
+    session.removeAttribute("createAccToast");
+%>
 </html>
