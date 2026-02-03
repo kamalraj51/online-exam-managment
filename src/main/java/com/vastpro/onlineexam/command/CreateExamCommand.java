@@ -1,8 +1,5 @@
 package com.vastpro.onlineexam.command;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import com.vastpro.onlineexam.dao.CreateExamDAO;
 
 import jakarta.servlet.http.HttpServletRequest;
