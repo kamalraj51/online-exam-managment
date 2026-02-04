@@ -35,15 +35,17 @@
 					<label for="email">Enter the email</label>
 				</div>
 
-				<div class="label-style">
-					<input type="password" name="password" placeholder=""
+				<div class="label-style password-wrapper">
+					<input type="password" name="password" id="signupPassword" placeholder=""
 						value="<%=request.getParameter("password") != null ? request.getParameter("password") : ""%>">
 					<label for="password">Enter the password</label>
+					<span class="toggle-password" onclick="togglePassword('signupPassword', this)"> 👁 </span>
 				</div>
-				<div class="label-style">
-					<input type="password" name="confirm_password" placeholder=""
+				<div class="label-style password-wrapper">
+					<input type="password" name="confirm_password" id="confirmPassword" placeholder=""
 					value="<%=request.getParameter("password") != null ? request.getParameter("confirm_password") : ""%>">
 					<label for="confirm_password">Confirm the password</label>
+					<span class="toggle-password" onclick="togglePassword('confirmPassword', this)"> 👁 </span>
 				</div>
 				<input type="hidden" value="2" name="role_id">
 
@@ -148,6 +150,18 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+      function togglePassword(inputId, eyeIcon) {
+           const input = document.getElementById(inputId);
+
+              if (input.type === "password") {
+                  input.type = "text";
+                  eyeIcon.textContent = "👀";
+              } else {
+                  input.type = "password";
+                  eyeIcon.textContent = "👁";
+  }
+}	
 </script>
 
 <style>
