@@ -16,16 +16,16 @@ public class ActiveRetireCommand implements Command {
 	/**
 	 * Executes the change status.
 	 *
-	 * @param req
+	 * @param request
 	 *            the HttpServletRequest object
-	 * @param res
+	 * @param response
 	 *            the HttpServletResponse object
 	 * @return true if the status is changed to active or retire false otherwise.
 	 */
 	@Override
-	public boolean execute(HttpServletRequest req, HttpServletResponse res) {
+	public boolean execute(HttpServletRequest request, HttpServletResponse response) {
 
-		return ActiveRetireExamDAO.activeRetireExam(req);
+		return ActiveRetireExamDAO.activeRetireExam(request);
 	}
 
 }
