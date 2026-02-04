@@ -89,7 +89,7 @@
 		        <% if ( durationMinError != null) { %>
 		        <p class="error_message"><%= durationMinError %></p>
 		        <% } %>
-
+			
 			<button class="login_btn">Create</button>
 		</form>
 		<form method="post" action="controller"

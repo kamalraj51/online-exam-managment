@@ -8,28 +8,64 @@
 <head>
 <meta charset="UTF-8">
 <title>Question</title>
-<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/style2.css" />
 <style>
-lable {
-	color: white;
-	text-shadow: 2px 1px black;
+
+
+
+
+.label-style textarea {
+    resize: vertical;
+    min-height: 80px;
 }
 
-.label-style textarea:focus+label, .label-style textarea:not(:placeholder-shown)+label
-	{
-	top: 0;
-	font-size: 12px;
-	color: black;
-	background-color: white;
-	padding: 4px;
-	border-radius: 5px;
+
+
+/* ===== Radio Buttons ===== */
+input[type="radio"] {
+    transform: scale(1.1);
+    cursor: pointer;
 }
+
+lable {
+    font-size: 12px;
+    cursor: pointer;
+}
+
+/* ===== Radio Row ===== */
+div[style*="display: flex"] {
+    align-items: center;
+    margin: 15px 0 6px;
+}
+
+
+
+
+
+
+/* ===== Toast Message ===== */
+#toast {
+    visibility: hidden;
+    min-width: 260px;
+    background: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 14px 20px;
+    position: fixed;
+    z-index: 999;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    font-size: 14px;
+}
+
+
 </style>
-<link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
-	<div class="question_container">
+	<div class="exam_container">
 		<h2>Add Questions</h2>
 		<form action="controller" method="post" class="createquestion_form">
 			<%
@@ -45,8 +81,7 @@ lable {
 				required="required">
 
 			<div class="label-style">
-				<textarea rows="3" name="question_text<%=i%>" placeholder=""
-					value="<%=request.getParameter("question_text" + i) != null ? request.getParameter("question_text" + i) : ""%>"></textarea>
+				<textarea rows="2" name="question_text<%=i%>" placeholder=""><%=request.getParameter("question_text" + i) != null ? request.getParameter("question_text" + i) : ""%></textarea>
 				<label for="question_text<%=i%>">Enter the question...</label>
 			</div>
 
@@ -64,9 +99,9 @@ lable {
 
 
 			<h3>Answer</h3>
-			<div style="display: flex; gap: 20px">
+			<div class="option_container">
 				<input type="radio" name="correct_option<%=i%>" value="1" required>
-				<lable> Option A </lable>
+				<label> Option A </label>
 			</div>
 
 			<div class="label-style">
@@ -85,9 +120,9 @@ lable {
 			<%
 			}
 			%>
-			<div style="display: flex; gap: 20px">
+			<div class="option_container">
 				<input type="radio" name="correct_option<%=i%>" value="2" required>
-				<lable> Option B </lable>
+				<label> Option B </label>
 			</div>
 			<div class="label-style">
 				<input type="text" name="option_2<%=i%>" placeholder=""
@@ -106,9 +141,9 @@ lable {
 			}
 			%>
 
-			<div style="display: flex; gap: 20px">
+			<div class="option_container">
 				<input type="radio" name="correct_option<%=i%>" value="3" required>
-				<lable> Option C </lable>
+				<label> Option C </label>
 
 			</div>
 			<div class="label-style">
@@ -128,9 +163,9 @@ lable {
 			}
 			%>
 
-			<div style="display: flex; gap: 20px">
+			<div class="option_container">
 				<input type="radio" name="correct_option<%=i%>" value="4" required>
-				<lable> Option D </lable>
+				<label> Option-d </label>
 
 			</div>
 			<div class="label-style">
@@ -154,7 +189,7 @@ lable {
 			}
 			%>
 
-			<button name="action" value="submit">Submit</button>
+			<button name="action" value="submit" class="login_btn">Submit</button>
 		</form>
 	</div>
 	<div id="toast"
@@ -163,21 +198,7 @@ lable {
 	</div>
 
 </body>
-<script>
 
-	window.onload = function(){
-	var message = "<%=session.getAttribute("questionToast")%>
-	";
-		if (message && message !== "null") {
-			var toast = document.getElementById("toast");
-			toast.classList.add("show");
-
-			setTimeout(function() {
-				toast.classList.remove("show");
-			}, 3000);
-		}
-	};
-</script>
 <%
 session.removeAttribute("questionToast");
 %>
