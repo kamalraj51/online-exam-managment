@@ -9,7 +9,7 @@
 
 </head>
 
-<body>
+<body style="background-color: #f9f5f0;">
 	<div class="container">
 		<div class="img_container">
 			<img class="img_style" alt="no image" src="./assets/bgplain.jpg" />
@@ -53,12 +53,7 @@
 
 			<button type="submit" class="login_btn">Sign Up</button>
 		</form>
-		<form class="new_user" action="controller" method="post">
-
-			<p class="login_text">Already signed up? -</p>
-			<button name="action" value="login" class="signup_button">Login
-			</button>
-		</form>
+		
 		</div>
 	</div>
 </body>

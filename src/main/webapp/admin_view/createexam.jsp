@@ -15,10 +15,6 @@
 
 			<input type="hidden" name="action" value="create_exam_user">
 			
-			<% String examError = (String) request.getAttribute("examError"); %>
-			<% if (examError != null) { %>
-			<p class="error_message"><%=examError %></p>
-			<%} %>
 			
 			<div class="label-style">
 				<input type="text" name="exam_topic" placeholder=""
@@ -40,6 +36,10 @@
 		        <% if (examNameError != null) { %>
 		        <p class="error_message"><%= examNameError %></p>
 		        <% } %>
+			<% String examError = (String) request.getAttribute("examError"); %>
+			<% if (examError != null) { %>
+			<p class="error_message"><%=examError %></p>
+			<%} %>
 
 			<div class="label-style">
 				<input type="text" name="description" placeholder=""
@@ -90,12 +90,126 @@
 		        <p class="error_message"><%= durationMinError %></p>
 		        <% } %>
 
-			<button>Create</button>
+			<button class="login_btn">Create</button>
 		</form>
 		<form method="post" action="controller"
 			style="display: flex; gap: 20px;">
-			<button name="action" value="cancel">Cancel</button>
+			<button name="action" value="cancel" class="login_btn">Cancel</button>
 		</form>
 	</div>
 </body>
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function () {
+
+    const form = document.querySelector(".createexam_form");
+    const examTopicInput = form.querySelector('input[name="exam_topic"]');
+    const examNameInput = form.querySelector('input[name="exam_name"]');
+    const descriptionInput = form.querySelector('input[name="description"]');
+    const noOfQuestionInput = form.querySelector('input[name="no_of_question"]');
+    const minimumCorrectInput = form.querySelector('input[name="pass_min_correct"]');
+    const eachQuestionMarkInput = form.querySelector('input[name="each_question_mark"]');
+    const durationMinutesInput = form.querySelector('input[name="duration_minutes"]');
+    
+    const nameRegex = /^[a-zA-Z0-9 ,._]+$/;
+    const numberRegex = /^[1-9][0-9]*$/;
+    
+    const backendExamNameError = "<%= request.getAttribute("examNameError") != null ? request.getAttribute("examNameError") : "" %>";
+    
+    function showError(input, message) {
+        removeError(input);
+
+        const error = document.createElement("p");
+        error.className = "js-error";
+        error.innerText = message;
+
+        input.classList.add("input-error");
+        input.parentElement.appendChild(error);
+    }
+
+    function removeError(input) {
+        input.classList.remove("input-error");
+        const error = input.parentElement.querySelector(".js-error");
+        if (error) error.remove();
+    }
+
+    
+    examTopicInput.addEventListener("input", () => removeError(examTopicInput));
+    examNameInput.addEventListener("input", () => removeError(examNameInput));
+    descriptionInput.addEventListener("input", () => removeError(descriptionInput));
+    noOfQuestionInput.addEventListener("input", () => removeError(noOfQuestionInput));
+    minimumCorrectInput.addEventListener("input", () => removeError(minimumCorrectInput));
+    eachQuestionMarkInput.addEventListener("input", () => removeError(eachQuestionMarkInput));
+    durationMinutesInput.addEventListener("input", () => removeError(durationMinutesInput));
+    
+  
+    if (backendExamNameError !== "") {
+        showError(emailInput, backendEmailError);
+    }
+
+    form.addEventListener("submit", function (e) {
+        let isValid = true;
+
+        if (examTopicInput.value.trim() === "") {
+            showError(examTopicInput, "Exam topic is required");
+            isValid = false;
+        } else if (!nameRegex.test(examTopicInput.value.trim())) {
+            showError(examTopicInput, "Enter a valid topic");
+            isValid = false;
+        }
+        if (examNameInput.value.trim() === "") {
+            showError(examNameInput, "Exam name is required");
+            isValid = false;
+        } else if (!nameRegex.test(examNameInput.value.trim())) {
+            showError(examNameInput, "Enter a valid name");
+            isValid = false;
+        }
+
+        if (descriptionInput.value.trim() === "") {
+            showError(descriptionInput, "Description is required");
+            isValid = false;
+        } else if (!nameRegex.test(descriptionInput.value.trim())) {
+            showError(descriptionInput, "Enter a valid description");
+            isValid = false;
+        }
+        if (noOfQuestionInput.value.trim() === "") {
+            showError(noOfQuestionInput, "Number of question is required");
+            isValid = false;
+        } else if (!numberRegex.test(noOfQuestionInput.value.trim())) {
+            showError(noOfQuestionInput, "Enter a valid number more than 0");
+            isValid = false;
+        }
+
+        if (minimumCorrectInput.value.trim() === "") {
+            showError(minimumCorrectInput, "Minimum mark is required");
+            isValid = false;
+        } else if (!numberRegex.test(minimumCorrectInput.value.trim())) {
+            showError(minimumCorrectInput, "Enter a valid mark more than 0");
+            isValid = false;
+        }
+        if (eachQuestionMarkInput.value.trim() === "") {
+            showError(eachQuestionMarkInput, "Each question mark is required");
+            isValid = false;
+        } else if (!numberRegex.test(eachQuestionMarkInput.value.trim())) {
+            showError(eachQuestionMarkInput, "Enter a valid mark more than 0");
+            isValid = false;
+        }
+        if (durationMinutesInput.value.trim() === "") {
+            showError(durationMinutesInput, "Total duration is required");
+            isValid = false;
+        } else if (!numberRegex.test(durationMinutesInput.value.trim())) {
+            showError(durationMinutesInput, "Enter a valid time in minutes");
+            isValid = false;
+        }
+       
+       
+
+        if (!isValid) {
+            e.preventDefault();
+        }
+    });
+});
+
+	
+
+</script>
 </html>

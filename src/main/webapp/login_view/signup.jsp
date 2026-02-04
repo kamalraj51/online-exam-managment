@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="css/style2.css"/>
 
 </head>
-<body>
+<body style="background-color: #f9f5f0;">
 	<div class="container">
 
 		<div class="img_container">

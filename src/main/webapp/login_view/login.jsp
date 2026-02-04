@@ -47,7 +47,7 @@
 
 </head>
 
-<body>
+<body style="background-color: #f9f5f0;">
 	<div class="container">
 
 		<div class="img_container">
@@ -174,19 +174,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </script>
 
-
-<style>
-
-.js-error {
-    color: #e63946;
-    font-size: 12px;
-    margin-top: 5px;
-    font-weight: 600;
-}
-
-
-
-</style>
 
 
 <%

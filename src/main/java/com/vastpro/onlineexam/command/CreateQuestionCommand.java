@@ -30,7 +30,7 @@ public class CreateQuestionCommand implements Command {
 		for (int i = 1; i <= noOfQuestions; i++) {
 
 			String questionText = req.getParameter("question_text" + i);
-			System.out.println("CreateQuestionCommand" + questionText);
+			System.out.println("CreateQuestionCommand -question text" + questionText);
 			System.out.println("CreateQuestionCommand" + req.getParameter("question_text" + i));
 			String option_1 = req.getParameter("option_1" + i);
 			String option_2 = req.getParameter("option_2" + i);

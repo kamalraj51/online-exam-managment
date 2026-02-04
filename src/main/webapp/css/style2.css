@@ -7,10 +7,15 @@
     font-family:  sans-serif;
 }
 
+body{
+	background-color: #0f828c ;
+}
+
 
 .container{
 	display: flex; 
 	height:100vh;
+	
 }
 
 
@@ -118,21 +123,35 @@ label::after {
 
 .exam_container {
 	min-height: 100vh;
-	width: 100vw;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	gap: 10px;
 }
+.createexam_form {
+	padding: 30px 40px;
+	border-radius: 6px;
+	box-shadow: 0 4px 6px black;
+	width: 420px;
+	gap: 15px;
+	background-color: white;
+}
 /* ERROR TEXT */
 .error_message {
     color: red;
     font-size: 12px;
     font-weight: bold;
-    margin: 5px 0 10px;
+    margin: 3px 0 14px;
 }
 
+.js-error {
+    color: #e63946;
+    font-size: 12px;
+    margin-top: 5px;
+    font-weight: 600;
+}
 
 
 /* LOGIN BUTTON */
@@ -151,7 +170,7 @@ label::after {
 }
 
 .login_btn:hover {
-    background: #122f3f;
+    background: #27548a;
 }
 
 /* NEW USER SECTION */
