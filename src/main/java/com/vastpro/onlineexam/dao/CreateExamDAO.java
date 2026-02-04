@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 
 import com.vastpro.onlineexam.db.DBConnection;
+import com.vastpro.onlineexam.dto.ExamDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -31,23 +32,23 @@ public class CreateExamDAO {
 	 */
 	public static boolean createExam(HttpServletRequest request) {
 		boolean flag = false;
-		String examTopic = request.getParameter("exam_topic");
-		String examName = request.getParameter("exam_name");
-		String description = request.getParameter("description");
-		int passMinCorrect = Integer.parseInt(request.getParameter("pass_min_correct"));
-		Integer eachQuestionMark = Integer.parseInt(request.getParameter("each_question_mark"));
-		int durationMinutes = Integer.parseInt(request.getParameter("duration_minutes"));
-		int createdBy = (Integer) request.getSession().getAttribute("user_id");
-		Integer noOfQuestion = Integer.parseInt(request.getParameter("no_of_question"));
-		Integer totalMark = noOfQuestion * eachQuestionMark;
-		HttpSession session = request.getSession();
-		session.setAttribute("noOfQuestions", noOfQuestion);
-		session.setAttribute("marks", eachQuestionMark);
-
+		ExamDTO exam = (ExamDTO) request.getSession().getAttribute("createExamData");
+		String examTopic = exam.getExamTopic();
+		String examName = exam.getExamName();
+		String description = exam.getDescription();
+		int passMinCorrect = exam.getPassMarks();
+		int durationMinutes = exam.getDuration();
+		int createdBy = exam.getCreatedBy();
+		Integer totalMark = exam.getTotalMarks();
+	
+		
+	
+		
+	
 		String sql = "insert into exam"
 						+ " (exam_topic,exam_name,description,status,pass_min_correct,total_marks,duration_minutes,created_by,created_at)"
 						+ "values(?,?,?,?,?,?,?,?,?)" + " RETURNING exam_id";
-		System.out.println("CreateExamDAO" + checkExamAvailable(request));
+		
 		try (Connection conn = DBConnection.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
 			pstmt.setString(1, examTopic);
@@ -85,6 +86,8 @@ public class CreateExamDAO {
 	 */
 	public static boolean checkExamAvailable(HttpServletRequest request) {
 		boolean flag = false;
+		
+
 		String examName = request.getParameter("exam_name");
 		String sql = "select exam_id from exam where exam_name=?";
 		try (Connection conn = DBConnection.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -94,11 +97,48 @@ public class CreateExamDAO {
 				flag = true;
 				request.setAttribute("examError", "Already Exam Available");
 			}
+			if(flag!=true) {
+				request.getSession().setAttribute("createExamData",listOfExam(request));
+			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			flag = false;
 			System.out.println("CreateExamDAO - checkExamAvailable " + e.getMessage());
 		}
 		return flag;
 	}
+	public static ExamDTO listOfExam(HttpServletRequest request) {
+		ExamDTO exam = new ExamDTO();
+		try {
+		String examTopic = request.getParameter("exam_topic");
+		String examName = request.getParameter("exam_name");
+		String description = request.getParameter("description");
+		int passMinCorrect = Integer.parseInt(request.getParameter("pass_min_correct"));
+		Integer eachQuestionMark = Integer.parseInt(request.getParameter("each_question_mark"));
+		int durationMinutes = Integer.parseInt(request.getParameter("duration_minutes"));
+		int createdBy = (Integer) request.getSession().getAttribute("user_id");
+		Integer noOfQuestion = Integer.parseInt(request.getParameter("no_of_question"));
+		Integer totalMark = noOfQuestion * eachQuestionMark;
+		String status = "ACTIVE";
+		HttpSession session = request.getSession();
+		session.setAttribute("noOfQuestions", noOfQuestion);
+		session.setAttribute("marks", eachQuestionMark);
+		
+		exam.setCreatedBy(createdBy);
+		exam.setDescription(description);
+		exam.setDuration(durationMinutes);
+		exam.setExamName(examName);
+		exam.setExamTopic(examTopic);
+		exam.setNumberOfQuestion(noOfQuestion);
+		exam.setPassMarks(passMinCorrect);
+		exam.setStatus(status);
+		exam.setEachMark(eachQuestionMark);
+		exam.setTotalMarks(totalMark);
+		
+		return exam;
+	
+		}catch(Exception e) {
+			e.printStackTrace();
+			return exam;
+		}
+}
 }

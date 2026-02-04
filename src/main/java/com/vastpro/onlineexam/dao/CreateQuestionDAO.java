@@ -27,6 +27,7 @@ public class CreateQuestionDAO {
 	public static boolean addQuestion(HttpServletRequest request) {
 		boolean flag = false;
 		HttpSession session = request.getSession();
+		CreateExamDAO.createExam(request);
 		int noOfQuestion = (Integer) session.getAttribute("noOfQuestions");
 		int marks = (Integer) session.getAttribute("marks");
 		System.out.println("CreateQuestionDAO - no of question " + noOfQuestion);
