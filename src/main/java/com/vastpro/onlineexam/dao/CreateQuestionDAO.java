@@ -33,8 +33,8 @@ public class CreateQuestionDAO {
 		System.out.println("CreateQuestionDAO - each question answer " + marks);
 
 		for (int i = 1; i <= noOfQuestion; i++) {
-			String question = request.getParameter("question_id" + i);
-			System.out.println("Question Text" + question);
+			String questionText = request.getParameter("question_text" + i);
+			System.out.println("Question Text" + questionText);
 			int examId = (Integer) (request.getSession().getAttribute("examId"));
 			StringBuilder sql = new StringBuilder();
 
@@ -45,16 +45,9 @@ public class CreateQuestionDAO {
 			try (Connection conn = DBConnection.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
 
 				pstmt.setInt(1, examId);
-				pstmt.setString(2, question);
+				pstmt.setString(2, questionText);
 				pstmt.setInt(3, marks);
 
-				// pstmt.executeUpdate();
-
-				// int rowsInsted = pstmt.executeUpdate();
-				// if (rowsInsted > 0) {
-				// System.out.println("Question Rows Inserted: " + rowsInsted);
-				// flag = true;
-				// }
 				ResultSet rs = pstmt.executeQuery();
 				while (rs.next()) {
 					int questionId = rs.getInt(1);

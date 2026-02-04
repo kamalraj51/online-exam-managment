@@ -54,7 +54,7 @@
 			<img class="img_style" alt="no image" src="./assets/bgplain.jpg" />
 		</div>
 		<div class="form_container">
-			<h2>Login As user</h2>
+			<h2>Login as user</h2>
 
 			<form action="controller" method="post" class="login_form">
 
@@ -64,7 +64,7 @@
 				<div class="label-style">
 					<input type="text" name="email" class="text" placeholder=""
 						value="<%= request.getParameter("email") != null ? request.getParameter("email") : "" %>">
-					<label for="email">enter your email</label>
+					<label for="email">Enter your email</label>
 				</div>
 				
 
@@ -72,7 +72,7 @@
 					<input type="password" name="password" class="password"
 						placeholder=""
 						value="<%= request.getParameter("password") != null ? request.getParameter("password") : "" %>">
-					<label for="password">enter your password</label>
+					<label for="password">Enter your password</label>
 				</div>
 
 	
@@ -80,7 +80,7 @@
 			</form>
 			<form class="new_user" action="controller" method="post">
 
-				<p class="login_text">New User -</p>
+				<p class="login_text">New user -</p>
 				<button name="action" value="signup" class="signup_button">Signup
 				</button>
 			</form>

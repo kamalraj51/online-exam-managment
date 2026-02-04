@@ -25,7 +25,7 @@ public class ListExamDAO {
 	 * @return true if exams are retrieved successfully, false if an error occurs
 	 */
 	public static boolean getActiveExams(HttpServletRequest request) {
-
+		boolean flag = false;
 		List<ExamDTO> exams = new ArrayList<>();
 
 		String sql = "SELECT exam_id, exam_name, description, duration_minutes, pass_min_correct "
@@ -49,13 +49,13 @@ public class ListExamDAO {
 				exams.add(exam);
 			}
 			request.setAttribute("examList", exams);
-			return true;
+			flag = true;
 
 		} catch (Exception e) {
-			e.printStackTrace();
-			request.setAttribute("examList", exams);
-			return false;
+			System.out.println("ListExamDAO getActiveExams: " + e.getMessage());
+
 		}
+		return flag;
 	}
 
 }

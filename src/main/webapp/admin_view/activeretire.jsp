@@ -11,14 +11,7 @@
 <title>Active/Retire</title>
 <link rel="stylesheet" href="css/style.css" />
 </head>
-<body style="background: radial-gradient(
-  circle farthest-corner at center,
-  #4fe3b1 0%,
-  #2fbf9b 30%,
-  #0f6f5f 55%,
-  #061318 100%
-);
-">
+<body>
 <jsp:include page="/common/header.jsp"></jsp:include>
 <div  class="retire_container">
 <h2 style="color:white; text-align: center;">Active/Retire Exam</h2>
@@ -35,7 +28,7 @@
 			%>
 
 			<tr>
-				<td colspan="9">No History available</td>
+				<td colspan="3" style="text-align:center;">No Exams Available</td>
 			</tr>
 
 
@@ -71,9 +64,8 @@
 
 		</table>
 		<form action="controller" method="post">
-			<button name="action" value="authorize">Back to Home</button>
+			<button name="action" value="authorize">Back To Home</button>
 		</form>
 </div>
-<jsp:include page="/common/footer.jsp"></jsp:include>
 </body>
 </html>

@@ -18,14 +18,7 @@
 
 </head>
 
-<body style="background: radial-gradient(
-  circle farthest-corner at center,
-  #4fe3b1 0%,
-  #2fbf9b 30%,
-  #0f6f5f 55%,
-  #061318 100%
-);
-">
+<body>
 	<jsp:include page="/common/header.jsp"></jsp:include>
 	<div class="retire_container">
 
@@ -88,7 +81,7 @@
 			%>
 
 			<tr style="width:100%;background-color:red;">
-				<td colspan="7">No History available</td>
+				<td colspan="7" style="text-align:center;">No History available</td>
 			</tr>
 
 

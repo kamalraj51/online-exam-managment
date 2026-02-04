@@ -1,6 +1,5 @@
 package com.vastpro.onlineexam.command;
 
-
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -19,105 +18,96 @@ import jakarta.servlet.http.HttpSession;
 /**
  * Class Name: SubmitExamCommand
  *
- * Description:
- * This class handles the submission of an exam.
- * It calculates the exam result, stores attempt details,
- * saves user responses, and prepares result data.
+ * Description: This class handles the submission of an exam.
  *
- * It implements the Command interface.
  */
 public class SubmitExamCommand implements Command {
-	
+
 	/**
-     * Executes the exam submission process.
-     *
-     * @param req the HttpServletRequest containing session data
-     *            such as exam, questions, and user answers
-     * @param res the HttpServletResponse object
-     * @return true if exam submission is successful,
-     *         false otherwise
-     */
+	 * Executes the exam submission process.
+	 *
+	 * @param req
+	 *            the HttpServletRequest containing session data
+	 * @param res
+	 *            the HttpServletResponse object
+	 * @return true if exam submission is successful, false otherwise
+	 */
 
-    @Override
-    public boolean execute(HttpServletRequest req, HttpServletResponse res) {
-    		System.out.println("SubmitExamCommand called");
-        try {
-            HttpSession session = req.getSession();
-            //for timer
-            Timestamp startTime = (Timestamp) session.getAttribute("examStartTime");
-            Timestamp endTime = Timestamp.valueOf(LocalDateTime.now());
-            //
-            
-            int examId = (Integer)(session.getAttribute("examId"));    
-            System.out.println("SubmitExamCommand examId: "+examId);
-            int userId = (Integer) session.getAttribute("user_id");
-            System.out.println("SubmitExamCommand userId: "+userId);
-            ExamDTO exam = (ExamDTO) session.getAttribute("ExamObject");
-            System.out.println("SubmitExamCommand examObject: "+exam);
-            
-            List<QuestionDTO> questions =
-                (List<QuestionDTO>) session.getAttribute("questions");
+	@Override
+	public boolean execute(HttpServletRequest req, HttpServletResponse res) {
+		boolean flag = false;
+		System.out.println("SubmitExamCommand called");
+		try {
+			HttpSession session = req.getSession();
+			// for timer
+			Timestamp startTime = (Timestamp) session.getAttribute("examStartTime");
+			Timestamp endTime = Timestamp.valueOf(LocalDateTime.now());
 
-            Map<Integer, Integer> userAnswers =
-                (Map<Integer, Integer>) session.getAttribute("userAnswers");
+			int examId = (Integer) (session.getAttribute("examId"));
+			System.out.println("SubmitExamCommand examId: " + examId);
+			int userId = (Integer) session.getAttribute("user_id");
+			System.out.println("SubmitExamCommand userId: " + userId);
+			ExamDTO exam = (ExamDTO) session.getAttribute("ExamObject");
+			System.out.println("SubmitExamCommand examObject: " + exam);
 
-            int total = questions.size();
-            int correct = 0;
-            int incorrect = 0;
-            int unanswered = 0;
+			List<QuestionDTO> questions = (List<QuestionDTO>) session.getAttribute("questions");
 
-            for (QuestionDTO q : questions) {
-                Integer selectedAnswerId =
-                        (userAnswers != null) ? userAnswers.get(q.getQuestionId()) : null;
+			Map<Integer, Integer> userAnswers = (Map<Integer, Integer>) session.getAttribute("userAnswers");
 
-                if (selectedAnswerId == null) {
-                    unanswered++;
-                } else {
-                    boolean isCorrect = q.getAnswers().stream()
-                        .anyMatch(a -> a.getAnswerId() == selectedAnswerId && a.isCorrect());
+			int total = questions.size();
+			int correct = 0;
+			int incorrect = 0;
+			int unanswered = 0;
 
-                    if (isCorrect) correct++;
-                    else incorrect++;
-                }
-            }
-            /**kamal changed dynamic c
-            *boolean passed = correct >= 3; 
-            */
-//            boolean passed = correct >= (Exams)req.getAttribute("examList");
-            boolean passed = correct >=exam.getPassMarks();
-            System.out.println("SUbmitExamCommand passed Mark: "+exam.getPassMarks()+" "+passed);
-            ExamAttemptDAO dao = new ExamAttemptDAO();
-            int attemptId = dao.insertExamAttempt(
-                    examId, userId, total, correct, incorrect, unanswered, passed,startTime,endTime
-            );
-            dao.insertResponses(attemptId, questions, userAnswers);
-            	List<ExamResponseDTO> response= ExamResultDAO.getResponsesByAttempt(attemptId);
-            	System.out.println("Submit Exam Command: Exam Response"+response);
+			for (QuestionDTO q : questions) {
+				Integer selectedAnswerId = (userAnswers != null) ? userAnswers.get(q.getQuestionId()) : null;
 
-      
-            session.removeAttribute("questions");
-            session.removeAttribute("userAnswers");
-            session.removeAttribute("currentIndex");
-            // timer
-            session.removeAttribute("examStartTime");
-            session.removeAttribute("examDurationSeconds"); 
-            session.removeAttribute("questions");
-            session.removeAttribute("currentIndex");
-            session.removeAttribute("userAnswers");
-           //timer
-            req.setAttribute("totalQuestions", total);
-            req.setAttribute("correct", correct);
-            req.setAttribute("incorrect", incorrect);
-            req.setAttribute("unanswered", unanswered);
-            req.setAttribute("passed", passed);
-            req.setAttribute("score", correct);
-            req.setAttribute("responses", response);
-            System.out.println("SubmitExamCommand end:"+correct);
-            return true;
+				if (selectedAnswerId == null) {
+					unanswered++;
+				} else {
+					boolean isCorrect = q.getAnswers().stream().anyMatch(a -> a.getAnswerId() == selectedAnswerId && a.isCorrect());
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
+					if (isCorrect)
+						correct++;
+					else
+						incorrect++;
+				}
+			}
+			/**
+			 * kamal changed dynamic c boolean passed = correct >= 3;
+			 */
+			boolean passed = correct >= exam.getPassMarks();
+			System.out.println("SUbmitExamCommand passed Mark: " + exam.getPassMarks() + " " + passed);
+			ExamAttemptDAO dao = new ExamAttemptDAO();
+			int attemptId = dao.insertExamAttempt(examId, userId, total, correct, incorrect, unanswered, passed, startTime, endTime);
+			dao.insertResponses(attemptId, questions, userAnswers);
+			List<ExamResponseDTO> response = ExamResultDAO.getResponsesByAttempt(attemptId);
+			System.out.println("Submit Exam Command: Exam Response" + response);
+
+			session.removeAttribute("questions");
+			session.removeAttribute("userAnswers");
+			session.removeAttribute("currentIndex");
+			// timer
+			session.removeAttribute("examStartTime");
+			session.removeAttribute("examDurationSeconds");
+			session.removeAttribute("questions");
+			session.removeAttribute("currentIndex");
+			session.removeAttribute("userAnswers");
+			// timer
+			req.setAttribute("totalQuestions", total);
+			req.setAttribute("correct", correct);
+			req.setAttribute("incorrect", incorrect);
+			req.setAttribute("unanswered", unanswered);
+			req.setAttribute("passed", passed);
+			req.setAttribute("score", correct);
+			req.setAttribute("responses", response);
+			System.out.println("SubmitExamCommand end:" + correct);
+			flag = true;
+
+		} catch (Exception e) {
+			System.out.println("SubmitExamCommand: " + e.getMessage());
+
+		}
+		return flag;
+	}
 }

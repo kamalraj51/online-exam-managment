@@ -15,21 +15,13 @@
 
 </head>
 
-<body style="background: radial-gradient(
-  circle farthest-corner at center,
-  #4fe3b1 0%,
-  #2fbf9b 30%,
-  #0f6f5f 55%,
-  #061318 100%
-);
-
-">
+<body>
 	<jsp:include page="/common/header.jsp"></jsp:include>
 	<div  class="home_container">
 
 		<form action="controller" method="post" class="user_form">
 		<div class="select_container">
-			<h2 style="color:black;">Select Exam Topic</h2>
+			<h2 style="color:white;">Select Exam Topic</h2>
 
 
 
@@ -63,8 +55,7 @@
 		</div>
 
 		</form>
-
-		<!-- old code form home -->
+		
 		<h2 style="color:white; text-align: center;	">History</h2>
 		<table>
 			<tr>
