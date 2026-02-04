@@ -515,30 +515,47 @@ select {
 }
 /*lable style*/
 .label-style {
-	position: relative;
-	width: 100%;
+    position: relative;
+    margin-bottom: 18px;
 }
 
+/* INPUT FIELDS */
+.label-style input {
+    width: 100%;
+    padding: 12px 10px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid #cccccc;
+    outline: none;
+    background: transparent;
+}
+
+/* FOCUS */
+.label-style input:focus {
+    border-color: #4CAF50;
+}
+
+/* LABEL */
 .label-style label {
-	position: absolute;
-	top: 40%;
-	left: 5px;
-	transform: translateY(-60%);
-	transition: 0.2s ease all;
-	pointer-events: none;
-	color: #999;
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    font-size: 14px;
+    color: #999;
+    background: #ffffff;
+    padding: 0 5px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: 0.3s ease;
 }
 
-.label-style input:focus+label, .label-style input:not(:placeholder-shown)+label
-	{
-	top: 0;
-	font-size: 12px;
-	color: black;
-	background-color: white;
-	padding: 4px;
-	border-radius: 5px;
+/* FLOAT LABEL WHEN TYPING */
+.label-style input:focus + label,
+.label-style input:not(:placeholder-shown) + label {
+    top: -6px;
+    font-size: 12px;
+    color: #4CAF50;
 }
-
 /*Toast*/
 #toast{
 	visibility: hidden;
