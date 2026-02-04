@@ -13,9 +13,9 @@ body{
 	same for all the page
 */
 h2, caption {
-	color: black;
+	color: white;
 	text-transform: capitalize;
-	letter-spacing: 2px;
+	letter-spacing: 1px;
 	font-size: 24px;
 	font-weight: bold;
 	

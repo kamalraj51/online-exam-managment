@@ -29,12 +29,19 @@ if (userSelectedAnswers != null && question != null) {
 <title>Start Exam</title>
 
 <style>
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
 .container {
     width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    background:  #0f828c ;
 }
 
 .answers {
@@ -43,6 +50,9 @@ if (userSelectedAnswers != null && question != null) {
     background: #ffffffcc;
     border-radius: 8px;
     box-shadow: 0 4px 10px #000;
+    display: flex;
+    flex-direction: column;
+    gap:15px;
 }
 
 .answers label {

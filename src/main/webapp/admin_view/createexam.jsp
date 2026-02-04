@@ -93,7 +93,7 @@
 			<button class="login_btn">Create</button>
 		</form>
 		<form method="post" action="controller"
-			style="display: flex; gap: 20px;">
+			style="display: flex; gap: 20px; ">
 			<button name="action" value="cancel" class="login_btn">Cancel</button>
 		</form>
 	</div>
