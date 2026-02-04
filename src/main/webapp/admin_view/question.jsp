@@ -8,12 +8,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Question</title>
-<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/style.css" />
 <style>
-lable{
-color:white;
-text-shadow: 2px 1px black;
+lable {
+	color: white;
+	text-shadow: 2px 1px black;
 }
+
 .label-style textarea:focus+label, .label-style textarea:not(:placeholder-shown)+label
 	{
 	top: 0;
@@ -24,12 +25,12 @@ text-shadow: 2px 1px black;
 	border-radius: 5px;
 }
 </style>
-<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
 	<div class="question_container">
-			<h2>Add Questions</h2>
+		<h2>Add Questions</h2>
 		<form action="controller" method="post" class="createquestion_form">
 			<%
 			int questions = (Integer) session.getAttribute("noOfQuestions");
@@ -40,81 +41,114 @@ text-shadow: 2px 1px black;
 				<%=i%></h3>
 
 			<input type="hidden" name="exam_id"
-				value=<%=request.getSession().getAttribute("examId")%> required="required">
+				value=<%=request.getSession().getAttribute("examId")%>
+				required="required">
 
 			<div class="label-style">
-			<textarea rows="3" name="question_text<%=i%>" placeholder="" 
-			value="<%=request.getParameter("question_text"+i)!= null ? request.getParameter("question_text"+i) : ""%>"></textarea>
-			<label for = "question_text<%=i%>">Enter the question...</label>
+				<textarea rows="3" name="question_text<%=i%>" placeholder=""
+					value="<%=request.getParameter("question_text" + i) != null ? request.getParameter("question_text" + i) : ""%>"></textarea>
+				<label for="question_text<%=i%>">Enter the question...</label>
 			</div>
-			
-			<% String questionError = (String) request.getAttribute("questionError"); %>
-		        <% if (questionError != null) { %>
-		        <p class="error_message"><%= questionError %></p>
 
-		        <% } %>
+			<%
+			String questionError = (String) request.getAttribute("questionError");
+			%>
+			<%
+			if (questionError != null) {
+			%>
+			<p class="error_message"><%=questionError%></p>
+
+			<%
+			}
+			%>
 
 
 			<h3>Answer</h3>
-			<div style="display: flex; gap:20px" >
-			<input type="radio" name="correct_option_1<%=i %>" value="true" required > <lable> Correct </lable>
-			<input type="radio" name="correct_option_1<%=i %>" value="false" required> <lable> Wrong</lable>
+			<div style="display: flex; gap: 20px">
+				<input type="radio" name="correct_option<%=i%>" value="1" required>
+				<lable> Option A </lable>
 			</div>
-			
-			<div class="label-style">
-			<input type="text" name="option_1<%=i %>" placeholder=""
-			value="<%=request.getParameter("option_1"+i)!= null ? request.getParameter("option_1"+i) : ""%>"> 
-			<label for = "option_1<%=i %>">Enter the option a</label>
-			</div>
-			<% String option1_error = (String) request.getAttribute("option1_error"); %>
-		        <% if (option1_error != null) { %>
-		        <p class="error_message"><%= option1_error %></p>
 
-		        <% } %>
-			<div style="display: flex; gap:20px">
-			<input type="radio" name="correct_option_2<%=i %>" value="true" required> <lable> Correct </lable>
-			<input type="radio" name="correct_option_2<%=i %>" value="false" required> <lable> Wrong</lable>
-			</div>
 			<div class="label-style">
-			<input type="text" name="option_2<%=i %>" placeholder=""
-			value="<%=request.getParameter("option_2"+i)!= null ? request.getParameter("option_2"+i) : ""%>"> 
-			<label for = "option_2<%=i %>">Enter the option b</label>
+				<input type="text" name="option_1<%=i%>" placeholder=""
+					value="<%=request.getParameter("option_1" + i) != null ? request.getParameter("option_1" + i) : ""%>">
+				<label for="option_1<%=i%>">Enter the option a</label>
 			</div>
-			<% String option2_error = (String) request.getAttribute("option2_error"); %>
-		        <% if (option2_error != null) { %>
-		        <p class="error_message"><%= option2_error %></p>
+			<%
+			String option1_error = (String) request.getAttribute("option1_error");
+			%>
+			<%
+			if (option1_error != null) {
+			%>
+			<p class="error_message"><%=option1_error%></p>
 
-		        <% } %>
-			
-		    <div style="display: flex; gap:20px">
-		    <input type="radio" name="correct_option_3<%=i %>" value="true" required> <lable> Correct </lable>
-			<input type="radio" name="correct_option_3<%=i %>" value="false" required> <lable> Wrong</lable>
+			<%
+			}
+			%>
+			<div style="display: flex; gap: 20px">
+				<input type="radio" name="correct_option<%=i%>" value="2" required>
+				<lable> Option B </lable>
 			</div>
 			<div class="label-style">
-		    <input type="text" name="option_3<%=i %>" placeholder=""
-		    value="<%=request.getParameter("option_3"+i)!= null ? request.getParameter("option_3"+i) : ""%>"> 
-		    <label for = "option_3<%=i %>">Enter the option c</label>
-		    </div>
-		    <% String option3_error = (String) request.getAttribute("option3_error"); %>
-		        <% if (option3_error != null) { %>
-		        <p class="error_message"><%= option3_error %></p>
+				<input type="text" name="option_2<%=i%>" placeholder=""
+					value="<%=request.getParameter("option_2" + i) != null ? request.getParameter("option_2" + i) : ""%>">
+				<label for="option_2<%=i%>">Enter the option b</label>
+			</div>
+			<%
+			String option2_error = (String) request.getAttribute("option2_error");
+			%>
+			<%
+			if (option2_error != null) {
+			%>
+			<p class="error_message"><%=option2_error%></p>
 
-		        <% } %>
-		    
-		    <div style="display: flex; gap:20px">
-		    <input type="radio" name="correct_option_4<%=i %>" value="true" required> <lable> Correct </lable>
-			<input type="radio" name="correct_option_4<%=i %>" value="false" required> <lable> Wrong</lable>
+			<%
+			}
+			%>
+
+			<div style="display: flex; gap: 20px">
+				<input type="radio" name="correct_option<%=i%>" value="3" required>
+				<lable> Option C </lable>
+
 			</div>
 			<div class="label-style">
-		    <input type="text" name="option_4<%=i %>" placeholder=""
-		    value="<%=request.getParameter("option_4"+i)!= null ? request.getParameter("option_4"+i) : ""%>">
-		    <label for = "option_4<%=i %>">Enter the option d</label>
+				<input type="text" name="option_3<%=i%>" placeholder=""
+					value="<%=request.getParameter("option_3" + i) != null ? request.getParameter("option_3" + i) : ""%>">
+				<label for="option_3<%=i%>">Enter the option c</label>
 			</div>
-			<% String option4_error = (String) request.getAttribute("option4_error"); %>
-		        <% if (option4_error != null) { %>
-		        <p class="error_message"><%= option4_error %></p>
+			<%
+			String option3_error = (String) request.getAttribute("option3_error");
+			%>
+			<%
+			if (option3_error != null) {
+			%>
+			<p class="error_message"><%=option3_error%></p>
 
-		        <% } %>
+			<%
+			}
+			%>
+
+			<div style="display: flex; gap: 20px">
+				<input type="radio" name="correct_option<%=i%>" value="4" required>
+				<lable> Option D </lable>
+
+			</div>
+			<div class="label-style">
+				<input type="text" name="option_4<%=i%>" placeholder=""
+					value="<%=request.getParameter("option_4" + i) != null ? request.getParameter("option_4" + i) : ""%>">
+				<label for="option_4<%=i%>">Enter the option d</label>
+			</div>
+			<%
+			String option4_error = (String) request.getAttribute("option4_error");
+			%>
+			<%
+			if (option4_error != null) {
+			%>
+			<p class="error_message"><%=option4_error%></p>
+
+			<%
+			}
+			%>
 
 			<%
 			}
@@ -122,30 +156,31 @@ text-shadow: 2px 1px black;
 
 			<button name="action" value="submit">Submit</button>
 		</form>
-	</div>     <div id="toast" class="<%= session.getAttribute("questionToastStatus") != null 
-             ? session.getAttribute("questionToastStatus") 
-             : "" %>">
-        		<%=(session.getAttribute("questionToast")!=null)?session.getAttribute("questionToast"):"" %>
-        </div>
+	</div>
+	<div id="toast"
+		class="<%=session.getAttribute("questionToastStatus") != null ? session.getAttribute("questionToastStatus") : ""%>">
+		<%=(session.getAttribute("questionToast") != null) ? session.getAttribute("questionToast") : ""%>
+	</div>
 
-    </body>
-    <script >
+</body>
+<script>
 
 	window.onload = function(){
-	var message = "<%=session.getAttribute("questionToast")%>";
-	if(message && message !=="null"){
-		var toast = document.getElementById("toast");
-		toast.classList.add("show");
-		
-		setTimeout(function(){
-			toast.classList.remove("show");
-		}, 3000);
-	}
-};
+	var message = "<%=session.getAttribute("questionToast")%>
+	";
+		if (message && message !== "null") {
+			var toast = document.getElementById("toast");
+			toast.classList.add("show");
+
+			setTimeout(function() {
+				toast.classList.remove("show");
+			}, 3000);
+		}
+	};
 </script>
 <%
-    session.removeAttribute("questionToast");
+session.removeAttribute("questionToast");
 %>
-	
+
 
 </html>
