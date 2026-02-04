@@ -31,8 +31,7 @@ label::after {
 <link rel="stylesheet" href="css/style.css"/>
 </head>
 
-<body
-	style="background: radial-gradient(circle farthest-corner at center, #4fe3b1 0%, #2fbf9b 30%, #0f6f5f 55%, #061318 100%);">
+<body>
 	<div class="exam_container">
 		<h2>Create Exam</h2>
 		<form action="controller" method="post" class="createexam_form">

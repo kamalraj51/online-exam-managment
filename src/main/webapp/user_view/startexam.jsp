@@ -67,8 +67,8 @@ button:hover {
 }
 </style>
 </head>
+<body>
 
-<body style="background: radial-gradient(circle, #4fe3b1, #061318);">
 
 <div class="container">
 
