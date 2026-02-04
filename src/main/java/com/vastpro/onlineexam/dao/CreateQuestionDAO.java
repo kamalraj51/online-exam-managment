@@ -34,8 +34,11 @@ public class CreateQuestionDAO {
 
 		for (int i = 1; i <= noOfQuestion; i++) {
 			String questionText = request.getParameter("question_text" + i);
-			System.out.println("Question Text" + questionText);
+			System.out.println("CreateQuestionDAO question "+i+" " + questionText);
 			int examId = (Integer) (request.getSession().getAttribute("examId"));
+			System.out.println("CreateQuestionDAO examId "+ examId);
+			int correctOption = Integer.parseInt(request.getParameter("correct_option"+i));
+			System.out.println("CreateQuestionDAO option "+i+": " + correctOption);
 			StringBuilder sql = new StringBuilder();
 
 			sql.append("insert into question(exam_id,question_text,marks)");
@@ -53,12 +56,10 @@ public class CreateQuestionDAO {
 					int questionId = rs.getInt(1);
 					System.out.println("Question Rows Updated: Question Id " + questionId);
 					for (int j = 1; j <= 4; j++) {
-						String option_text = request.getParameter("option_" + j + i);
-						Boolean is_correct = Boolean.valueOf(request.getParameter("correct_option_" + j + i));
-						// syso
-						System.out.println("Create question before valueof(): " + request.getParameter("correct_option_" + j + i));
-						System.out.println("Create question after valueof(): " + is_correct);
-						//
+						String optionText = request.getParameter("option_" + j + i);
+						System.out.println("CreateQuestionDAO option text: "+j+" "+optionText);
+						boolean isCorrect = j == correctOption;
+						System.out.println("CreateQuestionDAO isCorrect "+isCorrect);
 						StringBuilder sqlAnswer = new StringBuilder();
 						sqlAnswer.append("insert into answers(question_id,option_text,is_correct)");
 						sqlAnswer.append("values(?,?,?)");
@@ -66,8 +67,8 @@ public class CreateQuestionDAO {
 						PreparedStatement pstmt2 = conn.prepareStatement(sqlAnswer.toString());
 
 						pstmt2.setInt(1, questionId);
-						pstmt2.setString(2, option_text);
-						pstmt2.setBoolean(3, is_correct);
+						pstmt2.setString(2, optionText);
+						pstmt2.setBoolean(3, isCorrect);
 
 						int rows = pstmt2.executeUpdate();
 						if (rows > 0) {
@@ -77,13 +78,14 @@ public class CreateQuestionDAO {
 					}
 
 				}
-				session.removeAttribute("marks");
-				session.removeAttribute("examId");
 			} catch (SQLException e) {
-				e.printStackTrace();
+				System.out.println("CreateQuestionDAO addQuestion"+e.getMessage());
+			
 				flag = false;
 			}
 		}
+		session.removeAttribute("marks");
+		session.removeAttribute("examId");
 		return flag;
 	}
 
