@@ -68,14 +68,13 @@
 				</div>
 				
 
-				<div class="label-style">
-					<input type="password" name="password" class="password"
-						placeholder=""
+				<div class="label-style password-wrapper">
+					<input type="password" name="password" id="loginPassword" class="password" placeholder=""
 						value="<%= request.getParameter("password") != null ? request.getParameter("password") : "" %>">
 					<label for="password">Enter your password</label>
+					<span class="toggle-password" onclick="togglePassword('loginPassword', this)">👁</span>
 				</div>
 
-	
 				<button class="login_btn">Login</button>
 			</form>
 			<form class="new_user" action="controller" method="post">
@@ -170,7 +169,17 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-	
+   function togglePassword(inputId, eyeIcon) {
+      const input = document.getElementById(inputId);
+
+         if (input.type === "password") {
+              input.type = "text";
+              eyeIcon.textContent = "👀";
+         } else {
+              input.type = "password";
+              eyeIcon.textContent = "👁";
+    }
+}	
 
 </script>
 
