@@ -37,7 +37,7 @@
 
 </div>
 <table >
-<caption style="margin-bottom: 10px;">DETAILED FEEDBACK</caption>
+<caption style="margin-bottom: 10px;">Detailed Feedback</caption>
 <thead>
     <tr>
         <th>Question</th>

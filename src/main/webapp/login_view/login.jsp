@@ -54,7 +54,7 @@
 			<img class="img_style" alt="no image" src="./assets/bgplain.jpg" />
 		</div>
 		<div class="form_container">
-			<h2>Login as user</h2>
+			<h2 style="color: black;">Login as user</h2>
 
 			<form action="controller" method="post" class="login_form">
 
