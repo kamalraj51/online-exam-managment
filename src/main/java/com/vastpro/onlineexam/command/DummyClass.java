@@ -25,7 +25,7 @@ public class DummyClass implements Command{
      */
 	@Override
 	public boolean execute(HttpServletRequest request, HttpServletResponse response) {
-		request.getSession().removeAttribute("createExamData");
+		
 		return true;
 	}
 	

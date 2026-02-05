@@ -24,8 +24,8 @@ public class AuthorizeCommand implements Command{
      *         false otherwise
      */
 	@Override
-	public boolean execute(HttpServletRequest req, HttpServletResponse res) {
-		 int role =(Integer) req.getSession().getAttribute("role");
+	public boolean execute(HttpServletRequest request, HttpServletResponse response) {
+		 int role =(Integer) request.getSession().getAttribute("role");
 		 	System.out.println(" AuthorizeCommand "+role);
 		    if (role==1) {
 		       return true;
