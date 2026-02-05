@@ -43,15 +43,17 @@ h2 {
 </head>
 <body>
 	<form action="controller" method="post">
-		<input type="hidden" value="authorize" name="action">
 
 		<div class="error-box">
 			<h2>Something went wrong 😞</h2>
 
 			<p>${errorMessage != null ? errorMessage : "Unexpected error occurred. Please try again later."}
 			</p>
-
-			<button class="login_btn">Go To Home</button>
+			<% if(session.getAttribute("role")!=null){ %>
+			<button class="login_btn" value="authorize" name="action">Go To Home</button>
+			<%} else{ %>
+			<button class="login_btn" value="login" name="action">Go To Login</button>
+			<%} %>
 		</div>
 	</form>
 </body>
