@@ -19,6 +19,11 @@
     <title>Exam Result</title>
    
     <link rel="stylesheet" href="css/style.css"/>
+    <style type="text/css">
+    		tr,td{
+    			text-align: left;
+    		}
+    </style>
 </head>
 <body>
 <jsp:include page="/common/header.jsp"/>
