@@ -73,9 +73,7 @@ public class SubmitExamCommand implements Command {
 						incorrect++;
 				}
 			}
-			/**
-			 * kamal changed dynamic c boolean passed = correct >= 3;
-			 */
+
 			boolean passed = correct >= exam.getPassMarks();
 			System.out.println("SUbmitExamCommand passed Mark: " + exam.getPassMarks() + " " + passed);
 			ExamAttemptDAO dao = new ExamAttemptDAO();
