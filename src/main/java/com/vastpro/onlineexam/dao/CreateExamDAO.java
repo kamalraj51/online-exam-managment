@@ -94,19 +94,19 @@ public class CreateExamDAO {
 			pstmt.setString(1, examName);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				flag = true;
-				request.setAttribute("examError", "Already Exam Available");
+				flag = true;		
 			}
 			if(flag!=true) {
-				request.getSession().setAttribute("createExamData",listOfExam(request));
 			}
 		} catch (SQLException e) {
 			flag = false;
 			System.out.println("CreateExamDAO - checkExamAvailable " + e.getMessage());
 		}
+		request.getSession().setAttribute("createExamData", listOfExam(request));
 		return flag;
 	}
-	public static ExamDTO listOfExam(HttpServletRequest request) {
+	
+public static ExamDTO listOfExam(HttpServletRequest request) {
 		ExamDTO exam = new ExamDTO();
 		try {
 		String examTopic = request.getParameter("exam_topic");
