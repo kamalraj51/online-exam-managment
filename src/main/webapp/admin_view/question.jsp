@@ -43,22 +43,7 @@ div[style*="display: flex"] {
 
 
 
-/* ===== Toast Message ===== */
-#toast {
-    visibility: hidden;
-    min-width: 260px;
-    background: #333;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 14px 20px;
-    position: fixed;
-    z-index: 999;
-    left: 50%;
-    bottom: 30px;
-    transform: translateX(-50%);
-    font-size: 14px;
-}
+
 
 
 </style>
@@ -191,17 +176,12 @@ div[style*="display: flex"] {
 
 			<button name="action" value="submit" class="login_btn">Submit</button>
 		</form>
-	</div>
-	<div id="toast"
-		class="<%=session.getAttribute("questionToastStatus") != null ? session.getAttribute("questionToastStatus") : ""%>">
-		<%=(session.getAttribute("questionToast") != null) ? session.getAttribute("questionToast") : ""%>
+		<form action="controller" method="post">
+			<button name="action" value="create_exam" class="login_btn">Back To Exam</button>
+		</form>
 	</div>
 
 </body>
-
-<%
-session.removeAttribute("questionToast");
-%>
 
 
 </html>
