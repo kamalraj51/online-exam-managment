@@ -52,24 +52,26 @@ public class ControllerServlet extends HttpServlet {
 		try {
 
 			logger.debug("ControllerServlet doGet() called");
-			String action = request.getParameter("action");
-			if (action == null) {
-				logger.error("Action parameter is null");
-				response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Action is required");
-				return;
-			}
 
+			String action = request.getParameter("action");
+	
+			
+			if (action == null || action.trim().isEmpty()) {
+	            logger.error("Action parameter is missing");
+	            request.setAttribute("errorMessage", "Invalid request. Action is missing.");
+	            request.getRequestDispatcher("/login_view/error.jsp").forward(request, response);
+	            return;
+	        }
 			action = action.toLowerCase();
 			logger.info("Received action: {}", action);
-			// System.out.println("command action: "+action);
 
 			Command command = CommandFactory.getCommand(action);
-
 			if (command == null) {
-				logger.error("No command found for action: {}", action);
-				response.sendError(HttpServletResponse.SC_NOT_FOUND, "Invalid action");
-				return;
-			}
+		            logger.error("No command found for action: {}", action);
+		            request.setAttribute("errorMessage", "Requested operation is not supported.");
+		            request.getRequestDispatcher("/login_view/error.jsp").forward(request, response);
+		            return;
+		        }
 			boolean flag = command.execute(request, response);
 			logger.debug("Command execution result for {}: {}", action, flag);
 
@@ -85,9 +87,13 @@ public class ControllerServlet extends HttpServlet {
 			request.getRequestDispatcher(forward).forward(request, response);
 
 		} catch (Exception e) {
-			System.out.println("ControllerServlet " + e.getMessage());
-			e.printStackTrace();
-			logger.debug(e.getStackTrace());
+			logger.error("Unhandled exception in ControllerServlet", e);
+
+	        request.setAttribute("errorMessage",
+	                "System error occurred. Please contact administrator.");
+
+	        request.getRequestDispatcher("/login_view/error.jsp")
+	               .forward(request, response);
 		}
 	}
 

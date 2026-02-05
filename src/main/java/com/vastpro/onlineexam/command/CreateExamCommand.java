@@ -60,7 +60,8 @@ public class CreateExamCommand implements Command {
 
 		if (!CreateExamDAO.checkExamAvailable(request)) {
 
-			return CreateExamDAO.createExam(request);
+			return true;
+					
 		}
 		request.setAttribute("examError", "Already Exam Available");
 		return false;

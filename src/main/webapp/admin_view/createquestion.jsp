@@ -176,6 +176,9 @@ div[style*="display: flex"] {
 
 			<button name="action" value="submit" class="login_btn">Submit</button>
 		</form>
+		<form action="controller" method="post">
+			<button name="action" value="create_exam" class="login_btn">Back To Exam</button>
+		</form>
 	</div>
 
 </body>

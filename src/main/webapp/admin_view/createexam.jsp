@@ -1,5 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import ="com.vastpro.onlineexam.dto.ExamDTO" %>
+<%
+
+String examTopic = null;
+String examName = null;
+String description = null;
+Integer passMinCorrect = null;
+Integer durationMinutes = null;
+Integer createdBy = null;
+Integer totalMark = null; 
+Integer noOfQuestion = null;
+Integer eachQuestionMark = null;
+ExamDTO exam = (ExamDTO) request.getSession().getAttribute("createExamData");
+if(exam!=null){
+examTopic = exam.getExamTopic();
+examName = exam.getExamName();
+description = exam.getDescription();
+passMinCorrect = exam.getPassMarks();
+durationMinutes = exam.getDuration();
+createdBy = exam.getCreatedBy();
+totalMark = exam.getTotalMarks();
+noOfQuestion = exam.getNumberOfQuestion();
+eachQuestionMark = exam.getEachMark();
+}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +43,7 @@
 			
 			<div class="label-style">
 				<input type="text" name="exam_topic" placeholder=""
-					value="<%=request.getParameter("exam_topic")!= null ? request.getParameter("exam_topic") : ""%>">
+					value="<%=(examTopic!= null) ? examTopic: ""%>">
 				<label for="exam_topic">Enter the topic</label>
 			</div>
 			<% String examTopicError = (String) request.getAttribute("examTopicError"); %>
@@ -29,21 +54,17 @@
 
 			<div class="label-style">
 				<input type="text" name="exam_name" placeholder="" 
-				     value="<%=request.getParameter("exam_name")!= null ? request.getParameter("exam_name") : ""%>" >
+				     value="<%=(examName!= null) ? examName: ""%>" >
 				<label for="exam_name">Enter the exam name</label>
 			</div>
-			<% String examNameError = (String) request.getAttribute("examNameError"); %>
-		        <% if (examNameError != null) { %>
-		        <p class="error_message"><%= examNameError %></p>
-		        <% } %>
-			<% String examError = (String) request.getAttribute("examError"); %>
+			<% String examError = (String) request.getAttribute("examNameError"); %>
 			<% if (examError != null) { %>
 			<p class="error_message"><%=examError %></p>
 			<%} %>
 
 			<div class="label-style">
 				<input type="text" name="description" placeholder=""
-					value="<%=request.getParameter("description")!= null ? request.getParameter("description") : ""%>">
+					value="<%=(description!= null) ? description: ""%>">
 				<label for="description">Enter the description</label>
 			</div>
 			<% String descriptionError = (String) request.getAttribute("descriptionError"); %>
@@ -53,7 +74,7 @@
 
 			<div class="label-style">
 				<input type="number" name="no_of_question" placeholder=""
-					value="<%=request.getParameter("no_of_question")!= null ? request.getParameter("no_of_question") : ""%>">
+					value="<%=(noOfQuestion!= null) ? noOfQuestion: ""%>">
 				<label for="no_of_question">Number of questions</label>
 			</div>
 			<% String addQuestionError = (String) request.getAttribute("addQuestionError"); %>
@@ -63,7 +84,7 @@
 
 			<div class="label-style">
 				<input type="number" name="pass_min_correct" placeholder=""
-					value="<%=request.getParameter("pass_min_correct")!= null ? request.getParameter("pass_min_correct") : ""%>">
+					value="<%=(passMinCorrect!= null) ? passMinCorrect: ""%>">
 				<label for="pass_min_correct">Enter the minimum marks</label>
 			</div>
 			<% String minCorrectError = (String) request.getAttribute("minCorrectError"); %>
@@ -72,7 +93,7 @@
 		        <% } %>
 			<div class="label-style">
 				<input type="number" name="each_question_mark"  placeholder=""
-					value="<%=request.getParameter("each_question_mark")!= null ? request.getParameter("each_question_mark") : ""%>">
+					value="<%=(eachQuestionMark!= null) ? eachQuestionMark: ""%>">
 				<label for="each_question_mark">Enter the each question mark</label>
 			</div>
 			<% String eachQuestionMarkError = (String) request.getAttribute("eachQuestionMarkError"); %>
@@ -82,7 +103,7 @@
 
 			<div class="label-style">
 				<input type="number" name="duration_minutes" placeholder=""
-					value="<%=request.getParameter("duration_minutes")!= null ? request.getParameter("duration_minutes") : ""%>">
+					value="<%=(durationMinutes!= null) ? durationMinutes: ""%>">
 				<label for="duration_minutes">Enter the total duration</label>
 			</div>
 			<% String durationMinError = (String) request.getAttribute("durationMinError"); %>
@@ -113,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const nameRegex = /^[a-zA-Z0-9 ,._]+$/;
     const numberRegex = /^[1-9][0-9]*$/;
     
-    const backendExamNameError = "<%= request.getAttribute("examNameError") != null ? request.getAttribute("examNameError") : "" %>";
+    const backendExamNameError = "<%= request.getAttribute("examError") != null ? request.getAttribute("examError") : "" %>";
     
     function showError(input, message) {
         removeError(input);
@@ -143,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
     
   
     if (backendExamNameError !== "") {
-        showError(emailInput, backendEmailError);
+        showError(examNameInput, backendExamNameError);
     }
 
     form.addEventListener("submit", function (e) {

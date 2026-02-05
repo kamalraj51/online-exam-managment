@@ -17,6 +17,7 @@ public class ExamDTO {
 	private int totalMarks;
 	private int createdBy;
 	private int numberOfQuestion;
+	private int eachQuestionMark;
 
 	public String getExamTopic() {
 		return examTopic;
@@ -105,4 +106,10 @@ public class ExamDTO {
 		this.numberOfQuestion = numberOfQuestion;
 	}
 
+	public void setEachMark(int eachQuestionMark) {
+		this.eachQuestionMark = eachQuestionMark;
+	}
+	public int getEachMark() {
+		return eachQuestionMark;
+	}
 }
