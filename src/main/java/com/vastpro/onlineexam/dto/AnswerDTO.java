@@ -13,7 +13,7 @@ public class AnswerDTO {
 
 	@Override
 	public String toString() {
-		return "Answer [answerId=" + answerId + ", optionText=" + optionText + "]";
+		return optionText;
 	}
 
 	public int getAnswerId() {

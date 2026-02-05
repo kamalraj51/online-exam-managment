@@ -7,7 +7,7 @@ import java.util.List;
  *
  * Description: This DTO class represents a question in an exam along with its possible answers.
  */
-public class QuestionDTO {
+public class QuestionDTO extends AnswerDTO {
 	private int questionId;
 	private String questionText;
 	private List<AnswerDTO> answers;

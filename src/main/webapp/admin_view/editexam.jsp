@@ -51,9 +51,9 @@
 				<td><%=exam.getNumberOfQuestion()%></td>
 				<td>
 				<form action="controller" method="post">
-				<input type="hidden" name="examName" value="<%= exam.getExamId() %>">
+				<input type="hidden" name="examId" value="<%= exam.getExamId() %>">
 				
-				 <button class="active_btn" name="actions" value="edit">Edit</button>
+				 <button class="active_btn" name="action" value="edit">Edit</button>
 				</form>
 				</td>
 			</tr>

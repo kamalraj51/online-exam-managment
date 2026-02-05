@@ -12,22 +12,23 @@
 <meta charset="UTF-8">
 <title>Edit Exam</title>
 <link rel="stylesheet" href="css/style.css" />
+<style>
+td,tr{
+	text-align: left;
+}
+</style>
 </head>
-<body style="background: radial-gradient(
-  circle farthest-corner at center,
-  #4fe3b1 0%,
-  #2fbf9b 30%,
-  #0f6f5f 55%,
-  #061318 100%
-);
-">
+<body>
 <jsp:include page="/common/header.jsp"></jsp:include>
 <div  class="retire_container">
 <h2 style="color:white; text-align: center;">Edit Exam</h2>
-		<table>
+		<table style="text-align: left;">
 			<tr>
 				<th>Question Description</th>
-				<th>Options</th>
+				<th>Option A</th>
+				<th>Option B</th>
+				<th>Option C</th>
+				<th>Option D</th>
 				<th>Action</th>
 			</tr>
 
@@ -49,9 +50,12 @@
 			<tr>
 
 
-				<td><%=question.getQuestionText()%></td>
+				<td style="text-align: left;"><%=question.getQuestionText()%></td>
 				
-				<td><%=question.getAnswers()%></td>
+				<td><%=question.getAnswers().get(0)%></td>
+				<td><%=question.getAnswers().get(1)%></td>
+				<td><%=question.getAnswers().get(2)%></td>
+				<td><%=question.getAnswers().get(3)%></td>
 				<td>
 				<form action="controller" method="post">
 				<input type="hidden" name="examName" value="<%= question.getQuestionId() %>">

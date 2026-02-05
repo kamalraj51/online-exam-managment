@@ -52,7 +52,7 @@ public class ControllerServlet extends HttpServlet {
 		try {
 
 			logger.debug("ControllerServlet doGet() called");
-			String action = request.getParameter("action").toLowerCase();
+			String action = request.getParameter("action");
 			if (action == null) {
 				logger.error("Action parameter is null");
 				response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Action is required");
