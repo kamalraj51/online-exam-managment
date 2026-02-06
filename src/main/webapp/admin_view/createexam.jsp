@@ -38,7 +38,6 @@ eachQuestionMark = exam.getEachMark();
 		<h2>Create Exam</h2>
 		<form action="controller" method="post" class="createexam_form">
 
-			<input type="hidden" name="action" value="create_exam_user">
 			
 			
 			<div class="label-style">
@@ -111,7 +110,7 @@ eachQuestionMark = exam.getEachMark();
 		        <p class="error_message"><%= durationMinError %></p>
 		        <% } %>
 			
-			<button class="login_btn">Create</button>
+			<button class="login_btn"  name="action" value="create_exam_user" >Create</button>
 		</form>
 		<form method="post" action="controller"
 			style="display: flex; gap: 20px; ">
@@ -131,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const eachQuestionMarkInput = form.querySelector('input[name="each_question_mark"]');
     const durationMinutesInput = form.querySelector('input[name="duration_minutes"]');
     
-    const nameRegex = /^[a-zA-Z0-9 ,._]+$/;
+    const nameRegex = /^[a-zA-Z0-9 _\-.,:]{3,}$/;
     const numberRegex = /^[1-9][0-9]*$/;
     
     const backendExamNameError = "<%= request.getAttribute("examError") != null ? request.getAttribute("examError") : "" %>";

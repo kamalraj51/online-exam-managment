@@ -32,19 +32,19 @@ public class CreateExamCommand implements Command {
 		String passMinimumCorrect = request.getParameter("pass_min_correct");
 		String durationStr = request.getParameter("duration_minutes");
 
-		if (examTopic == null || !examTopic.matches("^[a-zA-Z0-9 ,._]+$")) {
+		if (examTopic == null || !examTopic.matches("^[a-zA-Z0-9 _-.,:]{3,}$")) {
 			request.setAttribute("examTopicError", "Invalid Exam Topic");
 			return false;
 		}
-		if (examName == null || !examName.matches("^[a-zA-Z0-9 ,._]+$")) {
+		if (examName == null || !examName.matches("^[a-zA-Z0-9 _\\-.,:]{3,}$")) {
 			request.setAttribute("examNameError", "Invalid Exam Name");
 			return false;
 		}
-		if (description == null || !description.matches("^[a-zA-Z0-9 ,._]+$")) {
+		if (description == null || !description.matches("^[a-zA-Z0-9 _\\-.,:]{3,}$")) {
 			request.setAttribute("descriptionError", "Invalid Description");
 			return false;
 		}
-		if (noOfQuestion == null || !noOfQuestion.matches("^[1-9][0-9]*$")) {
+		if (noOfQuestion == null || !noOfQuestion.matches("^(?:[1-9]|1[0-9]|20)$")) {
 			request.setAttribute("addQuestionError", "Invalid.Please provide a valid number");
 			return false;
 		}

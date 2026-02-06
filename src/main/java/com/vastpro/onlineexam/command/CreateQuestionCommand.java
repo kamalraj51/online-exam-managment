@@ -37,27 +37,27 @@ public class CreateQuestionCommand implements Command {
 			String option_3 = req.getParameter("option_3" + i);
 			String option_4 = req.getParameter("option_4" + i);
 
-			if (questionText == null || !questionText.matches("^[a-zA-Z0-9 ,._]{5,200}$")) {
+			if (questionText == null || !questionText.matches("^[a-zA-Z0-9 ,.-\\_?]{5,200}$")) {
 				req.setAttribute("questionError", "Invalid question, question must contain 5 characters");
 				return flag;
 			}
 
-			if (option_1 == null || !option_1.matches("^[a-zA-Z0-9 ,._]+$")) {
+			if (option_1 == null || !option_1.matches("^[a-zA-Z0-9 ,.-\\_]+$")) {
 				req.setAttribute("option1_error", "Invalid option A");
 				return flag;
 			}
 
-			if (option_2 == null || !option_2.matches("^[a-zA-Z0-9 ,._]+$")) {
+			if (option_2 == null || !option_2.matches("^[a-zA-Z0-9 ,.-\\_]+$")) {
 				req.setAttribute("option2_error", "Invalid option B");
 				return flag;
 			}
 
-			if (option_3 == null || !option_3.matches("^[a-zA-Z0-9 ,._]+$")) {
+			if (option_3 == null || !option_3.matches("^[a-zA-Z0-9 ,.-\\_]+$")) {
 				req.setAttribute("option3_error", "Invalid option C");
 				return flag;
 			}
 
-			if (option_4 == null || !option_4.matches("^[a-zA-Z0-9 ,._]+$")) {
+			if (option_4 == null || !option_4.matches("^[a-zA-Z0-9 ,.-\\_]+$")) {
 				req.setAttribute("option4_error", "Invalid option D");
 				return flag;
 			}
