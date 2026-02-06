@@ -206,7 +206,7 @@ document.addEventListener("DOMContentLoaded", function () {
             showError(minimumCorrectInput, "Minimum pass percentage is required");
             isValid = false;
         } else if (!minimumMarkRegex.test(minimumCorrectInput.value.trim())) {
-            showError(minimumCorrectInput, "Enter a valid percentage 1-100");
+            showError(minimumCorrectInput, "Enter a valid percentage between 10% and 100%");
             isValid = false;
         }
         if (eachQuestionMarkInput.value.trim() === "") {

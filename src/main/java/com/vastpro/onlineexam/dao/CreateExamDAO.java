@@ -113,7 +113,7 @@ public class CreateExamDAO {
 			Integer noOfQuestion = Integer.parseInt(request.getParameter("no_of_question"));
 			Integer totalMark = noOfQuestion * eachQuestionMark;
 			int passMinCorrect = Integer.parseInt(request.getParameter("pass_min_correct"));
-			Integer passMinimum = (totalMark * passMinCorrect) / 100;
+			int passMinimum = (totalMark * passMinCorrect) / 100;
 			System.out.println("Pass percentage" + passMinCorrect + "Each Question mark: " + eachQuestionMark + ", Minimum Mark : "
 							+ passMinimum + ",Total Mark: " + totalMark);
 			String status = "ACTIVE";
