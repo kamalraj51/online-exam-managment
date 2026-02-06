@@ -35,16 +35,15 @@ public class LoginCommand implements Command {
 			request.setAttribute("emailError", "Email cannot be empty.");
 			return false;
 		}
-		if (!email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
+		if (!email.matches(" ^[^\\s@]+@[^.\\s@]*[a-zA-Z][^.\\s@]*\\.[a-zA-Z]{2,}$")) { 
 
 			request.setAttribute("emailError", "Invalid email.Enter a valid email address.");
 			return false;
 		}
 
-		// Password validation (allow letters, numbers, and special characters with a
-		// minimum length of 6)
+		// Password validation (min 8 chars, uppercase, lowercase, number)
 		if (password == null) {
-			request.setAttribute("passwordError", "Password must be at least 6 characters long.");
+			request.setAttribute("passwordError", "Password must be at least 8 characters long.");
 			return false;
 		}
 

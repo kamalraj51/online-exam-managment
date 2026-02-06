@@ -32,6 +32,7 @@ public class CreateExamCommand implements Command {
 		String passMinimumCorrect = request.getParameter("pass_min_correct");
 
 		String durationStr = request.getParameter("duration_minutes");
+
 		/*
 		 * if (examTopic == null || !examTopic.matches("^[a-zA-Z0-9 _\\-.,:]{3,}$")) { request.setAttribute("examTopicError",
 		 * "Enter a valid topic more than 3 characters"); return false; } if (examName == null ||
@@ -46,6 +47,7 @@ public class CreateExamCommand implements Command {
 		 * if (durationStr == null || !durationStr.matches("^(?:[1-9]|1[0-9]|180)$")) { request.setAttribute("durationMinError",
 		 * "Enter a valid time in minutes less than 180 minutes"); return false; }
 		 */
+
 		if (!CreateExamDAO.checkExamAvailable(request)) {
 
 			return true;
