@@ -32,35 +32,7 @@ public class CreateExamCommand implements Command {
 		String passMinimumCorrect = request.getParameter("pass_min_correct");
 
 		String durationStr = request.getParameter("duration_minutes");
-<<<<<<< HEAD
 
-		if (examTopic == null || !examTopic.matches("^[a-zA-Z0-9 _-.,:]{3,}$")) {
-			request.setAttribute("examTopicError", "Invalid Exam Topic");
-			return false;
-		}
-		if (examName == null || !examName.matches("^[a-zA-Z0-9 _\\-.,:]{3,}$")) {
-			request.setAttribute("examNameError", "Invalid Exam Name");
-			return false;
-		}
-		if (description == null || !description.matches("^[a-zA-Z0-9 _\\-.,:]{3,}$")) {
-			request.setAttribute("descriptionError", "Invalid Description");
-			return false;
-		}
-		if (noOfQuestion == null || !noOfQuestion.matches("^(?:[1-9]|1[0-9]|20)$")) {
-			request.setAttribute("addQuestionError", "Invalid.Please provide a valid number");
-			return false;
-		}
-		if (passMinimumCorrect == null || !passMinimumCorrect.matches("^[1-9][0-9]*$")) {
-			request.setAttribute("minCorrectError", "Invalid.Please provide a valid minimum correct mark");
-			return false;
-		}
-
-		if (durationStr == null || !durationStr.matches("^[1-9][0-9]*$")) {
-			request.setAttribute("durationMinError", "Invalid exam duration");
-			return false;
-		}
-
-=======
 		/*
 		 * if (examTopic == null || !examTopic.matches("^[a-zA-Z0-9 _\\-.,:]{3,}$")) { request.setAttribute("examTopicError",
 		 * "Enter a valid topic more than 3 characters"); return false; } if (examName == null ||
@@ -75,7 +47,7 @@ public class CreateExamCommand implements Command {
 		 * if (durationStr == null || !durationStr.matches("^(?:[1-9]|1[0-9]|180)$")) { request.setAttribute("durationMinError",
 		 * "Enter a valid time in minutes less than 180 minutes"); return false; }
 		 */
->>>>>>> branch 'master' of https://github.com/kamalraj51/online-exam-managment.git
+
 		if (!CreateExamDAO.checkExamAvailable(request)) {
 
 			return true;

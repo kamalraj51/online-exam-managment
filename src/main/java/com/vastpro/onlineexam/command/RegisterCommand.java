@@ -37,24 +37,23 @@ public class RegisterCommand implements Command {
 		String password = req.getParameter("password");
 
 		// Username validation (allow only alphabets and numbers)
-		if (username == null) {
+		if (username == null || username.trim().isEmpty()) {
 			req.setAttribute("nameError", "Username cannot be empty");
 			return flag;
 		}
-		if (!username.matches("^[a-zA-Z0-9]+$")) {
+		if (!username.matches("^[a-zA-Z][a-zA-Z0-9_]{4,14}$")) {
 			req.setAttribute("nameError", "Username must contain letters or numbers");
 			return flag;
 		}
 
-		// Email validation (only Gmail allowed)
-		if (email == null || !email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
+		if (email == null  || email.trim().isEmpty() || !email.matches("^[^\\s@]+@[^.\\s@]*[a-zA-Z][^.\\s@]*\\.[a-zA-Z]{2,}$")) {
 			req.setAttribute("emailError", "Invalid email. Please provide a valid email address.");
 			return flag;
 		}
 
-		// Password validation (allow letters, numbers, and special characters with a minimum length of 6)
-		if (password == null || !password.matches("^[\\S]{6,}$")) {
-			req.setAttribute("passwordError", "Password must be at least 6 characters long");
+		// Password validation (min 8 chars, uppercase, lowercase, number)
+		if (password == null || !password.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d).{8,}$")) { 
+			req.setAttribute("passwordError", "Password must contain at least 8 characters long");
 			return flag;
 		}
 
