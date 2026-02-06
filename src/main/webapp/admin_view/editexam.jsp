@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-     <%@ page
-	import="java.util.List,com.vastpro.onlineexam.dao.LoadAllExamsDAO,com.vastpro.onlineexam.dto.ExamDTO"%>
+<%@ page import="java.util.List,com.vastpro.onlineexam.dao.LoadAllExamsDAO,com.vastpro.onlineexam.dto.ExamDTO"%>
+	
+<% session.removeAttribute("editQuestionsData");
+	session.removeAttribute("ExamObject");%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,6 +43,7 @@
 
 			<%
 			} else {
+				int i = 0;
 			for (ExamDTO exam : examHistory) {
 			%>
 			<tr>
@@ -51,6 +54,7 @@
 				<td><%=exam.getNumberOfQuestion()%></td>
 				<td>
 				<form action="controller" method="post">
+				<input type="hidden" name="index" value="<%= i++ %>">
 				<input type="hidden" name="examId" value="<%= exam.getExamId() %>">
 				
 				 <button class="active_btn" name="action" value="edit">Edit</button>

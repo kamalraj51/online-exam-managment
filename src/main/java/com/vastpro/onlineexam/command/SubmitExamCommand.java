@@ -93,6 +93,8 @@ public class SubmitExamCommand implements Command {
 			session.removeAttribute("questions");
 			session.removeAttribute("currentIndex");
 			session.removeAttribute("userAnswers");
+			session.removeAttribute("ExamObject");
+			session.removeAttribute("questions");
 			// timer
 			req.setAttribute("totalQuestions", total);
 			req.setAttribute("correct", correct);

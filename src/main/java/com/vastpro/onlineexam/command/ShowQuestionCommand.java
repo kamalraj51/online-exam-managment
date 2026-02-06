@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.vastpro.onlineexam.dao.StartExamDAO;
+import com.vastpro.onlineexam.dto.ExamDTO;
 import com.vastpro.onlineexam.dto.QuestionDTO;
 
 import jakarta.servlet.RequestDispatcher;
@@ -52,7 +53,15 @@ public class ShowQuestionCommand implements Command {
             if (questions == null) {
                 StartExamDAO dao = new StartExamDAO();
                 questions = dao.getQuestionsByExamId(req);
-
+                ExamDTO exam = (ExamDTO)session.getAttribute("ExamObject");
+                //  INIT TIMER ONCE
+                
+                if (session.getAttribute("examStartTime") == null) {
+                    session.setAttribute("examStartTime",
+                        Timestamp.valueOf(LocalDateTime.now()));
+                    session.setAttribute("examDurationSeconds",
+                        exam.getDuration() * 60);
+                } 
                 if (questions.isEmpty()) {
                     req.setAttribute("errorMessage", "No questions found for this exam!");
                     return false;

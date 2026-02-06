@@ -32,13 +32,17 @@ public class StartExamDAO {
      * @return a list of QuestionDTO objects with answers populated
      * @throws Exception if a database access error occurs
      */
-    public List<QuestionDTO> getQuestionsByExamId(HttpServletRequest request) throws Exception {
-
+    public List<QuestionDTO> getQuestionsByExamId(HttpServletRequest request)  {
+    	System.out.println("line1");
         Map<Integer, QuestionDTO> questionMap = new LinkedHashMap<>();
+        System.out.println("line2");
         ExamDTO exam = new ExamDTO();
+        System.out.println("line3");
         
         HttpSession session = request.getSession();
+        System.out.println("line4");
         int examId = (Integer)session.getAttribute("examId");
+        System.out.println("line5");
         System.out.println("StartExamDAO examId: "+examId);
         
         String sql =
@@ -62,6 +66,22 @@ public class StartExamDAO {
             
             pstmt.setInt(1, examId);
             
+            ResultSet examRs = pstmt.executeQuery(); 
+            
+            //this while is for get exam detail
+            while (examRs.next()) {
+            	System.out.println("startexamdao exam_id:"+examRs.getInt("exam_id"));
+            	exam.setExamId(examRs.getInt("exam_id"));
+            	exam.setExamName(examRs.getString("exam_name"));
+            	
+            	exam.setDescription(examRs.getString("description"));
+            	exam.setDuration(examRs.getInt("duration_minutes"));
+            	exam.setPassMarks(examRs.getInt("pass_min_correct"));
+            	
+            	
+            }
+            session.setAttribute("ExamObject", exam);
+           
             ResultSet rs = ps.executeQuery();
             
             while (rs.next()) {
@@ -70,8 +90,10 @@ public class StartExamDAO {
                 QuestionDTO question = questionMap.get(qId);
                 if (question == null) {
                     question = new QuestionDTO();
+                  
                     question.setQuestionId(qId);
                     question.setQuestionText(rs.getString("question_text"));
+                    System.out.println("------------------------"+rs.getString("question_text"));
                     question.setAnswers(new ArrayList<>());
                     questionMap.put(qId, question);
                 }
@@ -85,35 +107,9 @@ public class StartExamDAO {
                 question.getAnswers().add(answer);
             }
             
-            ResultSet examRs = pstmt.executeQuery(); 
-            
-            //this while is for get exam detail
-            while (examRs.next()) {
-               System.out.println("startexamdao exam_id:"+examRs.getInt("exam_id"));
-                exam.setExamId(examRs.getInt("exam_id"));
-                exam.setExamName(examRs.getString("exam_name"));
-                
-                exam.setDescription(examRs.getString("description"));
-                exam.setDuration(examRs.getInt("duration_minutes"));
-                exam.setPassMarks(examRs.getInt("pass_min_correct"));
-                
-                
-            }
-            session.setAttribute("ExamObject", exam);
-            //  INIT TIMER ONCE
-            if (session.getAttribute("examStartTime") == null) {
-                session.setAttribute("examStartTime",
-                    Timestamp.valueOf(LocalDateTime.now()));
-                session.setAttribute("examDurationSeconds",
-                    exam.getDuration() * 60);
-            }            
-            //System.out.println("StartExamDAO start time(TimeStamp): "+startTs);
-            //System.out.println("StartExamDAO start time(startTime): "+startTime);
-            //System.out.println("StartExamDAO start time(now): "+now);
-            
-            
-            //System.out.println("StartExamDAO exam Duration Seconds: "+session.getAttribute("examDurationSeconds"));
-        }
+}catch(Exception e) {
+	System.out.println("StartExamDAO getQuestionsByExamId: "+e.getMessage());
+}
         System.out.println("StartExamDao: question map"+questionMap);
         System.out.println("StartExamDao: exam: "+exam);
         return new ArrayList<>(questionMap.values());
