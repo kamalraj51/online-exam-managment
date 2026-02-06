@@ -9,44 +9,7 @@
 <meta charset="UTF-8">
 <title>Question</title>
 <link rel="stylesheet" href="css/style2.css" />
-<style>
 
-
-
-
-.label-style textarea {
-    resize: vertical;
-    min-height: 80px;
-}
-
-
-
-/* ===== Radio Buttons ===== */
-input[type="radio"] {
-    transform: scale(1.1);
-    cursor: pointer;
-}
-
-lable {
-    font-size: 12px;
-    cursor: pointer;
-}
-
-/* ===== Radio Row ===== */
-div[style*="display: flex"] {
-    align-items: center;
-    margin: 15px 0 6px;
-}
-
-
-
-
-
-
-
-
-
-</style>
 </head>
 
 <body>

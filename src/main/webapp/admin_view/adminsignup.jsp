@@ -16,7 +16,7 @@
 			<img class="img_style" alt="no image" src="./assets/bgplain.jpg" />
 		</div>
 		<div class="form_container">
-			<h2 style="color: black;">Signup as admin</h2>
+			<h2 style="color: black;">Signup as user</h2>
 
 
 			<form action="controller" method="post" class="login_form">
@@ -53,8 +53,8 @@
 			</form>
 			<form class="new_user" action="controller" method="post">
 
-				<p class="login_text">Back to admin page -</p>
-				<button name="action" value="authorize" class="signup_button">Back
+				<p class="login_text">Already signed up? -</p>
+				<button name="action" value="login" class="signup_button">Login
 				</button>
 			</form>
 		</div>
@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
     
     
     const userRegex = /^[a-zA-Z][a-zA-Z0-9_]{4,14}$/;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    const emailRegex = /^[^\s@]+@[^.\s@]*[a-zA-Z][^.\s@]*\.[a-zA-Z]{2,}$/;
     const passRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/;
     
     function showError(input, message) {

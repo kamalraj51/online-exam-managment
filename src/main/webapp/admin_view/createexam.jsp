@@ -84,7 +84,7 @@ eachQuestionMark = exam.getEachMark();
 			<div class="label-style">
 				<input type="number" name="pass_min_correct" placeholder=""
 					value="<%=(passMinCorrect!= null) ? passMinCorrect: ""%>">
-				<label for="pass_min_correct">Enter the minimum marks</label>
+				<label for="pass_min_correct">Enter the minimum pass percentage</label>
 			</div>
 			<% String minCorrectError = (String) request.getAttribute("minCorrectError"); %>
 		        <% if ( minCorrectError != null) { %>
@@ -130,8 +130,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const eachQuestionMarkInput = form.querySelector('input[name="each_question_mark"]');
     const durationMinutesInput = form.querySelector('input[name="duration_minutes"]');
     
+<<<<<<< HEAD
     const nameRegex = /^[a-zA-Z0-9 _\-.,:]{3,}$/;
     const numberRegex = /^[1-9][0-9]*$/;
+=======
+    const nameRegex = /^(?=.*[a-zA-Z])[a-zA-Z0-9 ]{3,}$/;
+    const minimumMarkRegex = /^(?:[1-9][0-9]?|100)$/;
+    const numberofQuestionRegex = /^(?:[1-9]|1[0-9]|20)$/;
+    const durationRegex = /^(?:[1-9]|1[0-9]|180)$/;
+>>>>>>> branch 'master' of https://github.com/kamalraj51/online-exam-managment.git
     
     const backendExamNameError = "<%= request.getAttribute("examError") != null ? request.getAttribute("examError") : "" %>";
     
@@ -173,14 +180,14 @@ document.addEventListener("DOMContentLoaded", function () {
             showError(examTopicInput, "Exam topic is required");
             isValid = false;
         } else if (!nameRegex.test(examTopicInput.value.trim())) {
-            showError(examTopicInput, "Enter a valid topic");
+            showError(examTopicInput, "Must start with a letter and be at least 4 characters long");
             isValid = false;
         }
         if (examNameInput.value.trim() === "") {
             showError(examNameInput, "Exam name is required");
             isValid = false;
         } else if (!nameRegex.test(examNameInput.value.trim())) {
-            showError(examNameInput, "Enter a valid name");
+            showError(examNameInput, "Must start with a letter and be at least 4 characters long");
             isValid = false;
         }
 
@@ -188,36 +195,36 @@ document.addEventListener("DOMContentLoaded", function () {
             showError(descriptionInput, "Description is required");
             isValid = false;
         } else if (!nameRegex.test(descriptionInput.value.trim())) {
-            showError(descriptionInput, "Enter a valid description");
+            showError(descriptionInput, "Must start with a letter and be at least 4 characters long");
             isValid = false;
         }
         if (noOfQuestionInput.value.trim() === "") {
             showError(noOfQuestionInput, "Number of question is required");
             isValid = false;
-        } else if (!numberRegex.test(noOfQuestionInput.value.trim())) {
-            showError(noOfQuestionInput, "Enter a valid number more than 0");
+        } else if (!numberofQuestionRegex.test(noOfQuestionInput.value.trim())) {
+            showError(noOfQuestionInput, "Enter a valid number 1-20");
             isValid = false;
         }
 
         if (minimumCorrectInput.value.trim() === "") {
-            showError(minimumCorrectInput, "Minimum mark is required");
+            showError(minimumCorrectInput, "Minimum pass percentage is required");
             isValid = false;
-        } else if (!numberRegex.test(minimumCorrectInput.value.trim())) {
-            showError(minimumCorrectInput, "Enter a valid mark more than 0");
+        } else if (!minimumMarkRegex.test(minimumCorrectInput.value.trim())) {
+            showError(minimumCorrectInput, "Enter a valid percentage 1-100");
             isValid = false;
         }
         if (eachQuestionMarkInput.value.trim() === "") {
             showError(eachQuestionMarkInput, "Each question mark is required");
             isValid = false;
-        } else if (!numberRegex.test(eachQuestionMarkInput.value.trim())) {
-            showError(eachQuestionMarkInput, "Enter a valid mark more than 0");
+        } else if (!numberofQuestionRegex.test(eachQuestionMarkInput.value.trim())) {
+            showError(eachQuestionMarkInput, "Enter a valid mark 1-20 ");
             isValid = false;
         }
         if (durationMinutesInput.value.trim() === "") {
             showError(durationMinutesInput, "Total duration is required");
             isValid = false;
-        } else if (!numberRegex.test(durationMinutesInput.value.trim())) {
-            showError(durationMinutesInput, "Enter a valid time in minutes");
+        } else if (!durationRegex.test(durationMinutesInput.value.trim())) {
+            showError(durationMinutesInput, "Enter a valid time in minutes less than 180 minutes");
             isValid = false;
         }
        

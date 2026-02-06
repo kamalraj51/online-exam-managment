@@ -17,9 +17,9 @@ public class HikariConnection {
 
 		config.setMinimumIdle(5);
 		config.setMaximumPoolSize(10);
-		config.setConnectionTimeout(200000);
-		config.setIdleTimeout(18000000);
-		config.setMaxLifetime(18000000);
+		config.setConnectionTimeout(30000);// 30sec
+		config.setIdleTimeout(300000);// 5min
+		config.setMaxLifetime(3600000);// 1hr
 		config.setDataSourceJNDI("jdbc/onlineexam_db");
 
 		config.setPoolName("hikari_pool");

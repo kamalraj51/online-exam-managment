@@ -66,7 +66,6 @@ public class ExamHistoryDAO {
 				examHistory.setIncorrect(rs.getString("incorrect_answers"));
 				examHistory.setUnanswered(rs.getString("unanswered"));
 
-				//
 				if (rs.getBoolean("passed")) {
 					examHistory.setResult("Pass");
 				} else {
