@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
     
     
     const userRegex = /^[a-zA-Z][a-zA-Z0-9_]{4,14}$/;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    const emailRegex = /^[^\s@]+@[^.\s@]*[a-zA-Z][^.\s@]*\.[a-zA-Z]{2,}$/;
     const passRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/;
     
     function showError(input, message) {
