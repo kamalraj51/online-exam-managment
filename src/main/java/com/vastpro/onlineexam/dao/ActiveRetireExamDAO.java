@@ -8,7 +8,7 @@ import com.vastpro.onlineexam.db.DBConnection;
 import jakarta.servlet.http.HttpServletRequest;
 
 /**
- * Class Name: ActiveExamDAO
+ * Class Name: ActiveRetireExamDAO
  *
  * Description: This class is responsible for updating the exam status to 'ACTIVE' in the database.
  */
@@ -44,7 +44,7 @@ public class ActiveRetireExamDAO {
 				return flag;
 			}
 		} catch (Exception e) {
-			System.out.println("ActiveRetireExamDAO - activeRetireExam : " );
+			System.out.println("ActiveRetireExamDAO - activeRetireExam : ");
 			e.printStackTrace();
 		}
 		return flag;
